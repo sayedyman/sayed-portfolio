@@ -20,6 +20,14 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
+  const capabilitiesRef = useRef(null);
+  const { scrollYProgress: capabilitiesScroll } = useScroll({
+    target: capabilitiesRef,
+    offset: ["start end", "end start"],
+  });
+  const parallaxY = useTransform(capabilitiesScroll, [0, 1], ["-15%", "15%"]);
+  const parallaxYReverse = useTransform(capabilitiesScroll, [0, 1], ["15%", "-15%"]);
+
   return (
     <>
       {/* HERO SECTION */}
@@ -32,9 +40,22 @@ export default function Home() {
               className="absolute left-0 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-8 text-[10px] font-medium text-muted-foreground uppercase tracking-[0.2em]"
               style={{ opacity }}
             >
-              <a href="#" className="hover:text-primary transition-colors [writing-mode:vertical-lr] rotate-180">LinkedIn</a>
-              <a href="#" className="hover:text-primary transition-colors [writing-mode:vertical-lr] rotate-180">Twitter</a>
-              <a href="#" className="hover:text-primary transition-colors [writing-mode:vertical-lr] rotate-180">Dribbble</a>
+              {[
+                { name: "LinkedIn", href: "https://www.linkedin.com/in/sayed-ayman/" },
+                { name: "Behance", href: "https://www.behance.net/sayedelghanam1" },
+                { name: "GitHub", href: "https://github.com/sayedyman" }
+              ].map((social) => (
+                <a 
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit my ${social.name} profile`}
+                  className="opacity-70 hover:opacity-100 hover:text-primary transition-all duration-300 ease-out hover:-translate-x-0.5 hover:drop-shadow-[0_0_8px_rgba(255,229,0,0.25)] [writing-mode:vertical-lr] rotate-180"
+                >
+                  {social.name}
+                </a>
+              ))}
             </motion.div>
 
             {/* Main Typography Layer */}
@@ -163,7 +184,7 @@ export default function Home() {
               </div>
 
               <div className="mt-12 flex items-center gap-4">
-                <Link href="#contact" className="inline-flex items-center gap-2 font-medium border-b border-primary/30 hover:border-primary transition-colors pb-1">
+                <Link href="/about" className="inline-flex items-center gap-2 font-medium border-b border-primary/30 hover:border-primary transition-colors pb-1">
                   More about me <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -185,9 +206,11 @@ export default function Home() {
                   Featured <span className="text-primary italic font-editorial">Projects</span>
                 </h3>
               </div>
-              <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border rounded-full">
-                All Projects <ArrowUpRight className="w-4 h-4" />
-              </MagneticButton>
+              <Link href="/projects" passHref>
+                <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border rounded-full">
+                  All Projects <ArrowUpRight className="w-4 h-4" />
+                </MagneticButton>
+              </Link>
             </div>
           </Grid>
 
@@ -329,6 +352,89 @@ export default function Home() {
         </Container>
       </Section>
 
+      {/* DESIGN CAPABILITIES */}
+      <Section id="capabilities" padding="xl" className="bg-background relative border-t border-border/10 overflow-hidden">
+        <Container>
+          <Grid>
+            <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-24">
+              <h2 className="text-sm tracking-widest text-muted-foreground uppercase mb-4">
+                / 04 — Services
+              </h2>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium tracking-tighter uppercase leading-[0.9] mb-6">
+                Services
+              </h3>
+              <p className="text-xl md:text-2xl text-muted-foreground font-editorial italic">
+                Strategic Digital Product Design
+              </p>
+            </div>
+          </Grid>
+          
+          <div ref={capabilitiesRef} className="relative mt-12">
+            {/* Ambient Vertical Line Divider */}
+            <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/30 to-transparent -translate-x-1/2" />
+            
+            <Grid className="gap-y-32 gap-x-8">
+              {[
+                {
+                  num: "01",
+                  title: "UX Strategy & Research",
+                  desc: "Validating decisions through research to align human behavior with real business objectives.",
+                  stagger: false,
+                  reverseParallax: false
+                },
+                {
+                  num: "02",
+                  title: "Mobile & Web Applications",
+                  desc: "Simplifying complex workflows into intuitive, high-performing digital experiences.",
+                  stagger: true,
+                  reverseParallax: true
+                },
+                {
+                  num: "03",
+                  title: "SaaS Product Design",
+                  desc: "Architecting scalable, data-driven systems focused on usability, retention, and long-term product growth.",
+                  stagger: false,
+                  reverseParallax: false
+                },
+                {
+                  num: "04",
+                  title: "Landing Page Design",
+                  desc: "Structuring conversion-focused narratives that communicate value clearly and drive measurable results.",
+                  stagger: true,
+                  reverseParallax: true
+                }
+              ].map((service, i) => (
+                <div 
+                  key={i} 
+                  className={`col-span-4 md:col-span-6 relative group ${service.stagger ? 'lg:mt-32' : ''}`}
+                >
+                  {/* Ambient Horizontal Separator */}
+                  <div className="absolute -top-16 left-0 right-0 h-px bg-gradient-to-r from-border/20 via-border/5 to-transparent" />
+                  
+                  {/* Oversized Background Numeral */}
+                  <motion.div 
+                    style={{ y: service.reverseParallax ? parallaxYReverse : parallaxY }}
+                    className="absolute -top-12 -left-8 md:-top-20 md:-left-12 text-[120px] md:text-[200px] font-heading font-bold text-muted-foreground/5 leading-none select-none pointer-events-none transition-colors duration-700 group-hover:text-primary/[0.03]"
+                  >
+                    {service.num}
+                  </motion.div>
+                  
+                  {/* Content Container */}
+                  <div className="relative z-10 transition-transform duration-500 ease-out group-hover:-translate-y-1">
+                    <h4 className="text-2xl md:text-3xl font-heading font-medium mb-6 transition-colors duration-500 group-hover:text-primary">
+                      {service.title}
+                    </h4>
+                    <p className="text-muted-foreground/80 leading-relaxed max-w-md text-lg">
+                      {service.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </Grid>
+          </div>
+        </Container>
+      </Section>
+
       {/* JOURNAL & INSIGHTS */}
       <Section id="journal" padding="xl" className="bg-background relative border-t border-border/10">
         <Container>
@@ -336,7 +442,7 @@ export default function Home() {
             <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
               <div>
                 <h2 className="text-sm tracking-widest text-muted-foreground uppercase mb-4">
-                  / 04 — Journal
+                  / 05 — Journal
                 </h2>
                 <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium tracking-tighter uppercase leading-[0.9]">
                   Insights & <br/> <span className="text-primary italic font-editorial">Observations</span>

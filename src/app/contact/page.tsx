@@ -43,8 +43,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
   return (
     <main className="relative min-h-[100svh] pt-32 pb-24 overflow-hidden bg-background">
-      {/* Background grain and gradients for cinematic transition */}
-      <div className="absolute inset-0 bg-grain opacity-[0.03] mix-blend-overlay pointer-events-none" />
+      {/* Background gradients for cinematic transition */}
       <div className="absolute top-0 inset-x-0 h-[50vh] bg-gradient-to-b from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none" />
       
       <Container className="relative z-10">

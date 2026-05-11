@@ -138,3 +138,44 @@ html.lenis, html.lenis body {
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
+
+/* Custom Idle Shimmer Animation */
+.animate-idle-shimmer {
+  position: relative;
+  overflow: hidden;
+  border-color: rgba(255, 229, 0, 0.15);
+  transition: border-color 0.3s ease;
+}
+
+.animate-idle-shimmer:hover {
+  border-color: rgba(255, 229, 0, 0.4);
+}
+
+.animate-idle-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 229, 0, 0.01) 20%,
+    rgba(255, 229, 0, 0.08) 50%,
+    rgba(255, 229, 0, 0.01) 80%,
+    transparent
+  );
+  transform: translateX(-100%) skewX(-15deg);
+  animation: shimmer-sweep 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  30%, 100% {
+    transform: translateX(100%) skewX(-15deg);
+  }
+}

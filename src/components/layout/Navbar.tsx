@@ -94,7 +94,7 @@ export function Navbar() {
 
           <div className="flex items-center">
             <Link href="/contact" passHref>
-              <MagneticButton variant="primary" className="py-2.5 px-6 text-sm">
+              <MagneticButton variant="secondary" className="py-2.5 px-6 text-sm animate-idle-shimmer">
                 Hire Me
               </MagneticButton>
             </Link>
