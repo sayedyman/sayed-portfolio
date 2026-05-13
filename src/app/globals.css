@@ -179,3 +179,11 @@ html.lenis, html.lenis body {
     transform: translateX(100%) skewX(-15deg);
   }
 }
+
+/* Case study prose paragraph spacing */
+.prose-p > p {
+  margin-bottom: 1.75em;
+}
+.prose-p > p:last-child {
+  margin-bottom: 0;
+}
