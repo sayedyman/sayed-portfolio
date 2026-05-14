@@ -117,20 +117,61 @@ const allProjectSlugsQuery = groq`
   }
 `
 
+// ─── RAW DEBUG QUERY (no status filter) ──────────────────────────────────────
+
+const allProjectsRawQuery = groq`
+  *[_type == "project"]
+  | order(displayOrder asc) {
+    _id,
+    title,
+    status,
+    featured,
+    featuredOrder,
+    displayOrder,
+    slug
+  }
+`
+
 // ─── FETCH FUNCTIONS ─────────────────────────────────────────────────────────
 
 export async function getAllProjects(): Promise<SanityProject[]> {
-  return client.fetch(allProjectsQuery, {}, { next: { tags: ['project'] } })
+  const result = await client.fetch<SanityProject[]>(allProjectsQuery, {}, { next: { tags: ['project'] } })
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`[Sanity] getAllProjects → ${result.length} project(s) with status=="published"`)
+  }
+  return result
 }
 
 export async function getFeaturedProjects(): Promise<SanityFeaturedProject[]> {
-  return client.fetch(featuredProjectsQuery, {}, { next: { tags: ['project'] } })
+  const result = await client.fetch<SanityFeaturedProject[]>(featuredProjectsQuery, {}, { next: { tags: ['project'] } })
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`[Sanity] getFeaturedProjects → ${result.length} featured project(s)`)
+    if (result.length === 0) {
+      // Fetch raw to help diagnose why the filtered query returned nothing
+      const raw = await client.fetch(allProjectsRawQuery)
+      console.log('[Sanity] RAW projects (no filter):', JSON.stringify(raw, null, 2))
+    }
+  }
+  return result
 }
 
 export async function getProject(slug: string): Promise<SanityProjectDetail | null> {
-  return client.fetch(projectBySlugQuery, { slug }, { next: { tags: ['project'] } })
+  const result = await client.fetch<SanityProjectDetail | null>(projectBySlugQuery, { slug }, { next: { tags: ['project'] } })
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`[Sanity] getProject("${slug}") → ${result ? result.title : 'null (not found or not published)'}`)
+  }
+  return result
 }
 
 export async function getAllProjectSlugs(): Promise<SanitySlug[]> {
   return client.fetch(allProjectSlugsQuery, {}, { next: { tags: ['project'] } })
+}
+
+/**
+ * Raw fetch — returns ALL projects regardless of status.
+ * Used by the /api/debug-projects endpoint to diagnose CMS field values.
+ * Never called in the production rendering pipeline.
+ */
+export async function getAllProjectsRaw() {
+  return client.fetch(allProjectsRawQuery)
 }

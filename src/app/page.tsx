@@ -1,6 +1,10 @@
 import { getFeaturedProjects } from '@/lib/sanity/queries'
 import HomeClient from './HomeClient'
 
+// Re-fetch from Sanity every 60 s — fallback in case the webhook isn’t fired.
+// On-demand revalidation via /api/revalidate will override this instantly.
+export const revalidate = 60
+
 /**
  * Server Component — fetches featured projects from Sanity
  * and passes them as props to HomeClient ("use client").
