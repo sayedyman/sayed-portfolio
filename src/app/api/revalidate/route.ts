@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     return Response.json({ message: 'Invalid secret' }, { status: 401 })
   }
 
-  revalidateTag('project')
+  revalidateTag('project', 'max')
 
   return Response.json({
     revalidated: true,
