@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
   }
 
   // revalidateTag accepts exactly ONE string — the tag name.
-  revalidateTag('project')
+  revalidateTag('project', 'max')
 
   return Response.json({
     revalidated: true,
