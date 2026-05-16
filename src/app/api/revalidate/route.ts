@@ -38,14 +38,14 @@ export async function POST(request: NextRequest) {
     const slug = body?.slug?.current
 
     if (type === 'project' || type === 'projectType') {
-      revalidateTag(CACHE_TAGS.PROJECT)
+      revalidateTag(CACHE_TAGS.PROJECT, 'max')
       revalidatePath('/')
       revalidatePath('/projects')
       if (slug) revalidatePath(`/projects/${slug}`)
       
       console.log(`[Webhook] Revalidating project: ${slug || type}`)
     } else if (type === 'article') {
-      revalidateTag(CACHE_TAGS.ARTICLE)
+      revalidateTag(CACHE_TAGS.ARTICLE, 'max')
       revalidatePath('/') // Homepage might feature articles in the future
       revalidatePath('/articles')
       if (slug) revalidatePath(`/articles/${slug}`)
@@ -81,8 +81,8 @@ export async function GET(request: NextRequest) {
     return Response.json({ message: 'Invalid secret' }, { status: 401 })
   }
 
-  revalidateTag(CACHE_TAGS.PROJECT)
-  revalidateTag(CACHE_TAGS.ARTICLE)
+  revalidateTag(CACHE_TAGS.PROJECT, 'max')
+  revalidateTag(CACHE_TAGS.ARTICLE, 'max')
 
   return Response.json({
     revalidated: true,
