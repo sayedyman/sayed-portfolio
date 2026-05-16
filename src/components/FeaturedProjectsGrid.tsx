@@ -71,7 +71,7 @@ function ProjectCard({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 58vw, 700px"
           />
         ) : (
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.imageGradient ?? 'from-[#111] to-[#050505]'} flex items-center justify-center border border-border/50 rounded-xl`}>
+          <div className={`absolute inset-0 bg-gradient-to-br ${project.imageGradient ?? 'from-[#0F1115] via-[#171A21] to-[#050816]'} flex items-center justify-center border border-border/50 rounded-xl`}>
             <span className="text-muted-foreground/30 font-heading text-4xl">{project.title}</span>
           </div>
         )}
@@ -81,7 +81,7 @@ function ProjectCard({
           <h4 className={`text-2xl font-heading font-medium mb-2 transition-colors ${
             project.status === 'coming-soon' ? 'group-hover:text-foreground/70' : 'group-hover:text-primary'
           }`}>{project.title}</h4>
-          <p className="text-muted-foreground">{project.category ?? project.projectType ?? ''}</p>
+          <p className="text-muted-foreground">{project.category ?? 'CASE STUDY'}</p>
         </div>
         <div className={`w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors ${
           project.status === 'coming-soon'

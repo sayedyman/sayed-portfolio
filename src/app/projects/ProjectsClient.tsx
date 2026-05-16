@@ -106,7 +106,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               </p>
             </div>
           ) : (
-            filteredProjects.map((project) => {
+            filteredProjects.map((project, i) => {
               const slug = project.slug?.current ?? '#'
               const hasImage = !!project.coverImage?.asset
 
@@ -120,7 +120,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                     className="group cursor-pointer"
                   >
                     <Grid>
-                      <div className={`col-span-4 md:col-span-8 lg:col-span-10 ${project.align === 'right' ? 'lg:col-start-3' : ''}`}>
+                      <div className={`col-span-4 md:col-span-8 lg:col-span-10 ${i % 2 !== 0 ? 'lg:col-start-3' : ''}`}>
 
                         {/* Cinematic Image / Gradient */}
                         <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden rounded-sm bg-secondary mb-8 md:mb-12">
@@ -153,7 +153,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                           ) : (
                             /* Base Cinematic Gradient — preserved from original */
                             <motion.div
-                              className={`absolute inset-0 bg-gradient-to-br ${project.imageGradient ?? 'from-[#111] via-[#161616] to-[#050505]'}`}
+                              className={`absolute inset-0 bg-gradient-to-br ${project.imageGradient ?? 'from-[#0F1115] via-[#171A21] to-[#050816]'}`}
                               whileHover={{ scale: 1.02 }}
                               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                             >
@@ -175,20 +175,8 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                           <div className="flex-1 max-w-2xl">
                             <div className="flex items-center gap-3 mb-4">
                               <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-primary">
-                                {project.category ?? project.projectType}
+                                {project.category ?? 'CASE STUDY'}
                               </span>
-                              {project.tags && project.tags.length > 0 && (
-                                <>
-                                  <span className="w-4 h-px bg-border/50" />
-                                  <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground flex gap-2">
-                                    {project.tags.map((tag, i) => (
-                                      <span key={tag}>
-                                        {tag}{i < (project.tags?.length ?? 0) - 1 ? " •" : ""}
-                                      </span>
-                                    ))}
-                                  </span>
-                                </>
-                              )}
                             </div>
 
                             <h2 className={`text-3xl md:text-5xl font-heading font-medium mb-6 transition-colors duration-500 ${
@@ -197,9 +185,9 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                               {project.title}
                             </h2>
 
-                            {project.description && (
+                            {project.summary && (
                               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl">
-                                {project.description}
+                                {project.summary}
                               </p>
                             )}
                           </div>

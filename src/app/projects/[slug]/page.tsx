@@ -7,7 +7,6 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { Container } from '@/components/layout/Container'
 import { getProject, getAllProjectSlugs, type SanityProjectDetail } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
-import { getNarrativeConfig } from '@/lib/sanity/narrativeConfig'
 
 // ─── Static params ────────────────────────────────────────────────────────────
 
@@ -105,10 +104,13 @@ export default async function ProjectPage({
     return <ComingSoonPage project={project} />
   }
 
-  const config = getNarrativeConfig(project.narrativeStyle)
-  const hasGallery =
-    config.galleryEnabled && project.galleryImages && project.galleryImages.length > 0
+  const hasGallery = project.galleryImages && project.galleryImages.length > 0
   const hasCoverImage = !!project.coverImage?.asset
+  
+  const proseWidth =
+    project.readingWidth === 'narrow' ? 'max-w-xl'
+    : project.readingWidth === 'wide' ? 'max-w-3xl'
+    : 'max-w-2xl'
 
   return (
     <main className="relative min-h-[100svh] bg-background pb-24">
@@ -137,58 +139,18 @@ export default async function ProjectPage({
             {project.title}
           </h1>
 
-          {/* Summary — max-width driven by narrative config */}
+          {/* Summary */}
           {project.summary && (
-            <p className={`text-xl md:text-2xl text-muted-foreground leading-relaxed mb-16 ${config.proseMaxWidth}`}>
+            <p className={`text-xl md:text-2xl text-muted-foreground leading-relaxed mb-16 ${proseWidth}`}>
               {project.summary}
             </p>
-          )}
-
-          {/* Metadata grid */}
-          {(project.role || project.timeline || project.client || project.publishedAt) && (
-            <dl className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-border/30 pt-10">
-              {project.role && (
-                <div>
-                  <dt className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/60 mb-2">Role</dt>
-                  <dd className="text-sm font-medium text-foreground">{project.role}</dd>
-                </div>
-              )}
-              {project.timeline && (
-                <div>
-                  <dt className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/60 mb-2">Timeline</dt>
-                  <dd className="text-sm font-medium text-foreground">{project.timeline}</dd>
-                </div>
-              )}
-              {project.client && (
-                <div>
-                  <dt className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/60 mb-2">Client</dt>
-                  <dd className="text-sm font-medium text-foreground">{project.client}</dd>
-                </div>
-              )}
-              {project.publishedAt && (
-                <div>
-                  <dt className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground/60 mb-2">Year</dt>
-                  <dd className="text-sm font-medium text-foreground">
-                    {new Date(project.publishedAt).getFullYear()}
-                  </dd>
-                </div>
-              )}
-            </dl>
           )}
         </Container>
       </div>
 
       {/* ─── COVER IMAGE ────────────────────────────────────────────────── */}
       {hasCoverImage && (
-        <div
-          className={`relative w-full mb-16 md:mb-24 overflow-hidden ${
-            config.imageSize === 'full-bleed'
-              ? 'aspect-[16/9]'
-              : config.imageSize === 'editorial'
-              ? 'aspect-[16/9] max-w-[90vw] mx-auto rounded-sm'
-              : 'aspect-[16/9] max-w-5xl mx-auto px-6 rounded-sm'
-          }`}
-        >
+        <div className="relative w-full mb-16 md:mb-24 overflow-hidden aspect-[16/9] max-w-[90vw] mx-auto rounded-sm">
           <Image
             src={urlFor(project.coverImage!).width(1600).height(900).url()}
             alt={project.title}
@@ -203,7 +165,7 @@ export default async function ProjectPage({
       {/* ─── BODY CONTENT ───────────────────────────────────────────────── */}
       {project.body && project.body.length > 0 && (
         <Container>
-          <div className={`mx-auto ${config.proseMaxWidth}`}>
+          <div className={`mx-auto ${proseWidth}`}>
             <PortableText value={project.body} components={portableTextComponents} />
           </div>
         </Container>
@@ -225,11 +187,7 @@ export default async function ProjectPage({
               return (
                 <div
                   key={i}
-                  className={`relative w-full overflow-hidden ${
-                    config.imageSize === 'full-bleed'
-                      ? 'aspect-[16/9]'
-                      : 'aspect-[16/9] max-w-[90vw] mx-auto rounded-sm'
-                  }`}
+                  className="relative w-full overflow-hidden aspect-[16/9] max-w-[90vw] mx-auto rounded-sm"
                 >
                   <Image
                     src={urlFor(img).width(1600).height(900).url()}

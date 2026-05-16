@@ -19,7 +19,6 @@ export type SanityProject = {
     hotspot?: { x: number; y: number }
   }
   imageGradient?: string
-  align?: 'left' | 'right'
   displayOrder?: number
   publishedAt?: string
   launchDate?: string
@@ -36,12 +35,12 @@ export type SanityProjectDetail = SanityProject & {
     alt?: string
   }>
   summary?: string
+  readingWidth?: 'narrow' | 'standard' | 'wide'
   role?: string
   timeline?: string
   client?: string
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any[]
-  narrativeStyle?: 'minimal' | 'immersive' | 'visual-heavy' | 'process-heavy' | 'editorial'
   seoTitle?: string
   seoDescription?: string
 }
@@ -65,7 +64,6 @@ const allProjectsQuery = groq`
     description,
     coverImage,
     imageGradient,
-    align,
     displayOrder,
     publishedAt,
     updatedAt
@@ -85,7 +83,6 @@ const featuredProjectsQuery = groq`
     description,
     coverImage,
     imageGradient,
-    align,
     featuredOrder
   }
 `
@@ -104,13 +101,12 @@ const projectBySlugQuery = groq`
     coverImage,
     galleryImages,
     imageGradient,
-    align,
     summary,
+    readingWidth,
     role,
     timeline,
     client,
     body,
-    narrativeStyle,
     publishedAt,
     launchDate,
     updatedAt,

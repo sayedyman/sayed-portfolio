@@ -8,8 +8,8 @@ export const projectType = defineType({
   groups: [
     { name: 'content', title: 'Content', default: true },
     { name: 'media', title: 'Media' },
+    { name: 'legacyMetadata', title: 'Legacy Metadata' },
     { name: 'ordering', title: 'Ordering & Visibility' },
-    { name: 'presentation', title: 'Presentation' },
     { name: 'caseStudy', title: 'Case Study' },
     { name: 'seo', title: 'SEO' },
   ],
@@ -58,7 +58,7 @@ export const projectType = defineType({
       name: 'projectType',
       title: 'Project Type',
       type: 'string',
-      group: 'content',
+      group: 'legacyMetadata',
       description: 'Primary categorization — used for filtering on the projects page',
       options: {
         list: [
@@ -77,7 +77,7 @@ export const projectType = defineType({
       name: 'category',
       title: 'Category Label',
       type: 'string',
-      group: 'content',
+      group: 'legacyMetadata',
       description: 'Editorial subtitle shown on project cards (e.g. "UX Research & Design System")',
     }),
 
@@ -85,7 +85,7 @@ export const projectType = defineType({
       name: 'tags',
       title: 'Tags',
       type: 'array',
-      group: 'content',
+      group: 'legacyMetadata',
       description: 'Flexible secondary descriptors (e.g. "Accessibility", "Design System")',
       of: [{ type: 'string' }],
       options: {
@@ -97,7 +97,7 @@ export const projectType = defineType({
       name: 'description',
       title: 'Description',
       type: 'text',
-      group: 'content',
+      group: 'legacyMetadata',
       rows: 3,
       description: 'Short description shown on project listing cards',
     }),
@@ -125,6 +125,23 @@ export const projectType = defineType({
         }
         return true
       }),
+    }),
+
+    defineField({
+      name: 'readingWidth',
+      title: 'Reading Width',
+      type: 'string',
+      group: 'content',
+      description: 'Optional. Controls the max-width of the case study body text for subtle editorial pacing.',
+      options: {
+        list: [
+          { title: 'Narrow', value: 'narrow' },
+          { title: 'Standard', value: 'standard' },
+          { title: 'Wide', value: 'wide' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'standard',
     }),
 
     // ─── MEDIA ───────────────────────────────────────────────────────
@@ -179,7 +196,7 @@ export const projectType = defineType({
       name: 'imageGradient',
       title: 'Fallback Gradient',
       type: 'string',
-      group: 'media',
+      group: 'legacyMetadata',
       description: 'CSS gradient class string used when no cover image is set (e.g. "from-[#111] via-[#161616] to-[#050505]")',
       initialValue: 'from-[#111] via-[#161616] to-[#050505]',
     }),
@@ -234,63 +251,12 @@ export const projectType = defineType({
       description: 'Last updated date — used for activity-based sorting and future content systems',
     }),
 
-    // ─── PRESENTATION ─────────────────────────────────────────────────
-    defineField({
-      name: 'narrativeStyle',
-      title: 'Narrative Style',
-      type: 'string',
-      group: 'presentation',
-      description: 'Controls the storytelling rhythm and visual presentation of the case study page',
-      options: {
-        list: [
-          {
-            title: 'Minimal',
-            value: 'minimal',
-          },
-          {
-            title: 'Immersive',
-            value: 'immersive',
-          },
-          {
-            title: 'Visual Heavy',
-            value: 'visual-heavy',
-          },
-          {
-            title: 'Process Heavy',
-            value: 'process-heavy',
-          },
-          {
-            title: 'Editorial',
-            value: 'editorial',
-          },
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'editorial',
-    }),
-
-    defineField({
-      name: 'align',
-      title: 'Card Alignment',
-      type: 'string',
-      group: 'presentation',
-      description: 'Layout alignment of this project card on the /projects listing page',
-      options: {
-        list: [
-          { title: 'Left', value: 'left' },
-          { title: 'Right', value: 'right' },
-        ],
-        layout: 'radio',
-      },
-      initialValue: 'left',
-    }),
-
     // ─── CASE STUDY ───────────────────────────────────────────────────
     defineField({
       name: 'role',
       title: 'Role',
       type: 'string',
-      group: 'caseStudy',
+      group: 'legacyMetadata',
       description: "Your role on this project (e.g. \"Lead Product Designer\")",
     }),
 
@@ -298,7 +264,7 @@ export const projectType = defineType({
       name: 'timeline',
       title: 'Timeline',
       type: 'string',
-      group: 'caseStudy',
+      group: 'legacyMetadata',
       description: 'Project duration (e.g. "12 Weeks")',
     }),
 
@@ -306,7 +272,7 @@ export const projectType = defineType({
       name: 'client',
       title: 'Client',
       type: 'string',
-      group: 'caseStudy',
+      group: 'legacyMetadata',
       description: 'Client name or project context',
     }),
 
