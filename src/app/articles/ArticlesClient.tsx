@@ -78,8 +78,8 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
                         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
                           
                           {/* Text Content */}
-                          <div className="flex-1 order-2 lg:order-1 max-w-3xl">
-                            <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-heading font-medium leading-[1.1] mb-6 text-foreground group-hover:text-primary transition-colors duration-500">
+                          <div className="flex-1 min-w-0 order-2 lg:order-1 max-w-3xl">
+                            <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-heading font-medium leading-[1.1] mb-6 text-foreground group-hover:text-primary transition-colors duration-500 break-words [overflow-wrap:anywhere]">
                               {article.title}
                             </h2>
                             {article.excerpt && (

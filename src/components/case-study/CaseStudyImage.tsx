@@ -32,7 +32,7 @@ function CinemaImage({
   const isInView = useInView(containerRef, { once: true, margin: "-5% 0px" });
 
   return (
-    <div ref={containerRef} className="w-screen relative left-1/2 -translate-x-1/2">
+    <div ref={containerRef} className="w-[100vw] max-w-[100vw] relative left-1/2 -translate-x-1/2">
       <motion.div
         initial={{ clipPath: "inset(0 100% 0 0)" }}
         animate={isInView ? { clipPath: "inset(0 0% 0 0)" } : undefined}
@@ -74,8 +74,7 @@ function BreatheImage({
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : undefined}
         transition={{ duration: 0.9, ease }}
-        className="relative overflow-hidden"
-        style={{ width: "min(80%, 900px)", aspectRatio: "4/3" }}
+        className="relative overflow-hidden w-[90%] md:w-[80%] max-w-[900px] aspect-[4/3] md:aspect-[16/9]"
       >
         <Image
           src={src}

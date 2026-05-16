@@ -172,14 +172,14 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
 
                         {/* Project Details */}
                         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 md:gap-12 pl-1 md:pl-4">
-                          <div className="flex-1 max-w-2xl">
+                          <div className="flex-1 min-w-0 max-w-2xl">
                             <div className="flex items-center gap-3 mb-4">
                               <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-primary">
                                 {project.category ?? 'CASE STUDY'}
                               </span>
                             </div>
 
-                            <h2 className={`text-[clamp(1.75rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 ${
+                            <h2 className={`text-[clamp(1.75rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] ${
                               project.status === 'coming-soon' ? 'group-hover:text-foreground/70' : 'group-hover:text-primary'
                             }`}>
                               {project.title}

@@ -135,7 +135,7 @@ export default async function ProjectPage({
           </div>
 
           {/* Title */}
-          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
+          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl break-words [overflow-wrap:anywhere]">
             {project.title}
           </h1>
 
@@ -244,7 +244,7 @@ function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
           </div>
 
           {/* Title */}
-          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
+          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl break-words [overflow-wrap:anywhere]">
             {project.title}
           </h1>
 

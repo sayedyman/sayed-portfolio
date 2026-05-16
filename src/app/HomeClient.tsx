@@ -99,7 +99,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
 
             {/* Portrait Image Layer */}
             <motion.div 
-              className="absolute -right-4 md:-right-8 lg:right-12 top-[40%] -translate-y-1/2 w-[65%] md:w-[40%] lg:w-[380px] aspect-[4/5] z-10 pointer-events-none"
+              className="absolute -right-4 md:-right-8 lg:right-12 top-[40%] -translate-y-1/2 w-[65%] md:w-[40%] lg:w-[380px] max-w-[calc(100vw-2rem)] aspect-[4/5] z-10 pointer-events-none"
               style={{ y }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

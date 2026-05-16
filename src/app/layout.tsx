@@ -30,7 +30,7 @@ export default function RootLayout({
         <InteractiveElements />
         <div className="bg-grain" />
         <Navbar />
-        <main className="flex-1 flex flex-col pt-24">
+        <main className="flex-1 flex flex-col pt-24 overflow-x-hidden">
           {children}
         </main>
         <Footer />

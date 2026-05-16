@@ -135,7 +135,7 @@ export default async function ArticlePage({
           </div>
 
           {/* Title */}
-          <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-heading font-medium leading-[1.05] tracking-tight mb-8">
+          <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-heading font-medium leading-[1.05] tracking-tight mb-8 break-words [overflow-wrap:anywhere]">
             {article.title}
           </h1>
 
@@ -173,7 +173,7 @@ export default async function ArticlePage({
           <div className="mx-auto max-w-2xl mt-24 pt-12 border-t border-border/20">
             <div className="flex flex-wrap gap-2">
               {article.tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 text-xs font-medium tracking-widest uppercase bg-secondary/50 text-muted-foreground rounded-sm">
+                <span key={tag} className="px-3 py-1 text-xs font-medium tracking-widest uppercase bg-secondary/50 text-muted-foreground rounded-sm break-words [overflow-wrap:anywhere]">
                   {tag}
                 </span>
               ))}

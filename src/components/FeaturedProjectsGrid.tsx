@@ -77,8 +77,8 @@ function ProjectCard({
         )}
       </div>
       <div className="flex items-center justify-between">
-        <div>
-          <h4 className={`text-2xl font-heading font-medium mb-2 transition-colors ${
+        <div className="min-w-0 pr-4">
+          <h4 className={`text-2xl font-heading font-medium mb-2 transition-colors break-words [overflow-wrap:anywhere] ${
             project.status === 'coming-soon' ? 'group-hover:text-foreground/70' : 'group-hover:text-primary'
           }`}>{project.title}</h4>
           <p className="text-muted-foreground">{project.category ?? 'CASE STUDY'}</p>

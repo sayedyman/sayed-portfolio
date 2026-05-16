@@ -85,15 +85,15 @@ function FeaturedProjectCard({
 
       {/* Project Info */}
       <div className="flex items-center justify-between">
-        <div>
-          <h4 className="text-2xl font-heading font-medium mb-2 group-hover:text-primary transition-colors">
+        <div className="min-w-0 pr-4">
+          <h4 className="text-2xl font-heading font-medium mb-2 group-hover:text-primary transition-colors break-words [overflow-wrap:anywhere]">
             {project.title}
           </h4>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground truncate">
             {project.category ?? project.projectType ?? ''}
           </p>
         </div>
-        <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
+        <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors shrink-0">
           <ArrowUpRight className="w-5 h-5" />
         </div>
       </div>
