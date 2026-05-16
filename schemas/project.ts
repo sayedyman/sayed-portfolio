@@ -55,22 +55,22 @@ export const projectType = defineType({
     }),
 
     defineField({
+      name: 'projectTypeRef',
+      title: 'Category / Project Type',
+      type: 'reference',
+      to: [{ type: 'projectType' }],
+      group: 'content',
+      description: 'The primary category of the project. Can be created inline.',
+    }),
+
+    defineField({
       name: 'projectType',
-      title: 'Project Type',
+      title: 'Legacy Project Type',
       type: 'string',
       group: 'legacyMetadata',
-      description: 'Primary categorization — used for filtering on the projects page',
-      options: {
-        list: [
-          { title: 'SaaS', value: 'SaaS' },
-          { title: 'Mobile App', value: 'Mobile App' },
-          { title: 'Dashboard', value: 'Dashboard' },
-          { title: 'Landing Page', value: 'Landing Page' },
-          { title: 'Branding', value: 'Branding' },
-          { title: 'Other', value: 'Other' },
-        ],
-        layout: 'radio',
-      },
+      description: 'Legacy field. Use the Category / Project Type reference field instead.',
+      hidden: true,
+      readOnly: true,
     }),
 
     defineField({
