@@ -47,9 +47,11 @@ export function CustomCursor() {
   return (
     <motion.div
       className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-[9999] mix-blend-difference"
-      animate={{
+      style={{
         x: mousePosition.x - 8,
         y: mousePosition.y - 8,
+      }}
+      animate={{
         scale: isHovering ? 2.5 : 1,
         opacity: isHovering ? 0.8 : 1,
       }}

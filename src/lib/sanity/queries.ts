@@ -13,6 +13,7 @@ export type SanityProject = {
   tags?: string[]
   description?: string
   teaserCopy?: string
+  summary?: string
   coverImage?: {
     asset: { _ref: string }
     alt?: string
@@ -34,7 +35,6 @@ export type SanityProjectDetail = SanityProject & {
     asset: { _ref: string }
     alt?: string
   }>
-  summary?: string
   readingWidth?: 'narrow' | 'standard' | 'wide'
   role?: string
   timeline?: string
@@ -62,6 +62,7 @@ const allProjectsQuery = groq`
     category,
     tags,
     description,
+    summary,
     coverImage,
     imageGradient,
     displayOrder,
@@ -81,6 +82,7 @@ const featuredProjectsQuery = groq`
     category,
     tags,
     description,
+    summary,
     coverImage,
     imageGradient,
     featuredOrder
