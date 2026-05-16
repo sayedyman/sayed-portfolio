@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { Container } from '@/components/layout/Container'
-import { getProject, getAllProjectSlugs } from '@/lib/sanity/queries'
+import { getProject, getAllProjectSlugs, type SanityProjectDetail } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { getNarrativeConfig } from '@/lib/sanity/narrativeConfig'
 
@@ -100,6 +100,10 @@ export default async function ProjectPage({
   const { slug } = await params
   const project = await getProject(slug)
   if (!project) notFound()
+
+  if (project.status === 'coming-soon') {
+    return <ComingSoonPage project={project} />
+  }
 
   const config = getNarrativeConfig(project.narrativeStyle)
   const hasGallery =
@@ -257,3 +261,85 @@ export default async function ProjectPage({
     </main>
   )
 }
+
+function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
+  const hasCoverImage = !!project.coverImage?.asset
+
+  return (
+    <main className="relative min-h-[100svh] bg-background pb-24">
+      {/* ─── CINEMATIC HERO (Teaser) ─────────────────────────────────────────────── */}
+      <div className="relative w-full pt-32 pb-16 md:pb-24">
+        <Container>
+          {/* Back nav */}
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors duration-300 mb-16"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            All Projects
+          </Link>
+
+          {/* Meta label */}
+          <div className="flex items-center gap-4 text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-8">
+            <span className="w-12 h-[1px] bg-primary" />
+            {project.projectType ?? project.category ?? 'Case Study'}
+          </div>
+
+          {/* Title */}
+          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
+            {project.title}
+          </h1>
+
+          {/* Teaser Copy (if present) */}
+          {project.teaserCopy && (
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
+              {project.teaserCopy}
+            </p>
+          )}
+        </Container>
+      </div>
+
+      {/* ─── COVER IMAGE (Teaser) ────────────────────────────────────────────────── */}
+      {hasCoverImage && (
+        <div className="relative w-full aspect-[16/9] overflow-hidden">
+          <Image
+            src={urlFor(project.coverImage!).width(1600).height(900).url()}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+          {/* Dark gradient veil */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+          
+          {/* Badge & Caption inside veil */}
+          <div className="absolute bottom-12 left-0 right-0 flex flex-col items-center justify-center text-center px-6">
+            <span className="text-[10px] tracking-[0.3em] uppercase font-medium text-muted-foreground/70 mb-2">
+              COMING SOON
+            </span>
+            {!project.teaserCopy && (
+              <span className="text-[9px] tracking-widest text-muted-foreground/40">
+                Full case study arriving soon
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* ─── BACK LINK ──────────────────────────────────────────────────── */}
+      <Container>
+        <div className="mt-24 pt-12 border-t border-border/20">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-3 text-xs font-medium tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors duration-300 group"
+          >
+            <span className="w-8 h-[1px] bg-border group-hover:bg-primary transition-colors duration-300" />
+            Back to All Projects
+          </Link>
+        </div>
+      </Container>
+    </main>
+  )
+}
+

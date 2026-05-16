@@ -7,10 +7,12 @@ export type SanityProject = {
   _id: string
   title: string
   slug: { current: string }
+  status?: 'draft' | 'published' | 'archived' | 'coming-soon'
   projectType?: string
   category?: string
   tags?: string[]
   description?: string
+  teaserCopy?: string
   coverImage?: {
     asset: { _ref: string }
     alt?: string
@@ -20,6 +22,7 @@ export type SanityProject = {
   align?: 'left' | 'right'
   displayOrder?: number
   publishedAt?: string
+  launchDate?: string
   updatedAt?: string
 }
 
@@ -50,11 +53,12 @@ export type SanitySlug = {
 // ─── GROQ QUERIES ────────────────────────────────────────────────────────────
 
 const allProjectsQuery = groq`
-  *[_type == "project" && status == "published"]
+  *[_type == "project" && status in ["published", "coming-soon"]]
   | order(displayOrder asc) {
     _id,
     title,
     slug,
+    status,
     projectType,
     category,
     tags,
@@ -69,11 +73,12 @@ const allProjectsQuery = groq`
 `
 
 const featuredProjectsQuery = groq`
-  *[_type == "project" && featured == true && status == "published"]
+  *[_type == "project" && featured == true && status in ["published", "coming-soon"]]
   | order(featuredOrder asc) {
     _id,
     title,
     slug,
+    status,
     projectType,
     category,
     tags,
@@ -86,14 +91,16 @@ const featuredProjectsQuery = groq`
 `
 
 const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug && status == "published"][0] {
+  *[_type == "project" && slug.current == $slug && status in ["published", "coming-soon"]][0] {
     _id,
     title,
     slug,
+    status,
     projectType,
     category,
     tags,
     description,
+    teaserCopy,
     coverImage,
     galleryImages,
     imageGradient,
@@ -105,6 +112,7 @@ const projectBySlugQuery = groq`
     body,
     narrativeStyle,
     publishedAt,
+    launchDate,
     updatedAt,
     seoTitle,
     seoDescription
@@ -112,7 +120,7 @@ const projectBySlugQuery = groq`
 `
 
 const allProjectSlugsQuery = groq`
-  *[_type == "project" && status == "published"] {
+  *[_type == "project" && status in ["published", "coming-soon"]] {
     "slug": slug.current
   }
 `
@@ -137,7 +145,7 @@ const allProjectsRawQuery = groq`
 export async function getAllProjects(): Promise<SanityProject[]> {
   const result = await client.fetch<SanityProject[]>(allProjectsQuery, {}, { next: { tags: ['project'] } })
   if (process.env.NODE_ENV !== 'production') {
-    console.log(`[Sanity] getAllProjects → ${result.length} project(s) with status=="published"`)
+    console.log(`[Sanity] getAllProjects → ${result.length} project(s) (published or coming-soon)`)
   }
   return result
 }
@@ -158,7 +166,7 @@ export async function getFeaturedProjects(): Promise<SanityFeaturedProject[]> {
 export async function getProject(slug: string): Promise<SanityProjectDetail | null> {
   const result = await client.fetch<SanityProjectDetail | null>(projectBySlugQuery, { slug }, { next: { tags: ['project'] } })
   if (process.env.NODE_ENV !== 'production') {
-    console.log(`[Sanity] getProject("${slug}") → ${result ? result.title : 'null (not found or not published)'}`)
+    console.log(`[Sanity] getProject("${slug}") → ${result ? result.title : 'null (not found or not public)'}`)
   }
   return result
 }

@@ -127,12 +127,27 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                           {/* Ambient Hover Overlay */}
                           <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />
 
+                          {/* Coming Soon Permanent Veil */}
+                          {project.status === 'coming-soon' && (
+                            <div className="absolute inset-0 bg-background/20 z-[5] pointer-events-none" />
+                          )}
+
+                          {project.status === 'coming-soon' && (
+                            <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-muted-foreground/60 border border-white/10 bg-black/30 backdrop-blur-sm px-2 py-1 rounded-none pointer-events-none">
+                              COMING SOON
+                            </div>
+                          )}
+
                           {hasImage ? (
                             <Image
                               src={urlFor(project.coverImage!).width(1200).height(675).url()}
                               alt={project.title}
                               fill
-                              className="object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                              className={`object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                                project.status === 'coming-soon' 
+                                  ? 'saturate-[0.85] brightness-[0.97] group-hover:scale-[1.015]' 
+                                  : 'group-hover:scale-[1.03]'
+                              }`}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 83vw, 1000px"
                             />
                           ) : (
@@ -176,7 +191,9 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                               )}
                             </div>
 
-                            <h2 className="text-3xl md:text-5xl font-heading font-medium mb-6 group-hover:text-primary transition-colors duration-500">
+                            <h2 className={`text-3xl md:text-5xl font-heading font-medium mb-6 transition-colors duration-500 ${
+                              project.status === 'coming-soon' ? 'group-hover:text-foreground/70' : 'group-hover:text-primary'
+                            }`}>
                               {project.title}
                             </h2>
 
@@ -188,12 +205,18 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                           </div>
 
                           <div className="flex-shrink-0 pt-2">
-                            <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-primary transition-colors duration-500">
-                              View Case Study
-                              <div className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
-                                <ArrowUpRight className="w-4 h-4" />
+                            {project.status === 'coming-soon' ? (
+                              <div className="flex items-center gap-4 text-[10px] font-semibold tracking-widest uppercase text-muted-foreground/50 transition-colors duration-500">
+                                Preview <span className="text-muted-foreground/30">⏤</span>
                               </div>
-                            </div>
+                            ) : (
+                              <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-primary transition-colors duration-500">
+                                View Case Study
+                                <div className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
+                                  <ArrowUpRight className="w-4 h-4" />
+                                </div>
+                              </div>
+                            )}
                           </div>
                         </div>
 

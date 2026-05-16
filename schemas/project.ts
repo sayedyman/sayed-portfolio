@@ -46,6 +46,7 @@ export const projectType = defineType({
           { title: 'Draft', value: 'draft' },
           { title: 'Published', value: 'published' },
           { title: 'Archived', value: 'archived' },
+          { title: '⏳ Coming Soon', value: 'coming-soon' },
         ],
         layout: 'radio',
       },
@@ -102,12 +103,28 @@ export const projectType = defineType({
     }),
 
     defineField({
+      name: 'teaserCopy',
+      title: 'Teaser Copy',
+      type: 'text',
+      rows: 2,
+      group: 'content',
+      description: 'Optional atmospheric line shown on the Coming Soon page. Keep it short and evocative — one or two sentences maximum.',
+    }),
+
+    defineField({
       name: 'summary',
       title: 'Summary',
       type: 'text',
       group: 'content',
       rows: 3,
       description: 'Short editorial summary shown in the case study hero section',
+      validation: (Rule) => Rule.custom((value, context) => {
+        const doc = context.document as { status?: string }
+        if (doc?.status === 'published' && !value) {
+          return 'Summary is required before publishing'
+        }
+        return true
+      }),
     }),
 
     // ─── MEDIA ───────────────────────────────────────────────────────
@@ -127,6 +144,14 @@ export const projectType = defineType({
           description: 'Describe the image for screen readers and SEO',
         }),
       ],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      validation: (Rule) => Rule.custom((value: any, context) => {
+        const doc = context.document as { status?: string }
+        if (doc?.status === 'published' && !value?.asset) {
+          return 'Cover image is required before publishing'
+        }
+        return true
+      }),
     }),
 
     defineField({
@@ -191,6 +216,14 @@ export const projectType = defineType({
       type: 'datetime',
       group: 'ordering',
       description: 'Publication date — used for chronological sorting and newest-first ordering',
+    }),
+
+    defineField({
+      name: 'launchDate',
+      title: 'Expected Launch',
+      type: 'date',
+      group: 'ordering',
+      description: 'Optional. Future-ready field for scheduled publishing, countdown systems, and release workflows. Not rendered on the frontend yet.',
     }),
 
     defineField({
@@ -283,6 +316,14 @@ export const projectType = defineType({
       type: 'array',
       group: 'caseStudy',
       description: 'Full case study content — supports rich text with headings, images, and pull quotes',
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      validation: (Rule) => Rule.custom((value: any, context) => {
+        const doc = context.document as { status?: string }
+        if (doc?.status === 'published' && (!value || value.length === 0)) {
+          return 'Case study body is required before publishing'
+        }
+        return true
+      }),
       of: [
         {
           type: 'block',
@@ -346,7 +387,11 @@ export const projectType = defineType({
       displayOrder: 'displayOrder',
     },
     prepare({ title, status, media, featured, displayOrder }) {
-      const statusEmoji = status === 'published' ? '✅' : status === 'archived' ? '📦' : '📝'
+      const statusEmoji =
+        status === 'published'    ? '✅'
+        : status === 'archived'   ? '📦'
+        : status === 'coming-soon'? '⏳'
+        : '📝'
       const featuredBadge = featured ? ' ⭐' : ''
       const orderPrefix = displayOrder !== undefined ? `[${displayOrder}] ` : ''
       return {
