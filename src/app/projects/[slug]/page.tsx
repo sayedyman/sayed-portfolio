@@ -310,22 +310,24 @@ function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
             priority
             sizes="100vw"
           />
-          {/* Dark gradient veil */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-          
-          {/* Badge & Caption inside veil */}
-          <div className="absolute bottom-12 left-0 right-0 flex flex-col items-center justify-center text-center px-6">
-            <span className="text-[10px] tracking-[0.3em] uppercase font-medium text-muted-foreground/70 mb-2">
-              COMING SOON
-            </span>
-            {!project.teaserCopy && (
-              <span className="text-[9px] tracking-widest text-muted-foreground/40">
-                Full case study arriving soon
-              </span>
-            )}
-          </div>
+          {/* Subtle dark gradient veil — purely atmospheric now */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
         </div>
       )}
+
+      {/* ─── COMING SOON HEADING (Cinematic) ──────────────────────────────────────── */}
+      <Container>
+        <div className="mt-24 md:mt-32 mb-8 flex flex-col items-center justify-center text-center">
+          <h2 className="text-4xl md:text-6xl lg:text-[5.5rem] font-heading font-medium uppercase tracking-[0.15em] leading-none text-foreground mb-6">
+            Coming Soon
+          </h2>
+          {!project.teaserCopy && (
+            <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-muted-foreground/50 font-medium max-w-lg mx-auto">
+              Full case study arriving soon
+            </p>
+          )}
+        </div>
+      </Container>
 
       {/* ─── BACK LINK ──────────────────────────────────────────────────── */}
       <Container>
