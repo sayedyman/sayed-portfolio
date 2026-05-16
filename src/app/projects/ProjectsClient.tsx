@@ -42,7 +42,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
       : projects.filter((p) => p.projectType === activeFilter);
 
   return (
-    <main className="relative min-h-[100svh] pt-32 pb-24 overflow-hidden bg-background">
+    <main className="relative min-h-[100dvh] pt-32 pb-24 overflow-hidden bg-background">
       <Container className="relative z-10">
 
         {/* HERO SECTION */}
@@ -54,7 +54,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-5xl"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-[7.5rem] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
+              <h1 className="text-[clamp(3rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
                 Selected <br className="hidden md:block" />
                 <span className="text-primary italic font-editorial">Projects</span>
               </h1>
@@ -179,7 +179,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                               </span>
                             </div>
 
-                            <h2 className={`text-3xl md:text-5xl font-heading font-medium mb-6 transition-colors duration-500 ${
+                            <h2 className={`text-[clamp(1.75rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 ${
                               project.status === 'coming-soon' ? 'group-hover:text-foreground/70' : 'group-hover:text-primary'
                             }`}>
                               {project.title}

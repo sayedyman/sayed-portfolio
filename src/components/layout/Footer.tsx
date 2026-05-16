@@ -52,7 +52,7 @@ export function Footer() {
           {!hideCTA && (
             <Grid className="mb-24">
               <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">
-                <h2 className="font-heading text-5xl md:text-8xl lg:text-[10rem] leading-none tracking-tighter mb-8 text-foreground uppercase">
+                <h2 className="font-heading text-[clamp(4rem,12vw,10rem)] leading-none tracking-tighter mb-8 text-foreground uppercase">
                   Let's Build<br/>
                   <span className="text-primary italic font-editorial">Together</span>
                 </h2>
@@ -68,8 +68,8 @@ export function Footer() {
             </Grid>
           )}
           
-          <div className={`flex flex-col md:flex-row items-center justify-between text-sm text-muted-foreground ${hideCTA ? "" : "pt-8 border-t border-border/50"}`}>
-            <div className="flex items-center gap-4">
+          <div className={`flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-0 text-sm text-muted-foreground text-center md:text-left ${hideCTA ? "" : "pt-8 border-t border-border/50"}`}>
+            <div className="flex flex-col md:flex-row items-center gap-4">
               <div className="relative w-12 h-8">
                 <Image src="/logo-symbol.svg" alt="Sayed Elghanam Logo" fill className="object-contain" />
               </div>

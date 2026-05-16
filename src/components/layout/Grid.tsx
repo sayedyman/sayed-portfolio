@@ -10,7 +10,7 @@ export function Grid({ children, className }: GridProps) {
   return (
     <div
       className={cn(
-        "grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-4 md:gap-x-6 lg:gap-x-8",
+        "grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-x-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8",
         className
       )}
     >

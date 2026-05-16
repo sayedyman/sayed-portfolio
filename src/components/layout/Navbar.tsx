@@ -64,7 +64,7 @@ export function Navbar() {
 
   return (
     <motion.header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pt-[env(safe-area-inset-top)] ${
         isScrolled 
           ? "py-4 bg-background/70 backdrop-blur-md border-b border-border/40 shadow-sm" 
           : "py-6 bg-transparent border-b border-transparent shadow-none"

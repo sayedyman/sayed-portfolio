@@ -20,8 +20,8 @@ export function Section({ children, className, id, padding = "lg", reveal = true
     none: "",
     sm: "py-12 md:py-16",
     md: "py-16 md:py-24",
-    lg: "py-24 md:py-32",
-    xl: "py-32 md:py-48",
+    lg: "py-20 md:py-24 lg:py-32",
+    xl: "py-24 md:py-32 lg:py-48",
   };
 
   return (

@@ -37,7 +37,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
   return (
     <>
       {/* HERO SECTION */}
-      <section ref={heroRef} className="relative min-h-[100svh] flex flex-col justify-center pt-32 pb-12 overflow-hidden bg-background">
+      <section ref={heroRef} className="relative min-h-[100dvh] flex flex-col justify-center pt-32 pb-12 overflow-hidden bg-background">
         <Container className="relative z-10 flex-1 flex flex-col justify-center">
           <Grid className="h-full items-center relative">
             
@@ -70,13 +70,14 @@ export default function HomeClient({ projects }: HomeClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-8 flex items-center gap-4 text-xs font-medium uppercase tracking-widest text-muted-foreground pl-1 lg:pl-16"
+                className="mb-8 flex flex-col md:flex-row md:items-center gap-4 text-xs font-medium uppercase tracking-widest text-muted-foreground pl-1 lg:pl-16"
               >
-                <span className="w-12 h-[1px] bg-primary"></span>
-                Designing digital products that solve real problems.
+                <span className="w-12 h-[1px] bg-primary hidden md:block"></span>
+                <span className="w-8 h-[1px] bg-primary block md:hidden mb-2"></span>
+                <span className="max-w-[80vw] leading-relaxed">Designing digital products that solve real problems.</span>
               </motion.div>
               
-              <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[16vw] lg:text-[12.5vw] lg:pl-12">
+              <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(3.5rem,15vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12">
                 <motion.span 
                   className="block mix-blend-difference z-30 relative"
                   initial={{ opacity: 0, x: -50 }}
@@ -309,9 +310,11 @@ export default function HomeClient({ projects }: HomeClientProps) {
                   Insights & <br/> <span className="text-primary italic font-editorial">Observations</span>
                 </h3>
               </div>
-              <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border/50 rounded-full text-xs font-semibold uppercase tracking-widest">
-                See All Articles <ArrowRight className="w-4 h-4" />
-              </MagneticButton>
+              <Link href="/articles" passHref>
+                <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border/50 rounded-full text-xs font-semibold uppercase tracking-widest">
+                  See All Articles <ArrowRight className="w-4 h-4" />
+                </MagneticButton>
+              </Link>
             </div>
             <div className="col-span-4 md:col-span-8 lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
               <Link href="#journal" className="group block">
@@ -344,9 +347,11 @@ export default function HomeClient({ projects }: HomeClientProps) {
               </Link>
             </div>
             <div className="col-span-4 mt-12 md:hidden">
-              <MagneticButton variant="ghost" className="w-full flex items-center justify-center gap-2 px-6 py-4 border border-border/50 rounded-full text-[10px] font-semibold uppercase tracking-widest">
-                See All Articles <ArrowRight className="w-4 h-4" />
-              </MagneticButton>
+              <Link href="/articles" passHref>
+                <MagneticButton variant="ghost" className="w-full flex items-center justify-center gap-2 px-6 py-4 border border-border/50 rounded-full text-[10px] font-semibold uppercase tracking-widest">
+                  See All Articles <ArrowRight className="w-4 h-4" />
+                </MagneticButton>
+              </Link>
             </div>
           </Grid>
         </Container>

@@ -38,12 +38,12 @@ export async function generateMetadata({
 const portableTextComponents: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <h2 className="text-3xl md:text-4xl font-heading font-medium tracking-tighter mt-16 mb-6 text-foreground">
+      <h2 className="text-[clamp(1.75rem,4vw,2.25rem)] font-heading font-medium tracking-tighter mt-10 md:mt-16 mb-4 md:mb-6 text-foreground leading-[1.1]">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl md:text-3xl font-heading font-medium tracking-tight mt-12 mb-4 text-foreground">
+      <h3 className="text-[clamp(1.5rem,3vw,1.875rem)] font-heading font-medium tracking-tight mt-8 md:mt-12 mb-3 md:mb-4 text-foreground leading-[1.2]">
         {children}
       </h3>
     ),
@@ -113,7 +113,7 @@ export default async function ProjectPage({
     : 'max-w-2xl'
 
   return (
-    <main className="relative min-h-[100svh] bg-background pb-24">
+    <main className="relative min-h-[100dvh] bg-background pb-24">
 
       {/* ─── CINEMATIC HERO ─────────────────────────────────────────────── */}
       <div className="relative w-full pt-32 pb-16 md:pb-24">
@@ -135,7 +135,7 @@ export default async function ProjectPage({
           </div>
 
           {/* Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
+          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
             {project.title}
           </h1>
 
@@ -150,7 +150,7 @@ export default async function ProjectPage({
 
       {/* ─── COVER IMAGE ────────────────────────────────────────────────── */}
       {hasCoverImage && (
-        <div className="relative w-full mb-16 md:mb-24 overflow-hidden aspect-[16/9] max-w-[90vw] mx-auto rounded-sm">
+        <div className="relative w-full mb-16 md:mb-24 overflow-hidden aspect-[4/3] md:aspect-[16/9] w-full md:max-w-[95vw] lg:max-w-[90vw] mx-auto rounded-none md:rounded-sm">
           <Image
             src={urlFor(project.coverImage!).width(1600).height(900).url()}
             alt={project.title}
@@ -224,7 +224,7 @@ function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
   const hasCoverImage = !!project.coverImage?.asset
 
   return (
-    <main className="relative min-h-[100svh] bg-background pb-24">
+    <main className="relative min-h-[100dvh] bg-background pb-24">
       {/* ─── CINEMATIC HERO (Teaser) ─────────────────────────────────────────────── */}
       <div className="relative w-full pt-32 pb-16 md:pb-24">
         <Container>
@@ -244,7 +244,7 @@ function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
           </div>
 
           {/* Title */}
-          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
+          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-heading font-medium uppercase leading-[0.9] tracking-tighter mb-8 max-w-5xl">
             {project.title}
           </h1>
 
