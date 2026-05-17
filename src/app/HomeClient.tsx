@@ -14,9 +14,10 @@ import type { SanityFeaturedProject } from "@/lib/sanity/queries";
 
 interface HomeClientProps {
   projects: SanityFeaturedProject[];
+  articles: any[];
 }
 
-export default function HomeClient({ projects }: HomeClientProps) {
+export default function HomeClient({ projects, articles }: HomeClientProps) {
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -320,34 +321,48 @@ export default function HomeClient({ projects }: HomeClientProps) {
               </Link>
             </div>
             <div className="col-span-4 md:col-span-8 lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
-              <Link href="#journal" className="group block">
-                <div className="relative aspect-[16/9] md:aspect-[4/3] bg-secondary/30 rounded-xl overflow-hidden mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
+              {articles?.slice(0, 2).map((article, index) => (
+                <Link
+                  key={article.slug?.current}
+                  href={`/articles/${article.slug?.current}`}
+                  className={`group block ${index === 1 ? "md:mt-24" : ""}`}
+                 >
+                  <div className="relative aspect-[16/9] md:aspect-[4/3] bg-secondary/30 rounded-xl overflow-hidden mb-6">
+                   {article.coverImage ? (
+                    <Image
+                     src={article.coverImage}
+                    alt={article.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-[#111] to-[#050505] flex items-center justify-center border border-border/50 rounded-xl">
-                    <span className="text-muted-foreground/20 font-heading text-4xl">Article Cover</span>
-                  </div>
-                  <div className="absolute top-6 left-6 px-3 py-1 bg-background/50 backdrop-blur-md border border-border/30 rounded-full text-[10px] font-medium uppercase tracking-widest z-20">UX Strategy</div>
+                   <span className="text-muted-foreground/20 font-heading text-4xl">
+                     Article Cover
+                   </span>
+                 </div>
+                )}
+
+                <div className="absolute top-6 left-6 px-3 py-1 bg-background/50 backdrop-blur-md border border-border/30 rounded-full text-[10px] font-medium uppercase tracking-widest z-20">
+                  {article.category || "Article"}
                 </div>
-                <div className="flex flex-col gap-3 pr-4">
-                  <span className="text-[11px] text-muted-foreground font-medium tracking-widest">OCT 12, 2025 • 5 MIN READ</span>
-                  <h4 className="text-2xl lg:text-3xl font-heading font-medium group-hover:text-primary transition-colors leading-tight">The Architecture of Trust: Designing High-Conversion Fintech Interfaces</h4>
-                  <p className="text-muted-foreground/80 line-clamp-2 mt-2 leading-relaxed">An in-depth breakdown of how spatial layout, typography, and micro-interactions directly impact user trust and conversion rates in financial products.</p>
-                </div>
-              </Link>
-              <Link href="#journal" className="group block md:mt-24">
-                <div className="relative aspect-[16/9] md:aspect-[4/3] bg-secondary/30 rounded-xl overflow-hidden mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-bl from-[#111] to-[#050505] flex items-center justify-center border border-border/50 rounded-xl">
-                    <span className="text-muted-foreground/20 font-heading text-3xl">Article Cover</span>
-                  </div>
-                  <div className="absolute top-6 left-6 px-3 py-1 bg-background/50 backdrop-blur-md border border-border/30 rounded-full text-[10px] font-medium uppercase tracking-widest z-20">Design Systems</div>
-                </div>
-                <div className="flex flex-col gap-3 pr-4">
-                  <span className="text-[11px] text-muted-foreground font-medium tracking-widest">SEP 28, 2025 • 4 MIN READ</span>
-                  <h4 className="text-2xl lg:text-3xl font-heading font-medium group-hover:text-primary transition-colors leading-tight">Beyond Aesthetics: Why Modern Startups Need Scalable Design Systems</h4>
-                  <p className="text-muted-foreground/80 line-clamp-2 mt-2 leading-relaxed">A practical guide to building design systems that don&apos;t just look good, but actually accelerate engineering velocity and ensure long-term product consistency.</p>
-                </div>
-              </Link>
+              </div>
+
+              <div className="flex flex-col gap-3 pr-4">
+                <span className="text-[11px] text-muted-foreground font-medium tracking-widest">
+                  ARTICLE
+                </span>
+
+                 <h4 className="text-2xl lg:text-3xl font-heading font-medium group-hover:text-primary transition-colors leading-tight">
+                   {article.title}
+                 </h4>
+
+                  <p className="text-muted-foreground/80 line-clamp-2 mt-2 leading-relaxed">
+                    {article.excerpt}
+                  </p>
+               </div>
+           </Link>
+         ))}
             </div>
             <div className="col-span-4 mt-12 md:hidden">
               <Link href="/articles" passHref>

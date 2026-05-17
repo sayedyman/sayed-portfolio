@@ -1,4 +1,4 @@
-import { getFeaturedProjects } from '@/lib/sanity/queries'
+import { getFeaturedProjects, getAllArticles } from "@/lib/sanity/queries"
 import HomeClient from './HomeClient'
 
 // Re-fetch from Sanity every 60 s — fallback in case the webhook isn’t fired.
@@ -15,5 +15,7 @@ export const revalidate = 60
  */
 export default async function Home() {
   const projects = await getFeaturedProjects()
-  return <HomeClient projects={projects} />
+  const articles = await getAllArticles()
+    return <HomeClient projects={projects} articles={articles} />
+
 }
