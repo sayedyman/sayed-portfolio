@@ -37,7 +37,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
   return (
     <>
       {/* HERO SECTION */}
-      <section ref={heroRef} className="relative min-h-[100dvh] flex flex-col justify-center pt-32 pb-12 overflow-hidden bg-background">
+      <section ref={heroRef} className="relative min-h-[100dvh] flex flex-col justify-center pt-[calc(max(env(safe-area-inset-top),1.5rem)+6rem)] md:pt-32 pb-12 overflow-hidden bg-background">
         <Container className="relative z-10 flex-1 flex flex-col justify-center">
           <Grid className="h-full items-center relative">
             
@@ -65,7 +65,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
             </motion.div>
 
             {/* Main Typography Layer */}
-            <div className="col-span-4 md:col-span-8 lg:col-span-12 z-20 pointer-events-none mt-20 md:mt-0 relative">
+            <div className="col-span-4 md:col-span-8 lg:col-span-12 z-20 pointer-events-none mt-6 md:mt-0 relative">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
 
             {/* Portrait Image Layer */}
             <motion.div 
-              className="col-span-4 md:col-span-8 lg:col-span-none relative lg:absolute right-[-1rem] lg:right-12 top-auto lg:top-[40%] translate-y-0 lg:-translate-y-1/2 w-[85%] sm:w-[65%] md:w-[50%] lg:w-[380px] max-w-[calc(100vw-2rem)] aspect-[4/5] z-10 pointer-events-none mt-12 lg:mt-0 ml-auto lg:ml-0"
+              className="col-span-4 md:col-span-8 lg:col-span-none relative lg:absolute right-0 lg:right-12 top-auto lg:top-[40%] translate-y-0 lg:-translate-y-1/2 w-full max-w-[420px] lg:w-[380px] aspect-square sm:aspect-[4/5] z-10 pointer-events-none mt-8 lg:mt-0 mx-auto lg:mx-0"
               style={{ y }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -125,7 +125,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
 
             {/* CTA Buttons */}
             <motion.div 
-              className="col-span-4 md:col-span-8 lg:col-span-12 z-30 mt-16 lg:mt-24 flex flex-col sm:flex-row items-center gap-6 pl-1 lg:pl-16"
+              className="col-span-4 md:col-span-8 lg:col-span-12 z-30 mt-8 lg:mt-24 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 md:gap-6 pl-1 lg:pl-16 w-full [&>a]:w-full sm:[&>a]:w-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
@@ -145,9 +145,9 @@ export default function HomeClient({ projects }: HomeClientProps) {
           </Grid>
         </Container>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator (Desktop Only) & Mobile Continuation Cue */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-6 z-20"
+          className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-6 z-20"
           style={{ opacity }}
         >
           <span className="text-[9px] font-medium uppercase tracking-[0.3em] text-muted-foreground rotate-90 mb-4">Scroll</span>
@@ -159,6 +159,9 @@ export default function HomeClient({ projects }: HomeClientProps) {
             />
           </div>
         </motion.div>
+
+        {/* Mobile Next Section continuation gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-secondary/10 to-transparent pointer-events-none lg:hidden z-10" />
       </section>
 
       {/* ABOUT SECTION */}

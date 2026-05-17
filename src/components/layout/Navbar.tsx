@@ -64,10 +64,10 @@ export function Navbar() {
 
   return (
     <motion.header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pt-[env(safe-area-inset-top)] ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         isScrolled 
-          ? "py-4 bg-background/70 backdrop-blur-md border-b border-border/40 shadow-sm" 
-          : "py-6 bg-transparent border-b border-transparent shadow-none"
+          ? "pt-[max(env(safe-area-inset-top),1rem)] pb-3 bg-background/80 backdrop-blur-md border-b border-border/40 shadow-sm" 
+          : "pt-[max(env(safe-area-inset-top),1.5rem)] pb-6 md:pt-[max(env(safe-area-inset-top),2rem)] md:pb-8 lg:pb-10 bg-transparent border-b border-transparent shadow-none"
       }`}
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: hidden ? -100 : 0, opacity: hidden ? 0 : 1 }}
