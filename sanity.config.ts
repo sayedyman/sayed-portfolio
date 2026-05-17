@@ -24,6 +24,10 @@ export default defineConfig({
                   .filter('_type == "project"')
                   .defaultOrdering([{ field: 'displayOrder', direction: 'asc' }])
               ),
+            // Scalable rendering for all other document types (e.g., Articles, Categories)
+            ...S.documentTypeListItems().filter(
+              (listItem) => !['project'].includes(listItem.getId() as string)
+            ),
           ]),
     }),
     visionTool(),

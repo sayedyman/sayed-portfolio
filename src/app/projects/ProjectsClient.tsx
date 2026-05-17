@@ -54,7 +54,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-5xl"
             >
-              <h1 className="text-[clamp(3rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
+              <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
                 Selected <br className="hidden md:block" />
                 <span className="text-primary italic font-editorial">Projects</span>
               </h1>
@@ -78,7 +78,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`text-xs md:text-sm font-medium tracking-widest uppercase transition-all duration-300 relative pb-1 ${
+                  className={`text-xs md:text-sm font-medium tracking-widest uppercase transition-all duration-300 relative pb-1 py-2 touch-active ${
                     activeFilter === filter ? "text-foreground" : "text-muted-foreground hover:text-foreground/80"
                   }`}
                 >
@@ -179,7 +179,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                               </span>
                             </div>
 
-                            <h2 className={`text-[clamp(1.75rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] ${
+                            <h2 className={`text-[clamp(1.5rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] ${
                               project.status === 'coming-soon' ? 'group-hover:text-foreground/70' : 'group-hover:text-primary'
                             }`}>
                               {project.title}
@@ -234,7 +234,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                 Ready to transform your vision into a crafted digital reality.
               </p>
               <Link href="/contact" passHref>
-                <MagneticButton className="px-8 py-4 text-sm font-semibold tracking-widest uppercase flex items-center gap-2 mx-auto">
+                <MagneticButton className="px-8 py-4 text-sm font-semibold tracking-widest uppercase flex items-center gap-2 mx-auto touch-active">
                   Start the conversation <ArrowUpRight className="w-4 h-4" />
                 </MagneticButton>
               </Link>

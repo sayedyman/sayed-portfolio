@@ -12,7 +12,9 @@ import { urlFor } from '@/lib/sanity/image'
 
 export async function generateStaticParams() {
   const slugs = await getAllArticleSlugs()
-  return slugs.map((s) => ({ slug: s.slug }))
+  return slugs
+    .filter((s) => s && s.slug)
+    .map((s) => ({ slug: s.slug }))
 }
 
 // ─── SEO metadata ─────────────────────────────────────────────────────────────
@@ -46,10 +48,10 @@ const portableTextComponents: PortableTextComponents = {
       </h3>
     ),
     normal: ({ children }) => (
-      <p className="text-lg text-muted-foreground leading-relaxed mb-6">{children}</p>
+      <p className="text-base md:text-lg text-muted-foreground leading-[1.75] mb-6 md:mb-8 [max-width:65ch]">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-primary pl-6 my-10 text-xl italic font-editorial text-muted-foreground">
+      <blockquote className="border-l-2 border-primary pl-4 md:pl-6 my-8 md:my-10 text-lg md:text-xl italic font-editorial text-muted-foreground">
         {children}
       </blockquote>
     ),
@@ -66,7 +68,7 @@ const portableTextComponents: PortableTextComponents = {
     image: ({ value }) => {
       if (!value?.asset) return null
       return (
-        <figure className="my-12">
+        <figure className="my-10 md:my-12">
           <div className="relative w-full aspect-[16/9] overflow-hidden rounded-sm bg-secondary">
             <Image
               src={urlFor(value).width(1200).height(675).url()}
@@ -89,15 +91,25 @@ const portableTextComponents: PortableTextComponents = {
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default async function ArticlePage({
-  params,
-}: {
-  params: Promise<{ slug: string }>
-}) {
+export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const article = await getArticle(slug)
-  if (!article) notFound()
+  
+  if (!slug) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`[Debug] Article rendering failed: Missing slug param.`)
+    }
+    notFound()
+  }
 
+  const article = await getArticle(slug)
+
+  if (!article) {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log(`[Debug] Article not found for slug "${slug}". Verify it is natively published and not archived.`)
+    }
+    notFound()
+  }
+  
   const readingTime = article.readingTime ? Math.max(1, article.readingTime) : 1
   const dateObj = new Date(article.publishedAt || '')
   const formattedDate = isNaN(dateObj.getTime()) 
@@ -111,7 +123,7 @@ export default async function ArticlePage({
           {/* Back nav */}
           <Link
             href="/articles"
-            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors duration-300 mb-16"
+            className="inline-flex items-center gap-2 text-xs font-medium tracking-widest uppercase text-muted-foreground hover:text-foreground touch-active transition-colors duration-300 mb-16 py-2"
           >
             <ArrowLeft className="w-4 h-4" />
             All Articles
@@ -163,7 +175,7 @@ export default async function ArticlePage({
 
         {/* Body Content */}
         {article.body && article.body.length > 0 && (
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-[65ch] px-4 md:px-0">
             <PortableText value={article.body} components={portableTextComponents} />
           </div>
         )}

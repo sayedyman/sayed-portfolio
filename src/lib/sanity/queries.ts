@@ -215,7 +215,7 @@ export type SanityArticleDetail = SanityArticle & {
 // ─── ARTICLES GROQ QUERIES ───────────────────────────────────────────────────
 
 const allArticlesQuery = groq`
-  *[_type == "article" && status == "published"]
+  *[_type == "article" && !(_id in path("drafts.**")) && status != "archived" && defined(slug.current)]
   | order(publishedAt desc) {
     _id,
     title,
@@ -234,7 +234,7 @@ const allArticlesQuery = groq`
 `
 
 const featuredArticlesQuery = groq`
-  *[_type == "article" && featured == true && status == "published"]
+  *[_type == "article" && !(_id in path("drafts.**")) && status != "archived" && defined(slug.current) && featured == true]
   | order(featuredOrder asc) {
     _id,
     title,
@@ -253,7 +253,7 @@ const featuredArticlesQuery = groq`
 `
 
 const articleBySlugQuery = groq`
-  *[_type == "article" && slug.current == $slug && status == "published"][0] {
+  *[_type == "article" && !(_id in path("drafts.**")) && status != "archived" && slug.current == $slug][0] {
     _id,
     title,
     slug,
@@ -274,7 +274,7 @@ const articleBySlugQuery = groq`
 `
 
 const allArticleSlugsQuery = groq`
-  *[_type == "article" && status == "published"] {
+  *[_type == "article" && !(_id in path("drafts.**")) && status != "archived" && defined(slug.current)] {
     "slug": slug.current
   }
 `

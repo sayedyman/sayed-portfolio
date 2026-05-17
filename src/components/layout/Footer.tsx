@@ -46,13 +46,13 @@ export function Footer() {
   const hideCTA = pathname === "/contact" || pathname === "/about" || pathname === "/projects";
 
   return (
-    <footer className={`relative bg-background overflow-hidden ${hideCTA ? "pt-12 pb-12 border-t border-border/20" : "border-t border-border pt-24 pb-12"}`}>
+    <footer className={`relative bg-background overflow-hidden ${hideCTA ? "pt-12 pb-[calc(env(safe-area-inset-bottom)+3rem)] border-t border-border/20" : "border-t border-border pt-16 md:pt-24 pb-[calc(env(safe-area-inset-bottom)+3rem)]"}`}>
       <Container>
         <Section reveal={!hideCTA} padding="none">
           {!hideCTA && (
             <Grid className="mb-24">
               <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">
-                <h2 className="font-heading text-[clamp(4rem,12vw,10rem)] leading-none tracking-tighter mb-8 text-foreground uppercase">
+                <h2 className="font-heading text-[clamp(2.5rem,12vw,10rem)] leading-[0.9] tracking-tighter mb-8 text-foreground uppercase">
                   Let's Build<br/>
                   <span className="text-primary italic font-editorial">Together</span>
                 </h2>
@@ -88,7 +88,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="text-muted-foreground hover:text-primary transition-all duration-300 ease-out hover:-translate-y-1 hover:drop-shadow-[0_0_10px_rgba(255,229,0,0.25)]"
+                  className="text-muted-foreground hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-1 hover:drop-shadow-[0_0_10px_rgba(255,229,0,0.25)]"
                 >
                   <social.Icon className="w-5 h-5 stroke-[1.5]" />
                 </a>

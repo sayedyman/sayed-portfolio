@@ -44,7 +44,7 @@ function ProjectCard({
   const hasImage = !!project.coverImage?.asset
 
   return (
-    <Link href={`/projects/${slug}`} className={`${colClass} group cursor-pointer block`}>
+    <Link href={`/projects/${slug}`} className={`${colClass} group cursor-pointer block touch-active`}>
       <div className={`relative ${aspectClass} mb-6 overflow-hidden bg-secondary rounded-xl`}>
         <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 mix-blend-overlay" />
         

@@ -77,7 +77,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
                 <span className="max-w-[80vw] leading-relaxed">Designing digital products that solve real problems.</span>
               </motion.div>
               
-              <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(3.5rem,15vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12">
+              <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(2.5rem,14vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12">
                 <motion.span 
                   className="block mix-blend-difference z-30 relative"
                   initial={{ opacity: 0, x: -50 }}
@@ -99,7 +99,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
 
             {/* Portrait Image Layer */}
             <motion.div 
-              className="absolute -right-4 md:-right-8 lg:right-12 top-[40%] -translate-y-1/2 w-[65%] md:w-[40%] lg:w-[380px] max-w-[calc(100vw-2rem)] aspect-[4/5] z-10 pointer-events-none"
+              className="col-span-4 md:col-span-8 lg:col-span-none relative lg:absolute right-[-1rem] lg:right-12 top-auto lg:top-[40%] translate-y-0 lg:-translate-y-1/2 w-[85%] sm:w-[65%] md:w-[50%] lg:w-[380px] max-w-[calc(100vw-2rem)] aspect-[4/5] z-10 pointer-events-none mt-12 lg:mt-0 ml-auto lg:ml-0"
               style={{ y }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -131,12 +131,12 @@ export default function HomeClient({ projects }: HomeClientProps) {
               transition={{ duration: 0.8, delay: 0.7 }}
             >
               <Link href="/#work" passHref>
-                <MagneticButton className="px-8 py-4 text-xs font-semibold tracking-widest uppercase">
+                <MagneticButton className="px-8 py-4 text-xs font-semibold tracking-widest uppercase touch-active">
                   View Projects
                 </MagneticButton>
               </Link>
               <Link href="/contact" passHref>
-                <MagneticButton variant="ghost" className="px-8 py-4 text-xs font-semibold tracking-widest uppercase border border-border/50">
+                <MagneticButton variant="ghost" className="px-8 py-4 text-xs font-semibold tracking-widest uppercase border border-border/50 touch-active">
                   Let&apos;s Work Together
                 </MagneticButton>
               </Link>
@@ -171,7 +171,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
               </h2>
             </div>
             <div className="col-span-4 md:col-span-5 lg:col-span-8">
-              <h3 className="text-3xl md:text-5xl lg:text-6xl font-heading font-medium leading-tight mb-12">
+              <h3 className="text-3xl md:text-4xl lg:text-6xl font-heading font-medium leading-[1.1] md:leading-tight mb-8 md:mb-12">
                 I believe that <span className="text-primary italic font-editorial">form</span> follows <span className="text-primary italic font-editorial">function</span>, but that doesn&apos;t mean it can&apos;t look incredibly good doing it.
               </h3>
               <div className="grid md:grid-cols-2 gap-8 text-muted-foreground text-lg">
@@ -179,7 +179,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
                 <p>I don&apos;t just design screens; I build scalable design systems and craft cinematic experiences that convert users into loyal customers.</p>
               </div>
               <div className="mt-12 flex items-center gap-4">
-                <Link href="/about" className="inline-flex items-center gap-2 font-medium border-b border-primary/30 hover:border-primary transition-colors pb-1">
+                <Link href="/about" className="inline-flex items-center gap-2 font-medium border-b border-primary/30 hover:border-primary touch-active transition-colors pb-1">
                   More about me <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -197,7 +197,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
                 <h2 className="text-sm tracking-widest text-muted-foreground uppercase mb-4">
                   / 02 — Selected Work
                 </h2>
-                <h3 className="text-5xl md:text-7xl font-heading font-medium tracking-tighter uppercase">
+                <h3 className="text-4xl md:text-5xl lg:text-7xl font-heading font-medium tracking-tighter uppercase">
                   Featured <span className="text-primary italic font-editorial">Projects</span>
                 </h3>
               </div>
@@ -232,7 +232,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
               </div>
               <div className="mt-12 flex items-start">
                 <a href="https://drive.google.com/file/d/1TNIBfINEXBhwS9_lPxeRip0PMZ7LPidU/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                  <MagneticButton variant="ghost" className="px-8 py-4 border border-border/50 text-xs font-semibold tracking-widest uppercase gap-2 group/btn">
+                  <MagneticButton variant="ghost" className="px-8 py-4 border border-border/50 text-xs font-semibold tracking-widest uppercase gap-2 group/btn touch-active">
                     View Resume <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                   </MagneticButton>
                 </a>
@@ -267,7 +267,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
           <Grid>
             <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-24">
               <h2 className="text-sm tracking-widest text-muted-foreground uppercase mb-4">/ 04 — Services</h2>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium tracking-tighter uppercase leading-[0.9] mb-6">Services</h3>
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-heading font-medium tracking-tighter uppercase leading-[0.9] mb-4 md:mb-6">Services</h3>
               <p className="text-xl md:text-2xl text-muted-foreground font-editorial italic">Strategic Digital Product Design</p>
             </div>
           </Grid>
@@ -284,7 +284,7 @@ export default function HomeClient({ projects }: HomeClientProps) {
                   <div className="absolute -top-16 left-0 right-0 h-px bg-gradient-to-r from-border/20 via-border/5 to-transparent" />
                   <motion.div 
                     style={{ y: service.reverseParallax ? parallaxYReverse : parallaxY }}
-                    className="absolute -top-12 -left-8 md:-top-20 md:-left-12 text-[120px] md:text-[200px] font-heading font-bold text-muted-foreground/5 leading-none select-none pointer-events-none transition-colors duration-700 group-hover:text-primary/[0.03]"
+                    className="absolute -top-8 -left-4 md:-top-20 md:-left-12 text-[80px] md:text-[200px] font-heading font-bold text-muted-foreground/[0.03] md:text-muted-foreground/5 leading-none select-none pointer-events-none transition-colors duration-700 group-hover:text-primary/[0.03] z-0"
                   >
                     {service.num}
                   </motion.div>

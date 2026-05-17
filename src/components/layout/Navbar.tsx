@@ -80,16 +80,16 @@ export function Navbar() {
               src="/logo-symbol.svg" 
               alt="Sayed Elghanam Logo" 
               fill 
-              className="object-contain object-left group-hover:scale-[1.03] group-hover:opacity-90 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-md" 
+              className="object-contain object-left group-hover:scale-[1.03] group-hover:opacity-90 touch-active transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-md" 
               priority
             />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 mix-blend-difference">
-            <Link href="/#work" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 transition-opacity">Work</Link>
-            <Link href="/#about" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 transition-opacity">About</Link>
-            <Link href="/#experience" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 transition-opacity">Experience</Link>
-            <Link href="/#journal" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 transition-opacity">Journal</Link>
+            <Link href="/#work" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">Work</Link>
+            <Link href="/#about" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">About</Link>
+            <Link href="/#experience" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">Experience</Link>
+            <Link href="/#journal" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">Journal</Link>
           </nav>
 
           <div className="flex items-center">
