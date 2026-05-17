@@ -118,7 +118,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                   className="object-cover object-[center_15%]"
                   priority
                 />
-                <div className="absolute inset-0 bg-grain opacity-10 mix-blend-overlay pointer-events-none" />
+                <div className="absolute inset-0 bg-grain opacity-10 mix-blend-overlay pointer-events-none hidden lg:block" />
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_20%,transparent_25%,rgba(5,5,5,0.7)_60%,rgba(5,5,5,0.95)_100%)] pointer-events-none" />
                 <div className="absolute bottom-0 left-0 right-0 h-3/5 bg-gradient-to-t from-background via-background/70 to-transparent pointer-events-none" />
                 <div className="absolute top-0 left-0 right-0 h-[30%] bg-gradient-to-b from-background via-background/50 to-transparent pointer-events-none" />
@@ -290,7 +290,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                 <div key={i} className={`col-span-4 md:col-span-6 relative group ${service.stagger ? 'lg:mt-32' : ''}`}>
                   <div className="absolute -top-16 left-0 right-0 h-px bg-gradient-to-r from-border/20 via-border/5 to-transparent" />
                   <motion.div 
-                    style={{ y: service.reverseParallax ? parallaxYReverse : parallaxY }}
+                    style={!isMobile ? { y: service.reverseParallax ? parallaxYReverse : parallaxY } : {}}
                     className="absolute -top-8 -left-4 md:-top-20 md:-left-12 text-[80px] md:text-[200px] font-heading font-bold text-muted-foreground/[0.03] md:text-muted-foreground/5 leading-none select-none pointer-events-none transition-colors duration-700 group-hover:text-primary/[0.03] z-0"
                   >
                     {service.num}
@@ -346,8 +346,8 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                  </div>
                 )}
 
-                <div className="absolute top-6 left-6 px-3 py-1 bg-background/50 backdrop-blur-md border border-border/30 rounded-full text-[10px] font-medium uppercase tracking-widest z-20">
-                  {article.category || "Article"}
+                <div className="absolute top-6 left-6 px-3 py-1 bg-background/50 lg:backdrop-blur-md border border-border/30 rounded-full text-[10px] font-medium uppercase tracking-widest z-20">
+                    {article.category || "Article"}
                 </div>
               </div>
 
