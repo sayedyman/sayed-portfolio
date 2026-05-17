@@ -41,7 +41,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
   return (
     <>
       {/* HERO SECTION */}
-      <section ref={heroRef}   className="relative min-h-auto lg:min-h-[100dvh] flex flex-col justify-start lg:justify-center pt-[calc(max(env(safe-area-inset-top),1.5rem)+6rem)] md:pt-32 pb-12 overflow-hidden bg-background">
+      <section ref={heroRef}   className="relative min-h-auto lg:min-h-[100dvh] flex flex-col justify-start lg:justify-center pt-[calc(max(env(safe-area-inset-top),1rem)+2rem)] lg:pt-[calc(max(env(safe-area-inset-top),1.5rem)+6rem)] md:pt-32 pb-12 overflow-hidden bg-background">
         <Container className="relative z-10 flex-1 flex flex-col justify-start lg:justify-center">
           <Grid className="h-full items-center relative">
             
@@ -104,7 +104,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
             {/* Portrait Image Layer */}
             <motion.div 
               className="col-span-4 md:col-span-8 lg:col-span-none relative lg:absolute right-0 lg:right-12 top-auto lg:top-[40%] translate-y-0 lg:-translate-y-1/2 w-full max-w-[420px] lg:w-[380px] aspect-square sm:aspect-[4/5] z-10 pointer-events-none mt-8 lg:mt-0 mx-auto lg:mx-0"
-              style={!isMobile ? { y } : {}}
+              style={{ y }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
