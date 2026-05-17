@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import type { SanityFeaturedProject } from "@/lib/sanity/queries";
+import { urlFor } from "@/lib/sanity/image"
 
 interface HomeClientProps {
   projects: SanityFeaturedProject[];
@@ -330,7 +331,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                   <div className="relative aspect-[16/9] md:aspect-[4/3] bg-secondary/30 rounded-xl overflow-hidden mb-6">
                    {article.coverImage ? (
                     <Image
-                     src={article.coverImage}
+                     src={urlFor(article.coverImage).url()}
                     alt={article.title}
                     fill
                     className="object-cover"
