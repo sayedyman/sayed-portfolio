@@ -8,6 +8,8 @@ import { Container } from '@/components/layout/Container'
 import { getProject, getAllProjectSlugs, type SanityProjectDetail } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 
+export const dynamic = 'force-dynamic'
+
 // ─── Static params ────────────────────────────────────────────────────────────
 
 export async function generateStaticParams() {
