@@ -81,14 +81,11 @@ export function Navbar() {
   // Lock scrolling when drawer open
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("mobile-nav-open");
       lenis?.stop();
     } else {
-      document.body.classList.remove("mobile-nav-open");
       lenis?.start();
     }
     return () => {
-      document.body.classList.remove("mobile-nav-open");
       lenis?.start();
     };
   }, [isOpen, lenis]);
