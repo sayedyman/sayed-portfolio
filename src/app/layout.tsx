@@ -24,13 +24,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${inter.variable} h-full antialiased`}
+      className={`dark ${inter.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col relative selection:bg-primary selection:text-primary-foreground">
+      <body className="min-h-dvh flex flex-col relative selection:bg-primary selection:text-primary-foreground">
         <InteractiveElements />
         <div className="bg-grain" />
         <Navbar />
-        <main className="flex-1 flex flex-col pt-24 overflow-x-hidden">
+        <main className="flex-1 pt-24">
           {children}
         </main>
         <Footer />
