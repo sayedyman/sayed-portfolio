@@ -12,7 +12,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sayedelghanam.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sayed-portfolio-seven.vercel.app"),
   title: {
     default: "Sayed Elghanam | UI/UX & Product Designer",
     template: "%s | Sayed Elghanam",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Sayed Elghanam",
     "Sayed Ayman Elghanam"
   ],
-  authors: [{ name: "Sayed Ayman Elghanam", url: "https://sayedelghanam.com" }],
+  authors: [{ name: "Sayed Ayman Elghanam", url: "https://sayed-portfolio-seven.vercel.app" }],
   creator: "Sayed Ayman Elghanam",
   openGraph: {
     type: "website",

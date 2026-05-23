@@ -4,7 +4,7 @@ import { groq } from 'next-sanity';
 import { CACHE_TAGS } from '@/lib/sanity/cache-tags';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sayedelghanam.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sayed-portfolio-seven.vercel.app';
 
   // Fetch dynamic slugs and last updated dates from Sanity
   const projectsQuery = groq`*[_type == "project" && status in ["published", "coming-soon"] && defined(slug.current)] { "slug": slug.current, _updatedAt }`;
