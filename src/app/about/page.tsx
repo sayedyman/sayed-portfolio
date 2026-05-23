@@ -87,7 +87,7 @@ export default function AboutPage() {
             >
               <Image 
                 src="/hero-portrait-real.jpg" 
-                alt="Sayed Portrait" 
+                alt="Sayed Ayman Elghanam - UI/UX Designer Portrait" 
                 fill 
                 className="object-cover filter contrast-[1.1] saturate-0 brightness-75"
               />

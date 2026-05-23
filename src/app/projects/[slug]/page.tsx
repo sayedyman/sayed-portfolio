@@ -7,6 +7,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { Container } from '@/components/layout/Container'
 import { getProject, getAllProjectSlugs, type SanityProjectDetail } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,9 +28,29 @@ export async function generateMetadata({
   const { slug } = await params
   const project = await getProject(slug)
   if (!project) return { title: 'Project Not Found' }
+
+  const ogImageUrl = project.coverImage?.asset
+    ? urlFor(project.coverImage).width(1200).height(630).url()
+    : undefined;
+
   return {
-    title: project.seoTitle ?? `${project.title} — Sayed Elghanam`,
+    title: project.seoTitle ?? `${project.title} | Sayed Elghanam`,
     description: project.seoDescription ?? project.summary ?? undefined,
+    alternates: {
+      canonical: `https://sayed-portfolio-seven.vercel.app/projects/${slug}`,
+    },
+    openGraph: {
+      title: project.seoTitle ?? project.title,
+      description: project.seoDescription ?? project.summary ?? undefined,
+      url: `https://sayed-portfolio-seven.vercel.app/projects/${slug}`,
+      images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.seoTitle ?? project.title,
+      description: project.seoDescription ?? project.summary ?? undefined,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
+    }
   }
 }
 
@@ -116,6 +137,21 @@ export default async function ProjectPage({
 
   return (
     <main className="relative min-h-[100dvh] bg-background pb-24">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "CreativeWork",
+          "headline": project.title,
+          "description": project.summary,
+          "image": hasCoverImage ? urlFor(project.coverImage!).width(1200).url() : undefined,
+          "author": {
+            "@type": "Person",
+            "name": "Sayed Ayman Elghanam"
+          },
+          "datePublished": project.publishedAt,
+          "dateModified": project.updatedAt
+        }}
+      />
 
       {/* ─── CINEMATIC HERO ─────────────────────────────────────────────── */}
       <div className="relative w-full pt-32 pb-16 md:pb-24">

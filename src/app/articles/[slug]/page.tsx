@@ -7,6 +7,7 @@ import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { Container } from '@/components/layout/Container'
 import { getArticle, getAllArticleSlugs } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 export const dynamic = 'force-dynamic'
 
@@ -29,9 +30,30 @@ export async function generateMetadata({
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) return { title: 'Article Not Found' }
+
+  const ogImageUrl = article.coverImage?.asset
+    ? urlFor(article.coverImage).width(1200).height(630).url()
+    : undefined;
+
   return {
-    title: article.seoTitle ?? `${article.title} — Sayed Elghanam`,
+    title: article.seoTitle ?? `${article.title} | Sayed Elghanam`,
     description: article.seoDescription ?? article.excerpt ?? undefined,
+    alternates: {
+      canonical: `https://sayed-portfolio-seven.vercel.app/articles/${slug}`,
+    },
+    openGraph: {
+      type: 'article',
+      title: article.seoTitle ?? article.title,
+      description: article.seoDescription ?? article.excerpt ?? undefined,
+      url: `https://sayed-portfolio-seven.vercel.app/articles/${slug}`,
+      images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.seoTitle ?? article.title,
+      description: article.seoDescription ?? article.excerpt ?? undefined,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
+    }
   }
 }
 
@@ -120,6 +142,20 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <main className="relative min-h-[100dvh] bg-background pb-32">
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": article.title,
+          "description": article.excerpt,
+          "image": article.coverImage?.asset ? urlFor(article.coverImage).width(1200).url() : undefined,
+          "author": {
+            "@type": "Person",
+            "name": "Sayed Ayman Elghanam"
+          },
+          "datePublished": article.publishedAt
+        }}
+      />
       <Container>
         <div className="pt-32 pb-16 md:pb-24 max-w-3xl mx-auto">
           {/* Back nav */}

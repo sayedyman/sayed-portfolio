@@ -116,7 +116,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
               <div className="relative w-full h-full overflow-hidden rounded-sm filter contrast-[1.05] saturate-[1.1] transition-all duration-1000">
                 <Image 
                   src="/sayed-portrait.jpg" 
-                  alt="Sayed Ayman Elghanam" 
+                  alt="Sayed Ayman Elghanam - UI/UX Designer Portrait" 
                   fill 
                   sizes="(max-width: 768px) 65vw, (max-width: 1024px) 40vw, 380px"
                   className="object-cover object-[center_15%]"
