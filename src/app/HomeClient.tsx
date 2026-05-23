@@ -74,11 +74,15 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-8 flex flex-col md:flex-row md:items-center gap-4 text-xs font-medium uppercase tracking-widest text-muted-foreground pl-1 lg:pl-16"
+                className="mb-8 flex flex-col gap-3 md:gap-4 pl-1 lg:pl-16"
               >
-                <span className="w-12 h-[1px] bg-primary hidden md:block"></span>
-                <span className="w-8 h-[1px] bg-primary block md:hidden mb-2"></span>
-                <span className="max-w-[80vw] leading-relaxed">Designing digital products that solve real problems.</span>
+                <div className="flex items-center gap-4 text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
+                  <span className="w-8 md:w-12 h-[1px] bg-primary"></span>
+                  <span>UI/UX Designer</span>
+                </div>
+                <div className="text-sm md:text-base text-muted-foreground max-w-[85vw] md:max-w-md leading-relaxed font-editorial pl-12 md:pl-16">
+                  Designing modern digital experiences that solve real problems.
+                </div>
               </motion.div>
               
               <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(2.5rem,14vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12 overflow-hidden">
@@ -149,20 +153,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
           </Grid>
         </Container>
 
-        {/* Scroll Indicator (Desktop Only) & Mobile Continuation Cue */}
-        <motion.div 
-          className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-6 z-20"
-          style={{ opacity }}
-        >
-          <span className="text-[9px] font-medium uppercase tracking-[0.3em] text-muted-foreground rotate-90 mb-4">Scroll</span>
-          <div className="w-[1px] h-16 bg-border relative overflow-hidden">
-            <motion.div 
-              className="absolute top-0 left-0 w-full h-full bg-primary"
-              animate={{ y: ["-100%", "100%"] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            />
-          </div>
-        </motion.div>
+
 
         {/* Mobile Next Section continuation gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-secondary/10 to-transparent pointer-events-none lg:hidden z-10" />

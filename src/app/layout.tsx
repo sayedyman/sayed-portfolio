@@ -12,8 +12,59 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Sayed Ayman Elghanam | UI/UX Designer",
-  description: "Premium cinematic UI/UX designer portfolio.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sayedelghanam.com"),
+  title: {
+    default: "Sayed Elghanam | UI/UX & Product Designer",
+    template: "%s | Sayed Elghanam",
+  },
+  description: "Portfolio of Sayed Ayman Elghanam, a UI/UX and Product Designer crafting intuitive digital experiences, SaaS platforms, UX case studies, and design articles.",
+  keywords: [
+    "UI/UX Designer",
+    "Product Designer",
+    "UX Portfolio",
+    "UI Design",
+    "Case Studies",
+    "UX Articles",
+    "SaaS Design",
+    "Web Design",
+    "Sayed Elghanam",
+    "Sayed Ayman Elghanam"
+  ],
+  authors: [{ name: "Sayed Ayman Elghanam", url: "https://sayedelghanam.com" }],
+  creator: "Sayed Ayman Elghanam",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "Sayed Elghanam | UI/UX & Product Designer",
+    description: "Portfolio of Sayed Ayman Elghanam, a UI/UX and Product Designer crafting intuitive digital experiences, SaaS platforms, UX case studies, and design articles.",
+    siteName: "Sayed Elghanam Portfolio",
+    images: [
+      {
+        url: "/sayed-portrait.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sayed Elghanam - UI/UX & Product Designer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sayed Elghanam | UI/UX & Product Designer",
+    description: "Portfolio of Sayed Ayman Elghanam, a UI/UX and Product Designer crafting intuitive digital experiences, SaaS platforms, UX case studies, and design articles.",
+    images: ["/sayed-portrait.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
