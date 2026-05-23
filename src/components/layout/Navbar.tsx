@@ -11,19 +11,17 @@ import { Container } from "./Container";
 
 const menuVariants = {
   closed: {
-    y: "-100%",
     opacity: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1] as const,
       when: "afterChildren"
     }
   },
   open: {
-    y: 0,
     opacity: 1,
     transition: {
-      duration: 0.7,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1] as const,
       when: "beforeChildren",
       staggerChildren: 0.08
@@ -227,7 +225,7 @@ export function Navbar() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed inset-0 z-40 bg-background/98 backdrop-blur-2xl border-b border-border/40 flex flex-col justify-between h-screen h-dvh"
+              className="fixed inset-0 z-40 bg-background/98 backdrop-blur-2xl border-b border-border/40 flex flex-col justify-between h-screen h-dvh overflow-x-hidden"
             >
               <div 
                 onClick={() => setIsOpen(false)} 
