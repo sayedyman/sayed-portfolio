@@ -41,7 +41,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
   return (
     <>
       {/* HERO SECTION */}
-      <section ref={heroRef}   className="relative min-h-auto lg:min-h-[100dvh] flex flex-col justify-start lg:justify-center pt-[calc(max(env(safe-area-inset-top),1rem)+2rem)] lg:pt-[calc(max(env(safe-area-inset-top),1.5rem)+6rem)] md:pt-32 pb-12 overflow-hidden bg-background">
+      <section ref={heroRef}   className="relative min-h-auto lg:min-h-[100dvh] flex flex-col justify-start lg:justify-center pt-[calc(max(env(safe-area-inset-top),1.5rem)+3rem)] lg:pt-[calc(max(env(safe-area-inset-top),1.5rem)+6rem)] md:pt-40 pb-20 md:pb-28 lg:pb-12 overflow-hidden bg-background">
         <Container className="relative z-10 flex-1 flex flex-col justify-start lg:justify-center">
           <Grid className="h-full items-center relative">
             
@@ -81,7 +81,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                 <span className="max-w-[80vw] leading-relaxed">Designing digital products that solve real problems.</span>
               </motion.div>
               
-              <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(2.5rem,14vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12">
+              <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(2.5rem,14vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12 overflow-hidden">
                 <motion.span 
                   className="block mix-blend-difference z-30 relative"
                   initial={{ opacity: 0, x: -50 }}
@@ -103,7 +103,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
 
             {/* Portrait Image Layer */}
             <motion.div 
-              className="col-span-4 md:col-span-8 lg:col-span-none relative lg:absolute right-0 lg:right-12 top-auto lg:top-[40%] translate-y-0 lg:-translate-y-1/2 w-full max-w-[420px] lg:w-[380px] aspect-square sm:aspect-[4/5] z-10 pointer-events-none mt-8 lg:mt-0 mx-auto lg:mx-0"
+              className="col-span-4 md:col-span-8 lg:col-span-none relative lg:absolute right-0 lg:right-12 top-auto lg:top-[40%] translate-y-0 lg:-translate-y-1/2 w-full max-w-[420px] lg:w-[380px] aspect-square sm:aspect-[4/5] z-10 pointer-events-none mt-12 md:mt-16 lg:mt-0 mx-auto lg:mx-0"
               style={{ y }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -129,7 +129,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
 
             {/* CTA Buttons */}
             <motion.div 
-              className="col-span-4 md:col-span-8 lg:col-span-12 z-30 mt-8 lg:mt-24 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 md:gap-6 pl-1 lg:pl-16 w-full [&>a]:w-full sm:[&>a]:w-auto"
+              className="hidden md:flex col-span-4 md:col-span-8 lg:col-span-12 z-30 mt-8 lg:mt-24 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 md:gap-6 pl-1 lg:pl-16 w-full [&>a]:w-full sm:[&>a]:w-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.7 }}
