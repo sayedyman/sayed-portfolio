@@ -9,7 +9,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import type { SanityFeaturedProject } from "@/lib/sanity/queries";
 import { urlFor } from "@/lib/sanity/image"
 
@@ -26,8 +26,16 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const isMobile =
-  typeof window !== "undefined" && window.innerWidth < 1024;
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
   const capabilitiesRef = useRef(null);
@@ -281,7 +289,7 @@ export default function HomeClient({ projects, articles }: HomeClientProps) {
                 <div key={i} className={`col-span-4 md:col-span-6 relative group ${service.stagger ? 'lg:mt-32' : ''}`}>
                   <div className="absolute -top-16 left-0 right-0 h-px bg-gradient-to-r from-border/20 via-border/5 to-transparent" />
                   <motion.div 
-                    style={!isMobile ? { y: service.reverseParallax ? parallaxYReverse : parallaxY } : {}}
+                    style={isMounted && !isMobile ? { y: service.reverseParallax ? parallaxYReverse : parallaxY } : {}}
                     className="absolute -top-8 -left-4 md:-top-20 md:-left-12 text-[80px] md:text-[200px] font-heading font-bold text-muted-foreground/[0.03] md:text-muted-foreground/5 leading-none select-none pointer-events-none transition-colors duration-700 group-hover:text-primary/[0.03] z-0"
                   >
                     {service.num}

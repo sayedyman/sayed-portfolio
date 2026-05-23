@@ -61,7 +61,7 @@ export function Navbar() {
   const lenis = useLenis();
 
   useEffect(() => {
-    setMounted(true);
+    // mounted state removed as it is no longer needed
   }, []);
 
   // Escape key close
@@ -182,7 +182,6 @@ export function Navbar() {
             </div>
 
             {/* Mobile Hamburger Trigger Dial */}
-            {mounted && (
               <div className="flex md:hidden items-center z-50">
                 <MagneticButton 
                   variant="secondary" 
@@ -208,13 +207,11 @@ export function Navbar() {
                   </div>
                 </MagneticButton>
               </div>
-            )}
           </div>
         </Container>
       </motion.header>
 
       {/* Cinematic Fullscreen Mobile Drawer */}
-      {mounted && (
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -222,7 +219,7 @@ export function Navbar() {
               initial="closed"
               animate="open"
               exit="closed"
-              className="fixed inset-0 z-40 bg-background/98 backdrop-blur-2xl border-b border-border/40 flex flex-col justify-between h-screen h-dvh overflow-x-hidden"
+              className="fixed inset-0 z-40 bg-background/98 backdrop-blur-lg border-b border-border/40 flex flex-col justify-between h-screen h-dvh overflow-x-hidden"
             >
               <div 
                 onClick={() => setIsOpen(false)} 
@@ -290,7 +287,6 @@ export function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      )}
     </>
   );
 }
