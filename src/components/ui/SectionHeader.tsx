@@ -11,6 +11,9 @@ interface SectionHeaderProps {
   subtitle?: ReactNode;
   align?: "left" | "center" | "right";
   className?: string;
+  titleClassName?: string;
+  labelClassName?: string;
+  subtitleClassName?: string;
   animated?: boolean;
 }
 
@@ -20,6 +23,9 @@ export function SectionHeader({
   subtitle,
   align = "left",
   className,
+  titleClassName,
+  labelClassName,
+  subtitleClassName,
   animated = true,
 }: SectionHeaderProps) {
   
@@ -42,19 +48,19 @@ export function SectionHeader({
 
   return (
     <ContentWrapper 
-      className={cn("flex flex-col mb-16 md:mb-20 lg:mb-24", alignmentClasses[align], className)}
+      className={cn("flex flex-col", alignmentClasses[align], className)}
       {...wrapperProps}
     >
       {label && (
         <ItemWrapper {...itemProps}>
-          <h2 className="text-label mb-4">
+          <h2 className={cn("text-label mb-4", labelClassName)}>
             {label}
           </h2>
         </ItemWrapper>
       )}
       
       <ItemWrapper {...itemProps}>
-        <h3 className="text-heading mb-4 md:mb-6">
+        <h3 className={cn("text-heading mb-4 md:mb-6", titleClassName)}>
           {title}
         </h3>
       </ItemWrapper>
@@ -62,7 +68,7 @@ export function SectionHeader({
       {subtitle && (
         <ItemWrapper {...itemProps}>
           {typeof subtitle === "string" ? (
-            <p className="text-subheading">{subtitle}</p>
+            <p className={cn("text-subheading", subtitleClassName)}>{subtitle}</p>
           ) : (
             subtitle
           )}

@@ -33,6 +33,7 @@ export function ServicesSection() {
               title="Services"
               subtitle="Strategic Digital Product Design"
               className="mb-4 md:mb-6"
+              titleClassName="uppercase tracking-tighter leading-[0.9]"
             />
           </div>
         </Grid>

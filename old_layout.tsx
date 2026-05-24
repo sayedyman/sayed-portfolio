@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { InteractiveElements } from "@/components/layout/InteractiveElements";
 import { Navbar } from "@/components/layout/Navbar";
@@ -79,6 +79,7 @@ export default function RootLayout({
       className={`dark ${inter.variable} antialiased`}
     >
       <head>
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap" />
       </head>
       <body className="min-h-dvh flex flex-col relative selection:bg-primary selection:text-primary-foreground">
         <JsonLd

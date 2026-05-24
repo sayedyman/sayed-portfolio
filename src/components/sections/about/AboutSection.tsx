@@ -12,11 +12,16 @@ export function AboutSection() {
     <Section id="about" padding="xl" className="bg-secondary/20">
       <Container>
         <Grid>
-          <div className="col-span-4 md:col-span-4 lg:col-span-5">
+          <div className="col-span-4 md:col-span-3 lg:col-span-4">
+            <h2 className="text-sm tracking-widest text-muted-foreground uppercase mb-8 md:mb-0">
+              / 01 — Philosophy
+            </h2>
+          </div>
+          <div className="col-span-4 md:col-span-5 lg:col-span-8">
             <SectionHeader
-              label="/ 01 — Philosophy"
               title={<>I believe that <span className="text-primary italic font-editorial">form</span> follows <span className="text-primary italic font-editorial">function</span>, but that doesn&apos;t mean it can&apos;t look incredibly good doing it.</>}
-              className="mb-8"
+              className="mb-8 md:mb-12"
+              titleClassName="text-3xl md:text-4xl lg:text-6xl font-heading font-medium leading-[1.1] md:leading-tight mb-0"
             />
             <div className="grid md:grid-cols-2 gap-8 text-muted-foreground text-lg">
               <p>With a background in both structural problem solving and visual aesthetics, I bridge the gap between complex business requirements and seamless user experiences.</p>

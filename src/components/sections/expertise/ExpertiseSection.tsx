@@ -17,6 +17,7 @@ export function ExpertiseSection() {
               label="/ 03 — Expertise"
               title={<>Capabilities & <br/>Experience</>}
               className="mb-8"
+              titleClassName="leading-tight"
             />
             <p className="text-muted-foreground mb-12 max-w-sm">Combining UX thinking, problem-solving, and modern visual execution to design digital experiences that are intuitive, scalable, and user-focused.</p>
             <div className="flex flex-col gap-4">

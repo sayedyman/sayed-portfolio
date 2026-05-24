@@ -217,6 +217,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsProps) {
               label="/ 06 — Testimonials"
               title={<>Client{" "}<span className="text-primary italic font-editorial">Voices</span></>}
               className="mb-0"
+              titleClassName="uppercase tracking-tighter leading-[0.9]"
               animated={false}
             />
           </motion.div>

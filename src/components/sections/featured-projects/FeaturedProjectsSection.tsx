@@ -24,6 +24,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
               label="/ 02 — Selected Work"
               title={<>Featured <span className="text-primary italic font-editorial">Projects</span></>}
               className="mb-0"
+              titleClassName="lg:text-7xl uppercase tracking-tighter"
             />
             <Link href="/projects" passHref>
               <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border rounded-full">

@@ -66,7 +66,7 @@ export function HeroSection() {
               </div>
             </motion.div>
             
-            <h1 className="flex flex-col text-display lg:pl-12 overflow-hidden">
+            <h1 className="flex flex-col font-heading font-medium uppercase leading-[0.85] tracking-tighter text-[clamp(2.5rem,14vw,12.5vw)] md:text-[13vw] lg:text-[12.5vw] lg:pl-12 overflow-hidden">
               <motion.span 
                 className="block mix-blend-difference z-30 relative"
                 initial={{ opacity: 0, x: -50 }}

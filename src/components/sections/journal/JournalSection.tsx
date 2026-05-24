@@ -24,6 +24,7 @@ export function JournalSection({ articles }: JournalSectionProps) {
               label="/ 05 — Journal"
               title={<>Insights & <br/> <span className="text-primary italic font-editorial">Observations</span></>}
               className="mb-0"
+              titleClassName="uppercase tracking-tighter leading-[0.9]"
             />
             <Link href="/articles" passHref>
               <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border/50 rounded-full text-xs font-semibold uppercase tracking-widest">
