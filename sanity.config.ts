@@ -24,9 +24,17 @@ export default defineConfig({
                   .filter('_type == "project"')
                   .defaultOrdering([{ field: 'displayOrder', direction: 'asc' }])
               ),
+            S.listItem()
+              .title('Testimonials')
+              .child(
+                S.documentList()
+                  .title('All Testimonials')
+                  .filter('_type == "testimonial"')
+                  .defaultOrdering([{ field: 'displayOrder', direction: 'asc' }])
+              ),
             // Scalable rendering for all other document types (e.g., Articles, Categories)
             ...S.documentTypeListItems().filter(
-              (listItem) => !['project'].includes(listItem.getId() as string)
+              (listItem) => !['project', 'testimonial'].includes(listItem.getId() as string)
             ),
           ]),
     }),

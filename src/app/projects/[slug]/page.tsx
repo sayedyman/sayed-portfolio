@@ -136,7 +136,7 @@ export default async function ProjectPage({
     : 'max-w-2xl'
 
   return (
-    <main className="relative min-h-[100dvh] bg-background pb-24">
+    <div className="relative min-h-[100dvh] bg-background pb-24">
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -254,7 +254,7 @@ export default async function ProjectPage({
         </div>
       </Container>
 
-    </main>
+    </div>
   )
 }
 
@@ -262,7 +262,7 @@ function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
   const hasCoverImage = !!project.coverImage?.asset
 
   return (
-    <main className="relative min-h-[100dvh] bg-background pb-24">
+    <div className="relative min-h-[100dvh] bg-background pb-24">
       {/* ─── CINEMATIC HERO (Teaser) ─────────────────────────────────────────────── */}
       <div className="relative w-full pt-32 pb-16 md:pb-24">
         <Container>
@@ -337,7 +337,7 @@ function ComingSoonPage({ project }: { project: SanityProjectDetail }) {
           </Link>
         </div>
       </Container>
-    </main>
+    </div>
   )
 }
 

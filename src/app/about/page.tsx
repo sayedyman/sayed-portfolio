@@ -21,7 +21,7 @@ export default function AboutPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
 
   return (
-    <main ref={containerRef} className="relative min-h-[100dvh] overflow-hidden bg-background">
+    <div ref={containerRef} className="relative min-h-[100dvh] overflow-hidden bg-background">
       {/* Background Ambient Noise Layer */}
       <div className="fixed inset-0 pointer-events-none z-50 bg-grain opacity-[0.03] mix-blend-overlay" />
 
@@ -284,6 +284,6 @@ export default function AboutPage() {
           </motion.div>
         </Container>
       </section>
-    </main>
+    </div>
   );
 }

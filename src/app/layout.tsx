@@ -79,7 +79,9 @@ export default function RootLayout({
       className={`dark ${inter.variable} antialiased`}
     >
       <head>
-        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&f[]=general-sans@200,300,400,500,600,700&display=swap" />
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=general-sans@300,400,500&display=swap" />
       </head>
       <body className="min-h-dvh flex flex-col relative selection:bg-primary selection:text-primary-foreground">
         <JsonLd

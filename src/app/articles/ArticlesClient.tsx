@@ -11,7 +11,7 @@ import { urlFor } from '@/lib/sanity/image'
 
 export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
   return (
-    <main className="min-h-[100dvh] bg-background pt-32 md:pt-48 pb-24 md:pb-48">
+    <div className="min-h-[100dvh] bg-background pt-32 md:pt-48 pb-24 md:pb-48">
       {/* HEADER */}
       <Container className="mb-24 md:mb-32">
         <motion.div
@@ -123,6 +123,6 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
           )}
         </div>
       </Container>
-    </main>
+    </div>
   )
 }

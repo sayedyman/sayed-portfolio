@@ -296,3 +296,47 @@ export async function getArticle(slug: string): Promise<SanityArticleDetail | nu
 export async function getAllArticleSlugs(): Promise<SanitySlug[]> {
   return client.fetch(allArticleSlugsQuery, {}, { next: { tags: [CACHE_TAGS.ARTICLE] } })
 }
+
+// ─── TESTIMONIALS TYPE DEFINITIONS ───────────────────────────────────────────
+
+export type SanityTestimonial = {
+  _id: string
+  displayQuote: string
+  fullQuote?: string
+  authorName: string
+  authorRole?: string
+  company?: string
+  avatar?: {
+    asset: { _ref: string }
+    hotspot?: { x: number; y: number }
+  }
+  featured?: boolean
+  displayOrder?: number
+}
+
+// ─── TESTIMONIALS GROQ QUERIES ───────────────────────────────────────────────
+
+const featuredTestimonialsQuery = groq`
+  *[_type == "testimonial" && featured == true]
+  | order(displayOrder asc) {
+    _id,
+    displayQuote,
+    fullQuote,
+    authorName,
+    authorRole,
+    company,
+    avatar,
+    featured,
+    displayOrder
+  }
+`
+
+// ─── TESTIMONIALS FETCH FUNCTIONS ────────────────────────────────────────────
+
+export async function getFeaturedTestimonials(): Promise<SanityTestimonial[]> {
+  const result = await client.fetch<SanityTestimonial[]>(featuredTestimonialsQuery, {}, { next: { tags: [CACHE_TAGS.TESTIMONIAL] } })
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(`[Sanity] getFeaturedTestimonials → ${result.length} featured testimonial(s)`)
+  }
+  return result
+}

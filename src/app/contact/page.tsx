@@ -42,7 +42,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 };
 
   return (
-    <main className="relative min-h-[100svh] pt-32 pb-24 overflow-hidden bg-background">
+    <div className="relative min-h-[100svh] pt-32 pb-24 overflow-hidden bg-background">
       {/* Background gradients for cinematic transition */}
       <div className="absolute top-0 inset-x-0 h-[50vh] bg-gradient-to-b from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none" />
       
@@ -265,6 +265,6 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
         </Grid>
       </Container>
-    </main>
+    </div>
   );
 }

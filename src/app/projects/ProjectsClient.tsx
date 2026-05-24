@@ -42,7 +42,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
       : projects.filter((p) => p.projectType === activeFilter);
 
   return (
-    <main className="relative min-h-[100dvh] pt-32 pb-24 overflow-hidden bg-background">
+    <div className="relative min-h-[100dvh] pt-32 pb-24 overflow-hidden bg-background">
       <Container className="relative z-10">
 
         {/* HERO SECTION */}
@@ -243,6 +243,6 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
         </Grid>
 
       </Container>
-    </main>
+    </div>
   );
 }

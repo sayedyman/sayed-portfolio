@@ -48,7 +48,7 @@ export function Footer() {
   return (
     <footer className={`relative bg-background overflow-hidden ${hideCTA ? "pt-12 pb-[calc(env(safe-area-inset-bottom)+3rem)] border-t border-border/20" : "border-t border-border pt-16 md:pt-24 pb-[calc(env(safe-area-inset-bottom)+3rem)]"}`}>
       <Container>
-        <Section reveal={true} padding="none">
+        <Section reveal={!hideCTA} padding="none">
           {!hideCTA && (
             <Grid className="mb-24">
               <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">

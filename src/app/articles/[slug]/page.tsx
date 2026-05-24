@@ -141,7 +141,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     : new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(dateObj)
 
   return (
-    <main className="relative min-h-[100dvh] bg-background pb-32">
+    <div className="relative min-h-[100dvh] bg-background pb-32">
       <JsonLd
         data={{
           "@context": "https://schema.org",
@@ -231,6 +231,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           </div>
         )}
       </Container>
-    </main>
+    </div>
   )
 }

@@ -54,6 +54,11 @@ export async function POST(request: NextRequest) {
       if (slug) revalidatePath(`/articles/${slug}`)
       
       console.log(`[Webhook] Revalidating article tags and paths for: ${slug || type}`)
+    } else if (type === 'testimonial') {
+      revalidateTag(CACHE_TAGS.TESTIMONIAL, { expire: 0 })
+      revalidatePath('/')
+
+      console.log(`[Webhook] Revalidating testimonial tags for homepage`)
     } else {
       console.log(`[Webhook] Unrecognized type: ${type}`)
       return Response.json({ message: 'Unrecognized type' }, { status: 400 })
