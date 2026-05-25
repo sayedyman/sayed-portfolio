@@ -53,12 +53,14 @@ const customComponents: PortableTextComponents = {
       <em className="italic text-foreground/90 font-editorial">{children}</em>
     ),
     highlight: ({ children }) => (
-      <span className="bg-primary/15 text-foreground px-1.5 py-0.5 rounded-sm transition-colors duration-300 hover:bg-primary/25">
+      <span className="bg-primary/10 text-foreground px-2 py-0.5 rounded-md box-decoration-clone transition-colors duration-300 hover:bg-primary/15">
         {children}
       </span>
     ),
     accent: ({ children }) => (
-      <span className="text-primary font-medium">{children}</span>
+      <span className="bg-primary/10 text-foreground px-2 py-0.5 rounded-md box-decoration-clone font-medium transition-colors duration-300 hover:bg-primary/15">
+        {children}
+      </span>
     ),
     muted: ({ children }) => (
       <span className="text-muted-foreground/60">{children}</span>
