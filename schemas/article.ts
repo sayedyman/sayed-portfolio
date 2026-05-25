@@ -73,8 +73,38 @@ export const article = defineType({
       type: 'array',
       group: 'content',
       of: [
-        { type: 'block' },
+        {
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'Heading 1 (Cinematic Large)', value: 'h1' },
+            { title: 'Heading 2', value: 'h2' },
+            { title: 'Heading 3', value: 'h3' },
+            { title: 'Heading 4', value: 'h4' },
+            { title: 'Editorial Quote', value: 'blockquote' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Strong', value: 'strong' },
+              { title: 'Emphasis', value: 'em' },
+              { title: 'Highlight (Yellow)', value: 'highlight', icon: () => '🖌️' },
+              { title: 'Accent Text (Yellow)', value: 'accent', icon: () => '🟡' },
+              { title: 'Muted Text', value: 'muted', icon: () => '🩶' },
+            ],
+          },
+        },
         { type: 'image', options: { hotspot: true } },
+        { 
+          type: 'object', 
+          name: 'separator', 
+          title: 'Separator / Divider', 
+          fields: [{ name: 'style', type: 'string', initialValue: 'line', hidden: true }],
+          preview: {
+            prepare() {
+              return { title: '➖ Separator' }
+            }
+          }
+        },
       ],
       validation: (Rule) => Rule.required(),
     }),

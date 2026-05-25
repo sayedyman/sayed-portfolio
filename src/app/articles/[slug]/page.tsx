@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
-import { PortableText, type PortableTextComponents } from '@portabletext/react'
+import { CustomPortableText } from '@/components/portable-text/CustomPortableText'
 import { Container } from '@/components/layout/Container'
 import { getArticle, getAllArticleSlugs } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
@@ -55,62 +55,6 @@ export async function generateMetadata({
       images: ogImageUrl ? [ogImageUrl] : undefined,
     }
   }
-}
-
-// ─── Portable Text component map ──────────────────────────────────────────────
-
-const portableTextComponents: PortableTextComponents = {
-  block: {
-    h2: ({ children }) => (
-      <h2 className="text-[clamp(1.75rem,4vw,2.25rem)] font-heading font-medium tracking-tighter mt-10 md:mt-16 mb-4 md:mb-6 text-foreground leading-[1.1]">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-[clamp(1.5rem,3vw,1.875rem)] font-heading font-medium tracking-tight mt-8 md:mt-12 mb-3 md:mb-4 text-foreground leading-[1.2]">
-        {children}
-      </h3>
-    ),
-    normal: ({ children }) => (
-      <p className="text-base md:text-lg text-muted-foreground leading-[1.75] mb-6 md:mb-8 [max-width:65ch]">{children}</p>
-    ),
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-primary pl-4 md:pl-6 my-8 md:my-10 text-lg md:text-xl italic font-editorial text-muted-foreground">
-        {children}
-      </blockquote>
-    ),
-  },
-  marks: {
-    strong: ({ children }) => (
-      <strong className="font-semibold text-foreground">{children}</strong>
-    ),
-    em: ({ children }) => (
-      <em className="italic text-muted-foreground/80">{children}</em>
-    ),
-  },
-  types: {
-    image: ({ value }) => {
-      if (!value?.asset) return null
-      return (
-        <figure className="my-10 md:my-12">
-          <div className="relative w-full aspect-[16/9] overflow-hidden rounded-sm bg-secondary">
-            <Image
-              src={urlFor(value).width(1200).height(675).url()}
-              alt={value.alt ?? ''}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 800px"
-            />
-          </div>
-          {value.caption && (
-            <figcaption className="mt-3 text-sm text-muted-foreground/60 tracking-wide text-center">
-              {value.caption}
-            </figcaption>
-          )}
-        </figure>
-      )
-    },
-  },
 }
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
@@ -213,8 +157,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* Body Content */}
         {article.body && article.body.length > 0 && (
-          <div className="mx-auto max-w-[65ch] px-4 md:px-0">
-            <PortableText value={article.body} components={portableTextComponents} />
+          <div className="px-4 md:px-0">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <CustomPortableText value={article.body as any} />
           </div>
         )}
 

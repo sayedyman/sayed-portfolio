@@ -41,10 +41,10 @@ export function ServicesSection() {
           <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border/30 to-transparent -translate-x-1/2" />
           <Grid className="gap-y-32 gap-x-8">
             {[
-              { num: "01", title: "UX Strategy & Research", desc: "Validating decisions through research to align human behavior with real business objectives.", stagger: false, reverseParallax: false },
-              { num: "02", title: "Mobile & Web Applications", desc: "Simplifying complex workflows into intuitive, high-performing digital experiences.", stagger: true, reverseParallax: true },
-              { num: "03", title: "SaaS Product Design", desc: "Architecting scalable, data-driven systems focused on usability, retention, and long-term product growth.", stagger: false, reverseParallax: false },
-              { num: "04", title: "Landing Page Design", desc: "Structuring conversion-focused narratives that communicate value clearly and drive measurable results.", stagger: true, reverseParallax: true }
+              { num: "01", title: "UX Audit & Product Review", desc: "Diagnosing friction points and identifying critical usability improvements to elevate the overall product experience and optimize user flows.", stagger: false, reverseParallax: false },
+              { num: "02", title: "Landing Page Design", desc: "Structuring premium, conversion-focused narratives driven by strong visual hierarchy and modern, cinematic responsiveness.", stagger: true, reverseParallax: true },
+              { num: "03", title: "Web & Mobile App Design", desc: "Crafting scalable product interfaces that balance clean interaction systems with highly functional, modern responsive UX/UI.", stagger: false, reverseParallax: false },
+              { num: "04", title: "Dashboard UI/UX Design", desc: "Architecting clean information hierarchy and usability-focused workflows to make data-heavy interfaces feel structured and effortless.", stagger: true, reverseParallax: true }
             ].map((service, i) => (
               <div key={i} className={`col-span-4 md:col-span-6 relative group ${service.stagger ? 'lg:mt-32' : ''}`}>
                 <div className="absolute -top-16 left-0 right-0 h-px bg-gradient-to-r from-border/20 via-border/5 to-transparent" />
