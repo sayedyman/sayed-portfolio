@@ -128,7 +128,15 @@ interface CustomPortableTextProps {
 
 export function CustomPortableText({ value, className }: CustomPortableTextProps) {
   return (
-    <div className={cn("mx-auto max-w-[70ch]", className)}>
+    <div className={cn(
+      "mx-auto max-w-[70ch]",
+      // Visually bind lists to their preceding headings without merging semantic blocks
+      "[&>h1+ul]:-mt-4 [&>h1+ol]:-mt-4",
+      "[&>h2+ul]:-mt-2 [&>h2+ol]:-mt-2",
+      "[&>h3+ul]:-mt-2 [&>h3+ol]:-mt-2",
+      "[&>h4+ul]:-mt-2 [&>h4+ol]:-mt-2",
+      className
+    )}>
       <PortableText value={value} components={customComponents} />
     </div>
   )
