@@ -34,14 +34,8 @@ const customComponents: PortableTextComponents = {
       </p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="relative border-l-4 border-primary pl-6 md:pl-8 my-12 md:my-16 text-[1.375rem] md:text-[1.75rem] italic font-editorial text-foreground/90 bg-primary/5 py-8 pr-6 rounded-r-md leading-relaxed tracking-tight overflow-hidden">
-        {/* Subtle decorative quote mark in background */}
-        <span className="absolute -top-4 -left-2 text-[8rem] text-primary/10 font-serif leading-none select-none pointer-events-none" aria-hidden="true">
-          "
-        </span>
-        <div className="relative z-10">
-          {children}
-        </div>
+      <blockquote className="my-12 md:my-16 text-[1.375rem] md:text-[1.75rem] italic font-editorial text-foreground/90 leading-relaxed tracking-tight">
+        {children}
       </blockquote>
     ),
   },
@@ -53,12 +47,12 @@ const customComponents: PortableTextComponents = {
       <em className="italic text-foreground/90 font-editorial">{children}</em>
     ),
     highlight: ({ children }) => (
-      <span className="bg-primary/10 text-foreground px-2 py-0.5 rounded-md box-decoration-clone transition-colors duration-300 hover:bg-primary/15">
+      <span className="text-[#FFE500]">
         {children}
       </span>
     ),
     accent: ({ children }) => (
-      <span className="bg-primary/10 text-foreground px-2 py-0.5 rounded-md box-decoration-clone font-medium transition-colors duration-300 hover:bg-primary/15">
+      <span className="text-[#FFE500] font-medium">
         {children}
       </span>
     ),
