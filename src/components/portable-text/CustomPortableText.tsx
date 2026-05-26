@@ -45,6 +45,31 @@ const customComponents: PortableTextComponents = {
       </blockquote>
     ),
   },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="my-8 md:my-10 space-y-4">
+        {children}
+      </ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal list-outside my-8 md:my-10 ml-6 md:ml-8 space-y-4 font-editorial text-[1.125rem] text-muted-foreground/80 marker:text-primary/70">
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="relative pl-6 md:pl-8 text-[1.0625rem] md:text-lg text-muted-foreground leading-[1.85] font-sans tracking-[0.01em]">
+        <span className="absolute left-1 md:left-2 top-[0.6875em] w-1.5 h-1.5 rounded-full bg-primary/70" aria-hidden="true" />
+        <span>{children}</span>
+      </li>
+    ),
+    number: ({ children }) => (
+      <li className="pl-2 text-[1.0625rem] md:text-lg text-muted-foreground leading-[1.85] font-sans tracking-[0.01em]">
+        <span>{children}</span>
+      </li>
+    ),
+  },
   marks: {
     strong: ({ children }) => (
       <strong className="font-semibold text-foreground">{children}</strong>

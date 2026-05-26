@@ -92,6 +92,10 @@ export const article = defineType({
               { title: 'Muted Text', value: 'muted', icon: () => '🩶' },
             ],
           },
+          lists: [
+            { title: 'Bullet', value: 'bullet' },
+            { title: 'Numbered', value: 'number' },
+          ],
         },
         { type: 'image', options: { hotspot: true } },
         { 
