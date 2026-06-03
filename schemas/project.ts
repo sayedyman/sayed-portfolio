@@ -42,6 +42,7 @@ export const projectType = defineType({
         source: 'title',
         maxLength: 96,
       },
+      hidden: true,
     }),
 
     defineField({
@@ -60,6 +61,7 @@ export const projectType = defineType({
       },
       initialValue: 'draft',
       validation: (Rule) => Rule.required(),
+      hidden: true,
     }),
 
     defineField({
@@ -87,6 +89,7 @@ export const projectType = defineType({
       type: 'string',
       group: 'legacyMetadata',
       description: 'Editorial subtitle shown on project cards (e.g. "UX Research & Design System")',
+      hidden: true,
     }),
 
     defineField({
@@ -108,6 +111,7 @@ export const projectType = defineType({
       group: 'legacyMetadata',
       rows: 3,
       description: 'Short description shown on project listing cards',
+      hidden: true,
     }),
 
     defineField({
@@ -117,6 +121,7 @@ export const projectType = defineType({
       rows: 2,
       group: 'content',
       description: 'Optional atmospheric line shown on the Coming Soon page. Keep it short and evocative — one or two sentences maximum.',
+      hidden: true,
     }),
 
     defineField({
@@ -126,6 +131,7 @@ export const projectType = defineType({
       group: 'content',
       rows: 3,
       description: 'Legacy field. Short editorial summary shown in the case study hero section',
+      hidden: true,
     }),
 
     defineField({
@@ -143,6 +149,7 @@ export const projectType = defineType({
         layout: 'radio',
       },
       initialValue: 'standard',
+      hidden: true,
     }),
 
     // ─── MEDIA ───────────────────────────────────────────────────────
@@ -191,6 +198,7 @@ export const projectType = defineType({
           ],
         },
       ],
+      hidden: true,
     }),
 
     defineField({
@@ -200,6 +208,7 @@ export const projectType = defineType({
       group: 'legacyMetadata',
       description: 'CSS gradient class string used when no cover image is set (e.g. "from-[#111] via-[#161616] to-[#050505]")',
       initialValue: 'from-[#111] via-[#161616] to-[#050505]',
+      hidden: true,
     }),
 
     // ─── ORDERING & VISIBILITY ────────────────────────────────────────
@@ -218,6 +227,7 @@ export const projectType = defineType({
       type: 'number',
       group: 'ordering',
       description: 'Homepage-specific display order — lower numbers appear first. Independent from global display order.',
+      hidden: true,
     }),
 
     defineField({
@@ -234,6 +244,7 @@ export const projectType = defineType({
       type: 'datetime',
       group: 'ordering',
       description: 'Publication date — used for chronological sorting and newest-first ordering',
+      hidden: true,
     }),
 
     defineField({
@@ -242,6 +253,7 @@ export const projectType = defineType({
       type: 'date',
       group: 'ordering',
       description: 'Optional. Future-ready field for scheduled publishing, countdown systems, and release workflows. Not rendered on the frontend yet.',
+      hidden: true,
     }),
 
     defineField({
@@ -250,6 +262,7 @@ export const projectType = defineType({
       type: 'datetime',
       group: 'ordering',
       description: 'Last updated date — used for activity-based sorting and future content systems',
+      hidden: true,
     }),
 
     // ─── CASE STUDY ───────────────────────────────────────────────────
@@ -259,6 +272,7 @@ export const projectType = defineType({
       type: 'string',
       group: 'legacyMetadata',
       description: "Your role on this project (e.g. \"Lead Product Designer\")",
+      hidden: true,
     }),
 
     defineField({
@@ -267,6 +281,7 @@ export const projectType = defineType({
       type: 'string',
       group: 'legacyMetadata',
       description: 'Project duration (e.g. "12 Weeks")',
+      hidden: true,
     }),
 
     defineField({
@@ -275,6 +290,7 @@ export const projectType = defineType({
       type: 'string',
       group: 'legacyMetadata',
       description: 'Client name or project context',
+      hidden: true,
     }),
 
     defineField({
@@ -316,6 +332,7 @@ export const projectType = defineType({
           ],
         },
       ],
+      hidden: true,
     }),
 
     // ─── SEO ─────────────────────────────────────────────────────────

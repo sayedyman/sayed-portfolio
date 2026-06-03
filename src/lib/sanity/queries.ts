@@ -54,75 +54,55 @@ export type SanitySlug = {
 // ─── GROQ QUERIES ────────────────────────────────────────────────────────────
 
 const allProjectsQuery = groq`
-  *[_type == "project" && status in ["published", "coming-soon"]]
+  *[_type == "project" && !(_id in path("drafts.**"))]
   | order(displayOrder asc) {
     _id,
     title,
-    slug,
-    status,
     "projectType": coalesce(projectTypeRef->title, projectType),
-    category,
     tags,
-    description,
-    summary,
-    behanceUrl,
     coverImage,
-    imageGradient,
+    behanceUrl,
+    featured,
     displayOrder,
-    publishedAt,
-    updatedAt
+    seoTitle,
+    seoDescription
   }
 `
 
 const featuredProjectsQuery = groq`
-  *[_type == "project" && featured == true && status in ["published", "coming-soon"]]
-  | order(featuredOrder asc) {
+  *[_type == "project" && featured == true && !(_id in path("drafts.**"))]
+  | order(displayOrder asc) {
     _id,
     title,
-    slug,
-    status,
     "projectType": coalesce(projectTypeRef->title, projectType),
-    category,
     tags,
-    description,
-    summary,
-    behanceUrl,
     coverImage,
-    imageGradient,
-    featuredOrder
+    behanceUrl,
+    featured,
+    displayOrder,
+    seoTitle,
+    seoDescription
   }
 `
 
 const projectBySlugQuery = groq`
-  *[_type == "project" && slug.current == $slug && status in ["published", "coming-soon"]][0] {
+  *[_type == "project" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
     _id,
     title,
     slug,
-    status,
     "projectType": coalesce(projectTypeRef->title, projectType),
-    category,
     tags,
-    description,
-    teaserCopy,
     coverImage,
-    galleryImages,
-    imageGradient,
-    summary,
-    readingWidth,
-    role,
-    timeline,
-    client,
-    body,
-    publishedAt,
-    launchDate,
-    updatedAt,
+    behanceUrl,
+    featured,
+    displayOrder,
     seoTitle,
     seoDescription
   }
 `
 
 const allProjectSlugsQuery = groq`
-  *[_type == "project" && status in ["published", "coming-soon"]] {
+  *[_type == "project" && !(_id in path("drafts.**"))] {
     "slug": slug.current
   }
 `
@@ -147,7 +127,7 @@ const allProjectsRawQuery = groq`
 export async function getAllProjects(): Promise<SanityProject[]> {
   const result = await client.fetch<SanityProject[]>(allProjectsQuery, {}, { next: { tags: [CACHE_TAGS.PROJECT] } })
   if (process.env.NODE_ENV !== 'production') {
-    console.log(`[Sanity] getAllProjects → ${result.length} project(s) (published or coming-soon)`)
+    console.log(`[Sanity] getAllProjects → ${result.length} project(s)`)
   }
   return result
 }
