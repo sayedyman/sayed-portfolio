@@ -12,8 +12,11 @@ export function generateImageMetadata() {
   ];
 }
 
-export default function Icon({ id }: { id: string }) {
-  const size = parseInt(id, 10);
+export default function Icon(props: any) {
+  // Extract id from params (Next.js 14+) or directly from props, defaulting to '512'
+  const idStr = props?.params?.id || props?.id || '512';
+  const parsedSize = parseInt(idStr, 10);
+  const size = isNaN(parsedSize) ? 512 : parsedSize;
   
   // Create generous padding so it doesn't get cut off in circular masks (like Google Search)
   // Use ~55% of the total size for the icon height to be safe.
@@ -30,7 +33,7 @@ export default function Icon({ id }: { id: string }) {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: size <= 32 ? '2px' : `${size * 0.22}px`,
+          borderRadius: size <= 32 ? '2px' : `${Math.round(size * 0.22)}px`,
         }}
       >
         <svg width={targetWidth} height={targetHeight} viewBox="0 0 269 243" fill="none" xmlns="http://www.w3.org/2000/svg">
