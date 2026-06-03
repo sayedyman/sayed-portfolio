@@ -25,15 +25,23 @@ export const projectType = defineType({
     }),
 
     defineField({
+      name: 'behanceUrl',
+      title: 'Behance URL',
+      type: 'url',
+      group: 'content',
+      description: 'Direct link to the full case study on Behance.',
+    }),
+
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       group: 'content',
+      description: 'Legacy field. No longer actively used in the frontend.',
       options: {
         source: 'title',
         maxLength: 96,
       },
-      validation: (Rule) => Rule.required().error('A slug is required'),
     }),
 
     defineField({
@@ -117,14 +125,7 @@ export const projectType = defineType({
       type: 'text',
       group: 'content',
       rows: 3,
-      description: 'Short editorial summary shown in the case study hero section',
-      validation: (Rule) => Rule.custom((value, context) => {
-        const doc = context.document as { status?: string }
-        if (doc?.status === 'published' && !value) {
-          return 'Summary is required before publishing'
-        }
-        return true
-      }),
+      description: 'Legacy field. Short editorial summary shown in the case study hero section',
     }),
 
     defineField({
@@ -282,14 +283,6 @@ export const projectType = defineType({
       type: 'array',
       group: 'caseStudy',
       description: 'Full case study content — supports rich text with headings, images, and pull quotes',
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      validation: (Rule) => Rule.custom((value: any, context) => {
-        const doc = context.document as { status?: string }
-        if (doc?.status === 'published' && (!value || value.length === 0)) {
-          return 'Case study body is required before publishing'
-        }
-        return true
-      }),
       of: [
         {
           type: 'block',

@@ -15,6 +15,7 @@ export type SanityProject = {
   description?: string
   teaserCopy?: string
   summary?: string
+  behanceUrl?: string
   coverImage?: {
     asset: { _ref: string }
     alt?: string
@@ -64,6 +65,7 @@ const allProjectsQuery = groq`
     tags,
     description,
     summary,
+    behanceUrl,
     coverImage,
     imageGradient,
     displayOrder,
@@ -84,6 +86,7 @@ const featuredProjectsQuery = groq`
     tags,
     description,
     summary,
+    behanceUrl,
     coverImage,
     imageGradient,
     featuredOrder
