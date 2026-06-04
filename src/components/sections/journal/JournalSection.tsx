@@ -5,7 +5,7 @@ import { Grid } from "@/components/layout/Grid";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/lib/sanity/image";
@@ -27,8 +27,8 @@ export function JournalSection({ articles }: JournalSectionProps) {
               titleClassName="uppercase tracking-tighter leading-[0.9]"
             />
             <Link href="/articles" passHref>
-              <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border/50 rounded-full text-xs font-semibold uppercase tracking-widest">
-                See All Articles <ArrowRight className="w-4 h-4" />
+              <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border rounded-full">
+                All Articles <ArrowUpRight className="w-4 h-4" />
               </MagneticButton>
             </Link>
           </div>
@@ -78,8 +78,8 @@ export function JournalSection({ articles }: JournalSectionProps) {
           </div>
           <div className="col-span-4 mt-12 md:hidden">
             <Link href="/articles" passHref>
-              <MagneticButton variant="ghost" className="w-full flex items-center justify-center gap-2 px-6 py-4 border border-border/50 rounded-full text-[10px] font-semibold uppercase tracking-widest">
-                See All Articles <ArrowRight className="w-4 h-4" />
+              <MagneticButton variant="ghost" className="w-full flex items-center justify-center gap-2 px-6 py-4 border border-border rounded-full">
+                All Articles <ArrowUpRight className="w-4 h-4" />
               </MagneticButton>
             </Link>
           </div>

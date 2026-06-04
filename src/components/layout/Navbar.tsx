@@ -114,6 +114,7 @@ export function Navbar() {
     if (href === "/" && pathname === "/") {
       e.preventDefault();
       if (lenis) {
+        lenis.start();
         lenis.scrollTo(0, { offset: 0, duration: 1.5 });
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -125,6 +126,7 @@ export function Navbar() {
       e.preventDefault();
       const target = href.replace("/", "");
       if (lenis) {
+        lenis.start();
         lenis.scrollTo(target, { offset: -80, duration: 1.5 });
       } else {
         const element = document.querySelector(target);
@@ -137,8 +139,16 @@ export function Navbar() {
   };
 
   const handleMobileLinkClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    setIsOpen(false);
+    // 1. Execute navigation/scroll first
     handleScroll(e);
+    
+    // 2. Ensure scrolling is unlocked if it was locked by the drawer
+    lenis?.start();
+
+    // 3. Delay closing the menu slightly so navigation has priority
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 150);
   };
 
   return (
@@ -250,12 +260,12 @@ export function Navbar() {
 
                 <div className="flex flex-col gap-8 mt-12 w-full">
                   <motion.div variants={linkVariants} className="flex flex-col gap-4 w-full">
-                    <Link href="/#work" passHref onClick={() => setIsOpen(false)} className="w-full">
+                    <Link href="/#work" passHref onClick={handleMobileLinkClick} className="w-full">
                       <MagneticButton className="w-full justify-center px-8 py-4 text-xs font-semibold tracking-widest uppercase touch-active">
                         View Projects
                       </MagneticButton>
                     </Link>
-                    <Link href="/contact" passHref onClick={() => setIsOpen(false)} className="w-full">
+                    <Link href="/contact" passHref onClick={handleMobileLinkClick} className="w-full">
                       <MagneticButton variant="ghost" className="w-full justify-center px-8 py-4 text-xs font-semibold tracking-widest uppercase border border-border/50 touch-active">
                         Let&apos;s Work Together
                       </MagneticButton>

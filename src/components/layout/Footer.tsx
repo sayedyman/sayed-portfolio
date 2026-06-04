@@ -60,8 +60,11 @@ export function Footer() {
                   Available for freelance opportunities and full-time product design roles at high-growth startups.
                 </p>
                 <Link href="/contact" passHref>
-                  <MagneticButton className="px-10 py-5 text-lg flex items-center gap-2">
-                    Start a conversation <ArrowUpRight className="w-5 h-5" />
+                  <MagneticButton className="px-10 py-6 text-lg h-auto">
+                    <div className="flex flex-col items-start gap-3 md:gap-4 w-full">
+                      <span className="leading-none mt-1">Start a conversation</span>
+                      <ArrowUpRight className="w-[26px] h-[26px] stroke-[1.5]" />
+                    </div>
                   </MagneticButton>
                 </Link>
               </div>
