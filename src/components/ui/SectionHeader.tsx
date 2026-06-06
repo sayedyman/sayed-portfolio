@@ -53,14 +53,14 @@ export function SectionHeader({
     >
       {label && (
         <ItemWrapper {...itemProps}>
-          <h2 className={cn("text-label mb-4", labelClassName)}>
+          <h2 className={cn("text-label mb-6 md:mb-8", labelClassName)}>
             {label}
           </h2>
         </ItemWrapper>
       )}
       
       <ItemWrapper {...itemProps}>
-        <h3 className={cn("text-heading mb-4 md:mb-6", titleClassName)}>
+        <h3 className={cn("text-heading mb-8 md:mb-12", titleClassName)}>
           {title}
         </h3>
       </ItemWrapper>

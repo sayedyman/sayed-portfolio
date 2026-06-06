@@ -61,8 +61,8 @@ export function HeroSection() {
                 <span className="w-8 md:w-12 h-[1px] bg-primary"></span>
                 <span>UI/UX Designer</span>
               </div>
-              <div className="text-sm md:text-base text-muted-foreground max-w-[85vw] md:max-w-md leading-relaxed font-editorial pl-12 md:pl-16">
-                Designing modern digital experiences that solve real problems.
+              <div className="text-sm md:text-base text-muted-foreground max-w-[85vw] md:max-w-md leading-relaxed font-editorial pl-12 md:pl-16 text-balance">
+                UI/UX & Product Designer crafting intuitive products that balance user needs and business goals.
               </div>
             </motion.div>
             

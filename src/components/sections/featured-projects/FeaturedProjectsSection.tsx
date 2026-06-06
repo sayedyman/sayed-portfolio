@@ -18,13 +18,13 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
   return (
     <Section id="work" padding="xl">
       <Container size="full" className="px-4 md:px-8 lg:px-12">
-        <Grid className="mb-20">
+        <Grid className="mb-32">
           <div className="col-span-4 md:col-span-8 lg:col-span-12 flex items-end justify-between">
             <SectionHeader
               label="/ 02 — Selected Work"
               title={<>Featured <span className="text-primary italic font-editorial">Projects</span></>}
               className="mb-0"
-              titleClassName="lg:text-7xl uppercase tracking-tighter"
+              titleClassName="lg:text-7xl uppercase tracking-tighter mb-0"
             />
             <Link href="/projects" passHref>
               <MagneticButton variant="ghost" className="hidden md:flex items-center gap-2 px-6 py-3 border border-border rounded-full">
