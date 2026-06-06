@@ -8,7 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import type { SanityProject } from "@/lib/sanity/queries";
+import type { SanityProject } from "@/types";
 import { urlFor } from "@/lib/sanity/image";
 
 interface ProjectsClientProps {
@@ -107,7 +107,6 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
             </div>
           ) : (
             filteredProjects.map((project, i) => {
-              const slug = project.slug?.current ?? '#'
               const hasImage = !!project.coverImage?.asset
 
               return (

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import type { SanityFeaturedProject, SanityTestimonial } from "@/lib/sanity/queries";
+import type { SanityFeaturedProject, SanityTestimonial, SanityArticle } from "@/types";
 
 import { HeroSection } from "@/sections/hero";
 import { AboutSection } from "@/sections/about";
@@ -14,7 +14,7 @@ const TestimonialsSection = dynamic(() => import("@/sections/testimonials").then
 
 interface HomeClientProps {
   projects: SanityFeaturedProject[];
-  articles: any[];
+  articles: SanityArticle[];
   testimonials: SanityTestimonial[];
 }
 

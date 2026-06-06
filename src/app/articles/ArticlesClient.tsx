@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { Container } from '@/components/layout/Container'
 import { Grid } from '@/components/layout/Grid'
-import type { SanityArticle } from '@/lib/sanity/queries'
+import type { SanityArticle } from '@/types'
 import { urlFor } from '@/lib/sanity/image'
 
 export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {

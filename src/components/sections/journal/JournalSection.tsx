@@ -10,8 +10,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/lib/sanity/image";
 
+import type { SanityArticle } from "@/types";
+
 interface JournalSectionProps {
-  articles: any[];
+  articles: SanityArticle[];
 }
 
 export function JournalSection({ articles }: JournalSectionProps) {

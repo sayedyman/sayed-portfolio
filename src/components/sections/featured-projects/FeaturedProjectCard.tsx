@@ -1,37 +1,9 @@
 import Image from 'next/image'
-import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import type { SanityFeaturedProject } from '@/lib/sanity/queries'
+import type { SanityFeaturedProject } from '@/types'
 import { urlFor } from '@/lib/sanity/image'
 
-/**
- * FeaturedProjectsGrid — Pure presentational Server Component.
- * No async, no data fetching. Receives projects as props from the
- * Server Component page.tsx and renders the asymmetric homepage grid.
- */
-export function FeaturedProjectsGrid({ projects }: { projects: SanityFeaturedProject[] }) {
-  if (!projects || projects.length === 0) {
-    return (
-      <div className="grid md:grid-cols-12 gap-8 md:gap-12">
-        <div className="md:col-span-12 flex items-center justify-center py-24">
-          <p className="text-muted-foreground text-sm tracking-widest uppercase">No featured projects yet</p>
-        </div>
-      </div>
-    )
-  }
-
-  const first = projects[0]
-  const second = projects[1]
-
-  return (
-    <div className="grid md:grid-cols-12 gap-8 md:gap-12">
-      {first && <ProjectCard project={first} colClass="md:col-span-7" aspectClass="aspect-[4/3]" />}
-      {second && <ProjectCard project={second} colClass="md:col-span-5 md:mt-32" aspectClass="aspect-square" />}
-    </div>
-  )
-}
-
-function ProjectCard({
+export function FeaturedProjectCard({
   project,
   colClass,
   aspectClass,
@@ -40,7 +12,6 @@ function ProjectCard({
   colClass: string
   aspectClass: string
 }) {
-  const slug = project.slug?.current ?? '#'
   const hasImage = !!project.coverImage?.asset
 
   return (

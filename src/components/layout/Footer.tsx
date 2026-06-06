@@ -53,7 +53,7 @@ export function Footer() {
             <Grid className="mb-24">
               <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">
                 <h2 className="font-heading text-[clamp(2.5rem,12vw,10rem)] leading-[0.9] tracking-tighter mb-8 text-foreground uppercase">
-                  Let's Build<br/>
+                  Let&apos;s Build<br/>
                   <span className="text-primary italic font-editorial">Together</span>
                 </h2>
                 <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto mb-12">

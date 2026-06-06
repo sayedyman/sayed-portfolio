@@ -5,10 +5,10 @@ import { Grid } from "@/components/layout/Grid";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { FeaturedProjectsGrid } from "@/components/FeaturedProjectsGrid";
+import { FeaturedProjectsGrid } from "./FeaturedProjectsGrid";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import type { SanityFeaturedProject } from "@/lib/sanity/queries";
+import type { SanityFeaturedProject } from "@/types";
 
 interface FeaturedProjectsSectionProps {
   projects: SanityFeaturedProject[];

@@ -44,7 +44,6 @@ export async function POST(request: NextRequest) {
       revalidateTag(CACHE_TAGS.PROJECT, { expire: 0 })
       revalidatePath('/')
       revalidatePath('/projects')
-      if (slug) revalidatePath(`/projects/${slug}`)
       
       console.log(`[Webhook] Revalidating project tags and paths for: ${slug || type}`)
     } else if (type === 'article') {
@@ -72,8 +71,8 @@ export async function POST(request: NextRequest) {
       tag: type === 'article' ? CACHE_TAGS.ARTICLE : CACHE_TAGS.PROJECT,
       now: new Date().toISOString(),
     })
-  } catch (err: any) {
-    console.error('[Webhook] Payload parsing error:', err.message)
+  } catch (err: unknown) {
+    console.error('[Webhook] Payload parsing error:', err instanceof Error ? err.message : String(err))
     return Response.json({ message: 'Malformed payload' }, { status: 400 })
   }
 }

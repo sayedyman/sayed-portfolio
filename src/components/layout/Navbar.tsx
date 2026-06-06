@@ -56,7 +56,6 @@ export function Navbar() {
   const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const lenis = useLenis();
 
@@ -75,7 +74,8 @@ export function Navbar() {
 
   // Close on route change
   useEffect(() => {
-    setIsOpen(false);
+    const timer = setTimeout(() => setIsOpen(false), 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   // Lock scrolling when drawer open

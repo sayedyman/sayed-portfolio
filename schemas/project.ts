@@ -65,22 +65,11 @@ export const projectType = defineType({
     }),
 
     defineField({
-      name: 'projectTypeRef',
-      title: 'Category / Project Type',
-      type: 'reference',
-      to: [{ type: 'projectType' }],
-      group: 'content',
-      description: 'The primary category of the project. Can be created inline.',
-    }),
-
-    defineField({
       name: 'projectType',
-      title: 'Legacy Project Type',
+      title: 'Category / Project Type',
       type: 'string',
-      group: 'legacyMetadata',
-      description: 'Legacy field. Use the Category / Project Type reference field instead.',
-      hidden: true,
-      readOnly: true,
+      group: 'content',
+      description: 'The primary category of the project.',
     }),
 
     defineField({

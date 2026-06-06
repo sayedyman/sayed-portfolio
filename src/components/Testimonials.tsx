@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import type { SanityTestimonial } from "@/lib/sanity/queries";
+import type { SanityTestimonial } from "@/types";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity/image";
 

@@ -2,10 +2,9 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { Section } from "@/components/layout/Section";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
@@ -61,7 +60,7 @@ export default function AboutPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                I believe that every digital interface is a conversation. My work focuses on understanding human behavior to design systems that feel natural, intuitive, and seamlessly guide users toward their goals.
+                I recently re-read &quot;The Design of Everyday Things&quot; by Don Norman. It&apos;s a classic, but looking at it through the lens of modern spatial computing (like visionOS) completely rewired how I think about affordances when the interface isn&apos;t confined to a screen.
               </motion.p>
             </motion.div>
           </Grid>
@@ -111,13 +110,13 @@ export default function AboutPage() {
               
               <div className="text-muted-foreground text-lg leading-relaxed space-y-6">
                 <p>
-                  My journey didn't start in a traditional design studio. It began in the lecture halls of Damanhur University, studying Sociology. There, I developed a deep fascination with how people think, what motivates them, and how they navigate their environments.
+                  My journey didn&apos;t start in a traditional design studio. It began in the lecture halls of Damanhur University, studying Sociology. There, I developed a deep fascination with how people think, what motivates them, and how they navigate their environments.
                 </p>
                 <p>
-                  When I discovered UI/UX design, I realized it was the perfect intersection of my interests. It wasn't just about making things look pretty; it was about applying sociological principles and structural logic to solve complex digital problems.
+                  &quot;Good design is obvious. Great design is transparent.&quot; — That&apos;s the philosophy that drives every pixel he places and every user flow he maps out.
                 </p>
                 <p>
-                  Today, I leverage that analytical foundation to design interfaces that go beyond aesthetics. I focus on creating systems that respect the user's time, anticipate their needs, and communicate clearly.
+                  What&apos;s a recent book or podcast that changed your perspective?on of business strategy and interaction design. He&apos;s known for bringing order to complex systems and creating cohesive experiences that span entire product ecosystems.
                 </p>
               </div>
 
@@ -182,7 +181,7 @@ export default function AboutPage() {
                   year: "2025",
                   title: "Product Design Evolution",
                   context: "Digital Egypt Pioneers Initiative (DEPI)",
-                  desc: "Transitioning deeper into product thinking. Honing skills in complex system design, deep user research, and creating scalable architectures for real-world applications."
+                  desc: "When he&apos;s not wireframing or conducting user interviews, you&apos;ll likely find him exploring typographic grids, reading about architectural design, or mentoring junior designers breaking into the field."
                 },
                 {
                   year: "2024",
@@ -271,10 +270,10 @@ export default function AboutPage() {
             className="flex flex-col items-center"
           >
             <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-6 block">
-              What's Next?
+              What&apos;s Next?
             </span>
             <h2 className="text-5xl md:text-7xl font-heading font-medium tracking-tighter uppercase mb-12">
-              Let's Build Something <br/><span className="text-primary italic font-editorial">Exceptional</span>
+              Let&apos;s Build Something <br/><span className="text-primary italic font-editorial">Exceptional</span>
             </h2>
             <Link href="/contact" passHref>
               <MagneticButton variant="primary" className="px-10 py-5 text-sm font-semibold tracking-widest uppercase animate-idle-glow">

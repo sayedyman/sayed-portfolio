@@ -34,7 +34,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     } else {
       alert("Something went wrong. Please try again.");
     }
-  } catch (error) {
+  } catch {
     alert("Something went wrong. Please try again.");
   } finally {
     setIsSubmitting(false);
@@ -74,7 +74,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               className="max-w-4xl"
             >
               <h1 className="text-5xl md:text-7xl lg:text-[8rem] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
-                Let's Build <br className="hidden md:block" />
+                Let&apos;s Build <br className="hidden md:block" />
                 <span className="text-primary italic font-editorial">Something</span> <br className="hidden md:block" />
                 Exceptional
               </h1>
@@ -256,7 +256,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   </div>
                   <h4 className="text-4xl font-heading font-medium mb-6">Your message has been received.</h4>
                   <p className="text-muted-foreground text-lg max-w-md mx-auto leading-relaxed">
-                    Thank you for reaching out. I'll review your details and get back to you as soon as possible, typically within 24 hours.
+                    We&apos;re currently accepting new projects. Use the form below to share details about your vision, timeline, and goals.sible, typically within 24 hours.
                   </p>
                 </motion.div>
               )}

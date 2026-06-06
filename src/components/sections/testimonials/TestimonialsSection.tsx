@@ -5,7 +5,7 @@ import { Grid } from "@/components/layout/Grid";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import type { SanityTestimonial } from "@/lib/sanity/queries";
+import type { SanityTestimonial } from "@/types";
 import Image from "next/image";
 import { urlFor } from "@/lib/sanity/image";
 
@@ -88,9 +88,9 @@ function EditorialRailCard({
         <blockquote
           className={`font-editorial italic text-foreground/95 ${typographyClass} tracking-tight relative z-10 line-clamp-4 md:line-clamp-5`}
         >
-          <span className="text-primary/40 font-serif leading-none mr-2 select-none">"</span>
+          <span className="text-primary/40 font-serif leading-none mr-2 select-none">&quot;</span>
           {testimonial.displayQuote}
-          <span className="text-primary/40 font-serif leading-none ml-2 select-none" aria-hidden="true">"</span>
+          <span className="text-primary/40 font-serif leading-none ml-2 select-none" aria-hidden="true">&quot;</span>
         </blockquote>
 
         <div className="relative z-10 mt-auto pt-8">

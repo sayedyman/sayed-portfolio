@@ -2,29 +2,20 @@ import { MetadataRoute } from 'next';
 import { client } from '@/lib/sanity/client';
 import { groq } from 'next-sanity';
 import { CACHE_TAGS } from '@/lib/sanity/cache-tags';
+import type { SanityArticle } from '@/types';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sayed-portfolio-seven.vercel.app';
 
-  // Fetch dynamic slugs and last updated dates from Sanity
-  const projectsQuery = groq`*[_type == "project" && status in ["published", "coming-soon"] && defined(slug.current)] { "slug": slug.current, _updatedAt }`;
   const articlesQuery = groq`*[_type == "article" && !(_id in path("drafts.**")) && status != "archived" && defined(slug.current)] { "slug": slug.current, _updatedAt }`;
 
-  const [projects, articles] = await Promise.all([
-    client.fetch(projectsQuery, {}, { next: { tags: [CACHE_TAGS.PROJECT] } }),
-    client.fetch(articlesQuery, {}, { next: { tags: [CACHE_TAGS.ARTICLE] } }),
-  ]);
+  const articles = await client.fetch(articlesQuery, {}, { next: { tags: [CACHE_TAGS.ARTICLE] } });
 
-  const projectUrls = projects.map((project: any) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(project._updatedAt),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
 
-  const articleUrls = articles.map((article: any) => ({
+
+  const articleUrls = articles.map((article: SanityArticle) => ({
     url: `${baseUrl}/articles/${article.slug}`,
-    lastModified: new Date(article._updatedAt),
+    lastModified: article._updatedAt ? new Date(article._updatedAt) : new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }));
@@ -62,5 +53,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  return [...staticUrls, ...projectUrls, ...articleUrls];
+  return [...staticUrls, ...articleUrls];
 }

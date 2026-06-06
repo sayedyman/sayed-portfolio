@@ -37,7 +37,7 @@ const customComponents: PortableTextComponents = {
       <blockquote className="relative border-l-4 border-primary pl-6 md:pl-8 my-12 md:my-16 text-[1.375rem] md:text-[1.75rem] italic font-editorial text-foreground/90 bg-primary/5 py-8 pr-6 rounded-r-md leading-relaxed tracking-tight overflow-hidden">
         {/* Subtle decorative quote mark in background */}
         <span className="absolute -top-4 -left-2 text-[8rem] text-primary/10 font-serif leading-none select-none pointer-events-none" aria-hidden="true">
-          "
+          &quot;
         </span>
         <div className="relative z-10">
           {children}
