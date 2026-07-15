@@ -13,15 +13,38 @@ export function FeaturedProjectCard({
   aspectClass: string
 }) {
   const hasImage = !!project.coverImage?.asset
+  const isComingSoon = !!project.comingSoon
+
+  const CardWrapper = isComingSoon ? 'div' : 'a'
+  const wrapperProps = isComingSoon
+    ? {
+        className: `${colClass} group block cursor-default`,
+        'aria-disabled': true,
+      }
+    : {
+        href: project.behanceUrl || '#',
+        target: project.behanceUrl ? '_blank' : undefined,
+        rel: 'noopener noreferrer',
+        className: `${colClass} group cursor-pointer block touch-active`,
+      }
 
   return (
-    <a href={project.behanceUrl || '#'} target={project.behanceUrl ? "_blank" : undefined} rel="noopener noreferrer" className={`${colClass} group cursor-pointer block touch-active`}>
+    <CardWrapper {...wrapperProps}>
       <div className={`relative ${aspectClass} mb-6 overflow-hidden bg-secondary rounded-xl`}>
-        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 flex items-center justify-center">
-          <div className="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center gap-2 bg-[#FFE500] hover:bg-[#FFE500]/90 text-black px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
-            View on Behance <ArrowUpRight className="w-4 h-4" />
+        {!isComingSoon && (
+          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 flex items-center justify-center">
+            <div className="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center gap-2 bg-[#FFE500] hover:bg-[#FFE500]/90 text-black px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+              View on Behance <ArrowUpRight className="w-4 h-4" />
+            </div>
           </div>
-        </div>
+        )}
+        {isComingSoon && (
+          <div className="absolute inset-0 bg-black/20 z-10 flex items-center justify-center pointer-events-none">
+            <div className="bg-black/50 backdrop-blur-sm text-white/90 border border-white/10 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+              Coming Soon
+            </div>
+          </div>
+        )}
         
         <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-white/80 border border-white/10 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full pointer-events-none">
           {project.projectType ?? (project.tags && project.tags[0]) ?? project.category ?? 'PROJECT'}
@@ -32,7 +55,11 @@ export function FeaturedProjectCard({
             src={urlFor(project.coverImage!).width(900).height(675).url()}
             alt={project.title}
             fill
-            className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:blur-[2px] group-hover:scale-[1.01]"
+            className={`object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isComingSoon 
+                ? 'blur-[3px] brightness-[0.75] scale-[1.01] group-hover:scale-[1.02]' 
+                : 'group-hover:blur-[2px] group-hover:scale-[1.01]'
+            }`}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 58vw, 700px"
           />
         ) : (
@@ -43,13 +70,15 @@ export function FeaturedProjectCard({
       </div>
       <div className="flex items-center justify-between">
         <div className="min-w-0 pr-4">
-          <h4 className="text-2xl font-heading font-medium mb-2 transition-colors break-words [overflow-wrap:anywhere] group-hover:text-primary">{project.title}</h4>
+          <h4 className={`text-2xl font-heading font-medium mb-2 transition-colors break-words [overflow-wrap:anywhere] ${isComingSoon ? 'text-muted-foreground' : 'group-hover:text-primary'}`}>{project.title}</h4>
           <p className="text-muted-foreground">{project.category ?? 'CASE STUDY'}</p>
         </div>
-        <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary">
-          <ArrowUpRight className="w-5 h-5" />
-        </div>
+        {!isComingSoon && (
+          <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary shrink-0">
+            <ArrowUpRight className="w-5 h-5" />
+          </div>
+        )}
       </div>
-    </a>
+    </CardWrapper>
   )
 }

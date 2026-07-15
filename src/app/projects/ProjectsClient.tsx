@@ -111,15 +111,29 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
           ) : (
             filteredProjects.map((project, i) => {
               const hasImage = !!project.coverImage?.asset
+              const isComingSoon = !!project.comingSoon
+
+              const CardWrapper = isComingSoon ? 'div' : 'a'
+              const wrapperProps = isComingSoon
+                ? {
+                    className: "block cursor-default",
+                    'aria-disabled': true,
+                  }
+                : {
+                    href: project.behanceUrl || '#',
+                    target: project.behanceUrl ? "_blank" : undefined,
+                    rel: "noopener noreferrer",
+                    className: "block",
+                  }
 
               return (
-                <a key={project._id} href={project.behanceUrl || '#'} target={project.behanceUrl ? "_blank" : undefined} rel="noopener noreferrer" className="block">
+                <CardWrapper key={project._id} {...wrapperProps}>
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    className="group cursor-pointer"
+                    className={`group ${!isComingSoon && 'cursor-pointer'}`}
                   >
                     <Grid>
                       <div className={`col-span-4 md:col-span-8 lg:col-span-10 ${i % 2 !== 0 ? 'lg:col-start-3' : ''}`}>
@@ -127,12 +141,21 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                         {/* Cinematic Image / Gradient */}
                         <div className="relative w-full aspect-[4/3] md:aspect-[16/9] overflow-hidden rounded-sm bg-secondary mb-8 md:mb-12">
                           {/* Ambient Hover Overlay */}
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 flex items-center justify-center">
-                            {/* CTA Button */}
-                            <div className="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center gap-2 bg-[#FFE500] hover:bg-[#FFE500]/90 text-black px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
-                              View on Behance <ArrowUpRight className="w-4 h-4" />
+                          {!isComingSoon && (
+                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 flex items-center justify-center">
+                              {/* CTA Button */}
+                              <div className="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center gap-2 bg-[#FFE500] hover:bg-[#FFE500]/90 text-black px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+                                View on Behance <ArrowUpRight className="w-4 h-4" />
+                              </div>
                             </div>
-                          </div>
+                          )}
+                          {isComingSoon && (
+                            <div className="absolute inset-0 bg-black/20 z-10 flex items-center justify-center pointer-events-none">
+                              <div className="bg-black/50 backdrop-blur-sm text-white/90 border border-white/10 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+                                Coming Soon
+                              </div>
+                            </div>
+                          )}
 
                           <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-white/80 border border-white/10 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full pointer-events-none">
                             {project.projectType ?? (project.tags && project.tags[0]) ?? project.category ?? 'PROJECT'}
@@ -143,7 +166,11 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                               src={urlFor(project.coverImage!).width(1200).height(675).url()}
                               alt={project.title}
                               fill
-                              className="object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:blur-[2px] group-hover:scale-[1.01]"
+                              className={`object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                                isComingSoon 
+                                  ? 'blur-[3px] brightness-[0.75] scale-[1.01] group-hover:scale-[1.02]' 
+                                  : 'group-hover:blur-[2px] group-hover:scale-[1.01]'
+                              }`}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 83vw, 1000px"
                             />
                           ) : (
@@ -175,7 +202,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                               </span>
                             </div>
 
-                            <h2 className="text-[clamp(1.5rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] group-hover:text-primary">
+                            <h2 className={`text-[clamp(1.5rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] ${isComingSoon ? 'text-muted-foreground' : 'group-hover:text-primary'}`}>
                               {project.title}
                             </h2>
 
@@ -186,20 +213,22 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                             )}
                           </div>
 
-                          <div className="flex-shrink-0 pt-2">
-                            <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-primary transition-colors duration-500">
-                              View on Behance
-                              <div className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
-                                <ArrowUpRight className="w-4 h-4" />
+                          {!isComingSoon && (
+                            <div className="flex-shrink-0 pt-2">
+                              <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-primary transition-colors duration-500">
+                                View on Behance
+                                <div className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
+                                  <ArrowUpRight className="w-4 h-4" />
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          )}
                         </div>
 
                       </div>
                     </Grid>
                   </motion.div>
-                </a>
+                </CardWrapper>
               )
             })
           )}

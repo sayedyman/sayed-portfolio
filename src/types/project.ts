@@ -5,6 +5,7 @@ export type SanityProject = {
   title: string
   slug: { current: string }
   status?: 'draft' | 'published' | 'archived' | 'coming-soon'
+  comingSoon?: boolean
   projectType?: string
   category?: string
   tags?: string[]

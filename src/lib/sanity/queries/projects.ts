@@ -13,6 +13,7 @@ const allProjectsQuery = groq`
     coverImage,
     behanceUrl,
     featured,
+    comingSoon,
     displayOrder,
     seoTitle,
     seoDescription
@@ -29,6 +30,7 @@ const featuredProjectsQuery = groq`
     coverImage,
     behanceUrl,
     featured,
+    comingSoon,
     displayOrder,
     seoTitle,
     seoDescription
@@ -42,6 +44,7 @@ const allProjectsRawQuery = groq`
     title,
     status,
     featured,
+    comingSoon,
     featuredOrder,
     displayOrder,
     slug

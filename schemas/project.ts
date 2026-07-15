@@ -65,6 +65,15 @@ export const projectType = defineType({
     }),
 
     defineField({
+      name: 'comingSoon',
+      title: 'Coming Soon',
+      type: 'boolean',
+      group: 'content',
+      description: 'When enabled, the project is displayed as "Coming Soon" and is not clickable.',
+      initialValue: false,
+    }),
+
+    defineField({
       name: 'projectType',
       title: 'Category / Project Type',
       type: 'string',
