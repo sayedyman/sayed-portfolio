@@ -241,6 +241,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-center"
             >
               <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tighter mb-8 text-foreground uppercase max-w-3xl mx-auto">
                 Let&apos;s Build <br className="hidden md:block"/>
@@ -249,7 +250,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
                 Ready to transform your vision into a crafted digital reality.
               </p>
-              <CtaButton variant="primary" href="/contact" className="mx-auto">
+              <CtaButton variant="primary" href="/contact" className="w-fit">
                 Start the conversation
               </CtaButton>
             </motion.div>

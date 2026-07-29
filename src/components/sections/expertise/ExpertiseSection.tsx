@@ -48,8 +48,8 @@ export function ExpertiseSection() {
           <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:col-start-7 mt-16 md:mt-0">
             <div className="flex flex-col gap-12">
               {[
-                { role: "UI/UX Trainee", company: "Digital Egypt Pioneers Initiative (DEPI)", period: "2025 - 2026", desc: "Participating in intensive UX/UI training focused on user research, wireframing, prototyping, usability, and product thinking while developing real-world UX case studies." },
-                { role: "Freelance UI/UX Designer", company: "Freelance & Personal Projects", period: "2025 - Present", desc: "Designing user-centered web and mobile experiences with a focus on usability, structure, and modern visual systems. Building complete UX case studies and scalable interfaces for digital products." },
+                { role: "UI/UX Trainee", company: "Digital Egypt Pioneers Initiative (DEPI)", period: "2026 — Present", desc: "Participating in intensive UX/UI training focused on user research, wireframing, prototyping, usability, and product thinking while developing real-world UX case studies." },
+                { role: "Freelance UI/UX Designer", company: "Freelance & Personal Projects", period: "2025", desc: "Designing user-centered web and mobile experiences with a focus on usability, structure, and modern visual systems. Building complete UX case studies and scalable interfaces for digital products." },
                 { role: "UI/UX Competition Finalist", company: "Pixels Perfect Competition", period: "2025", desc: "Ranked among top participants in a competitive UI/UX challenge focused on landing page and product experience design. Created high-fidelity interfaces and interactive user flows." },
                 { role: "UX/UI Education & Certifications", company: "Google UX & Industry Courses", period: "2024", desc: "Studying UX research, accessibility, interaction design, wireframing, and user-centered methodologies through Google UX certifications and practical product design projects." }
               ].map((job, i) => (
