@@ -75,7 +75,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               className="max-w-5xl"
             >
               <h1 className="text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-medium leading-[1] tracking-tighter uppercase mb-6">
-                Let&apos;s Build <span className="text-primary italic font-editorial">Something</span> Exceptional
+                Let&apos;s Build <span className="text-white italic font-editorial">Something</span> Exceptional
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-16">

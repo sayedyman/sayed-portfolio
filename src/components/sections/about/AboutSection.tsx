@@ -63,7 +63,7 @@ export function AboutSection() {
           {/* Right Column - Text */}
           <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:col-start-6 flex flex-col justify-center">
             <SectionHeader
-              title={<>ABOUT <span className="text-primary italic font-editorial">ME</span></>}
+              title={<>ABOUT <span className="text-white italic font-editorial">ME</span></>}
               subtitle={<span className="text-primary font-medium tracking-wide uppercase text-xs md:text-sm">UI/UX Designer & Design Engineer</span>}
               className="mb-6 md:mb-8"
               titleClassName="uppercase tracking-tighter leading-[0.9] text-5xl lg:text-7xl mb-2 md:mb-3"
@@ -88,7 +88,7 @@ export function AboutSection() {
               </div>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 mt-2">
-                <CtaButton variant="primary" href="/about">
+                <CtaButton variant="secondary" href="/about">
                   See My Story
                 </CtaButton>
                 

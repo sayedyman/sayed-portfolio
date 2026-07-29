@@ -54,7 +54,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
             >
               <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
                 Selected <br className="hidden md:block" />
-                <span className="text-primary italic font-editorial">Projects</span>
+                <span className="text-white italic font-editorial">Projects</span>
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
                 A curated showcase of digital experiences. Focusing on UX thinking, product strategy, and user-centered problem solving.

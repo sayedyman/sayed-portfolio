@@ -19,7 +19,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
         <Grid className="mb-12 md:mb-16">
           <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-0">
             <SectionHeader
-              title={<>Featured <span className="text-primary italic font-editorial">Projects</span></>}
+              title={<>Featured <span className="text-white italic font-editorial">Projects</span></>}
               className="mb-0"
               titleClassName="lg:text-7xl uppercase tracking-tighter mb-0"
             />

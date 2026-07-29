@@ -211,7 +211,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
             transition={{ duration: 0.8, delay: 0.1, ease: EASING.cinematic }}
           >
             <SectionHeader
-              title={<>What Clients <span className="text-primary italic font-editorial">Say</span></>}
+              title={<>What Clients <span className="text-white italic font-editorial">Say</span></>}
               className="mb-0"
               animated={false}
             />

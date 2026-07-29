@@ -141,7 +141,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="h-full pr-8">
-                  <h3 className="text-2xl font-heading font-medium text-primary mb-4">{principle.title}</h3>
+                  <h3 className="text-2xl font-heading font-bold text-white mb-4">{principle.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{principle.desc}</p>
                 </div>
               </motion.div>
@@ -193,7 +193,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
-                    <div className="text-primary/40 font-heading text-4xl md:text-5xl group-hover:text-primary transition-colors duration-500 shrink-0">
+                    <div className="text-white/40 font-heading text-4xl md:text-5xl group-hover:text-white transition-colors duration-500 shrink-0">
                       {milestone.year}
                     </div>
                     <div>
@@ -217,7 +217,7 @@ export default function AboutPage() {
           <Grid className="items-center">
             <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-12 flex flex-col md:flex-row gap-8 justify-between items-start md:items-end">
               <h2 className="text-3xl md:text-5xl font-heading font-medium tracking-tight">
-                Selected <span className="text-primary italic font-editorial">Highlights</span>
+                Selected <span className="text-white italic font-editorial">Highlights</span>
               </h2>
             </div>
             

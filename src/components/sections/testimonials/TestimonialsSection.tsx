@@ -155,7 +155,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsProps) {
             variants={fadeUpVariant}
           >
             <SectionHeader
-              title={<>What Clients <span className="text-primary italic font-editorial">Say</span></>}
+              title={<>What Clients <span className="text-white italic font-editorial">Say</span></>}
               className="mb-0"
               titleClassName="uppercase tracking-tighter leading-[0.9]"
               animated={false}
