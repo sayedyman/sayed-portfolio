@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { CtaButton } from "@/components/ui/CtaButton";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
@@ -233,29 +232,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
           )}
         </div>
 
-        {/* FINAL CTA */}
-        <Grid className="relative pb-24 border-t border-border/20 pt-24 md:pt-32">
-          <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col items-center text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-center"
-            >
-              <h2 className="font-heading text-4xl md:text-6xl lg:text-7xl leading-tight tracking-tighter mb-8 text-foreground uppercase max-w-3xl mx-auto">
-                Let&apos;s Build <br className="hidden md:block"/>
-                <span className="text-primary italic font-editorial">Something Exceptional</span>
-              </h2>
-              <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
-                Ready to transform your vision into a crafted digital reality.
-              </p>
-              <CtaButton variant="primary" href="/contact" className="w-fit">
-                Start the conversation
-              </CtaButton>
-            </motion.div>
-          </div>
-        </Grid>
+
 
       </Container>
     </div>

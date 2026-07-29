@@ -2,7 +2,6 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -244,30 +243,6 @@ export default function AboutPage() {
               ))}
             </div>
           </Grid>
-        </Container>
-      </section>
-
-      {/* 8. FINAL TRANSITION (CTA) */}
-      <section className="relative py-40 overflow-hidden bg-background">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent pointer-events-none" />
-        <Container className="relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center"
-          >
-            <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-6 block">
-              What&apos;s Next?
-            </span>
-            <h2 className="text-5xl md:text-7xl font-heading font-medium tracking-tighter uppercase mb-12">
-              Let&apos;s Build Something <br/><span className="text-primary italic font-editorial">Exceptional</span>
-            </h2>
-            <CtaButton variant="primary" size="lg" href="/contact" className="animate-idle-glow">
-              Start a Conversation
-            </CtaButton>
-          </motion.div>
         </Container>
       </section>
     </div>
