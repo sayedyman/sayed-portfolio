@@ -2,10 +2,9 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { useRef } from "react";
 
 export function HeroSection() {
@@ -20,8 +19,9 @@ export function HeroSection() {
 
   return (
     <section 
+      id="home"
       ref={heroRef}   
-      className="relative min-h-auto lg:min-h-[100dvh] flex flex-col justify-start lg:justify-center pt-[calc(max(env(safe-area-inset-top),1.5rem)+3rem)] lg:pt-[calc(max(env(safe-area-inset-top),1.5rem)+6rem)] md:pt-40 pb-20 md:pb-28 lg:pb-12 overflow-hidden bg-background"
+      className="relative min-h-auto lg:min-h-[100dvh] flex flex-col justify-start lg:justify-center pt-20 md:pt-24 lg:pt-28 pb-20 md:pb-28 lg:pb-12 overflow-hidden bg-background"
     >
       <Container className="relative z-10 flex-1 flex flex-col justify-start lg:justify-center">
         <Grid className="h-full items-center relative">
@@ -59,10 +59,10 @@ export function HeroSection() {
             >
               <div className="flex items-center gap-4 text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 <span className="w-8 md:w-12 h-[1px] bg-primary"></span>
-                <span>UI/UX Designer</span>
+                <span>UI/UX DESIGNER</span>
               </div>
-              <div className="text-sm md:text-base text-muted-foreground max-w-[85vw] md:max-w-md leading-relaxed font-editorial pl-12 md:pl-16 text-balance">
-                UI/UX & Product Designer crafting intuitive products that balance user needs and business goals.
+              <div className="text-sm md:text-base text-muted-foreground max-w-[85vw] md:max-w-xl lg:max-w-2xl leading-relaxed font-editorial pl-12 md:pl-16 text-balance">
+                UI/UX Designer & Design Engineer building digital experiences that balance user needs with real business goals
               </div>
             </motion.div>
             
@@ -115,21 +115,17 @@ export function HeroSection() {
 
           {/* CTA Buttons */}
           <motion.div 
-            className="hidden md:flex col-span-4 md:col-span-8 lg:col-span-12 z-30 mt-8 lg:mt-24 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 md:gap-6 pl-1 lg:pl-16 w-full [&>a]:w-full sm:[&>a]:w-auto"
+            className="hidden md:flex col-span-4 md:col-span-8 lg:col-span-12 z-30 mt-8 lg:mt-12 flex flex-col sm:flex-row items-center gap-3 sm:gap-4 md:gap-6 pl-1 lg:pl-16 w-full [&>a]:w-full sm:[&>a]:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.7 }}
           >
-            <Link href="/#work" passHref>
-              <MagneticButton className="px-8 py-4 text-xs font-semibold tracking-widest uppercase touch-active">
-                View Projects
-              </MagneticButton>
-            </Link>
-            <Link href="/contact" passHref>
-              <MagneticButton variant="ghost" className="px-8 py-4 text-xs font-semibold tracking-widest uppercase border border-border/50 touch-active">
-                Let&apos;s Work Together
-              </MagneticButton>
-            </Link>
+            <CtaButton variant="primary" href="/contact">
+              Let&apos;s Work Together
+            </CtaButton>
+            <CtaButton variant="secondary" href="/#work">
+              View Projects
+            </CtaButton>
           </motion.div>
 
         </Grid>

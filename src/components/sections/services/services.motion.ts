@@ -1,4 +1,4 @@
-import { useScroll, useTransform, MotionValue } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 import { RefObject } from "react";
 
 export function useServicesParallax(ref: RefObject<HTMLElement | null>) {

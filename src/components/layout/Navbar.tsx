@@ -8,6 +8,7 @@ import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-
 import { useLenis } from "lenis/react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Container } from "./Container";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 const menuVariants = {
   closed: {
@@ -53,11 +54,17 @@ const linkVariants = {
 
 export function Navbar() {
   const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const lenis = useLenis();
+  const { activeId, setManualActiveId } = useActiveSection([
+    "home",
+    "about",
+    "work",
+    "experience",
+    "journal"
+  ]);
 
   useEffect(() => {
     // mounted state removed as it is no longer needed
@@ -95,15 +102,6 @@ export function Navbar() {
       setIsScrolled(true);
     } else {
       setIsScrolled(false);
-    }
-
-    const previous = scrollY.getPrevious();
-    if (previous === undefined) return;
-    
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else if (latest < previous) {
-      setHidden(false);
     }
   });
 
@@ -154,17 +152,17 @@ export function Navbar() {
   return (
     <>
       <motion.header 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isScrolled 
-            ? "pt-[max(env(safe-area-inset-top),1.25rem)] pb-4 bg-background/80 backdrop-blur-md border-b border-border/40 shadow-sm" 
-            : "pt-[max(env(safe-area-inset-top),2rem)] pb-6 md:pt-[max(env(safe-area-inset-top),2rem)] md:pb-8 lg:pb-10 bg-transparent border-b border-transparent shadow-none"
-        }`}
+        className="fixed top-0 left-0 w-full z-50 pointer-events-none"
         initial={{ y: -100, opacity: 0 }}
-        animate={{ y: hidden ? -100 : 0, opacity: hidden ? 0 : 1 }}
+        animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       >
         <Container>
-          <div className="flex items-center justify-between">
+          <div className={`pointer-events-auto relative mx-auto w-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex items-center justify-between ${
+            isScrolled 
+              ? "mt-3 sm:mt-5 max-w-4xl bg-background/80 backdrop-blur-md border border-border/40 shadow-sm rounded-2xl py-2 px-4 sm:px-6" 
+              : "mt-0 max-w-full pt-[max(env(safe-area-inset-top),1.5rem)] md:pt-[max(env(safe-area-inset-top),2rem)] pb-4 md:pb-6 lg:pb-8 px-0 bg-transparent border-transparent"
+          }`}>
             <Link href="/" onClick={handleScroll} className="z-50 relative h-[36px] md:h-[48px] w-[140px] md:w-[180px] ml-2 md:ml-4 flex items-center justify-start group">
               <Image 
                 src="/logo-symbol.svg" 
@@ -175,11 +173,31 @@ export function Navbar() {
               />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-8 mix-blend-difference">
-              <Link href="/#work" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">Work</Link>
-              <Link href="/#about" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">About</Link>
-              <Link href="/#experience" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">Experience</Link>
-              <Link href="/#journal" onClick={handleScroll} className="text-sm font-medium hover:opacity-70 touch-active transition-opacity">Journal</Link>
+            <nav className="hidden md:flex items-center gap-6 mix-blend-difference absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              {[
+                { name: "About", href: "/#about", id: "about" },
+                { name: "Work", href: "/#work", id: "work" },
+                { name: "Experience", href: "/#experience", id: "experience" },
+                { name: "Journal", href: "/#journal", id: "journal" }
+              ].map((link) => {
+                const active = link.href === "/contact" ? pathname === "/contact" : (pathname === "/" && activeId === link.id);
+                return (
+                  <Link 
+                    key={link.name}
+                    href={link.href} 
+                    onClick={(e) => {
+                      handleScroll(e);
+                      if (link.href === "/") setManualActiveId("home");
+                      else if (link.href.startsWith("/#")) setManualActiveId(link.id);
+                    }} 
+                    className={`text-sm transition-all duration-300 touch-active hover:opacity-70 ${
+                      active ? "text-primary font-bold" : "font-medium"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* Desktop CTA Only */}
@@ -238,24 +256,30 @@ export function Navbar() {
               <div className="relative z-10 flex-1 flex flex-col justify-between pt-[calc(max(env(safe-area-inset-top),1.5rem)+5.5rem)] px-6 pb-[calc(max(env(safe-area-inset-bottom),2rem)+1.5rem)] overflow-y-auto w-full">
                 <nav className="flex flex-col gap-8 mt-4">
                   {[
-                    { name: "Work", href: "/#work" },
-                    { name: "About", href: "/#about" },
-                    { name: "Experience", href: "/#experience" },
-                    { name: "Journal", href: "/#journal" }
-                  ].map((link, idx) => (
+                    { name: "About", href: "/#about", id: "about" },
+                    { name: "Work", href: "/#work", id: "work" },
+                    { name: "Experience", href: "/#experience", id: "experience" },
+                    { name: "Journal", href: "/#journal", id: "journal" }
+                  ].map((link, idx) => {
+                    const active = link.href === "/contact" ? pathname === "/contact" : (pathname === "/" && activeId === link.id);
+                    return (
                     <motion.div key={link.name} variants={linkVariants}>
                       <Link 
                         href={link.href} 
-                        onClick={handleMobileLinkClick}
+                        onClick={(e) => {
+                          handleMobileLinkClick(e);
+                          if (link.href === "/") setManualActiveId("home");
+                          else if (link.href.startsWith("/#")) setManualActiveId(link.id);
+                        }}
                         className="group flex items-baseline gap-4 py-3 border-b border-border/5 touch-active"
                       >
-                        <span className="text-primary font-heading text-sm font-semibold tracking-widest">0{idx + 1}</span>
-                        <span className="text-3xl font-heading font-medium tracking-tight uppercase group-hover:text-primary transition-colors">
+                        <span className={`font-heading text-sm font-semibold tracking-widest transition-colors duration-300 ${active ? 'text-primary' : 'text-primary/50'}`}>0{idx + 1}</span>
+                        <span className={`text-3xl font-heading tracking-tight uppercase group-hover:text-primary transition-all duration-300 ${active ? 'text-primary font-bold' : 'font-medium'}`}>
                           {link.name}
                         </span>
                       </Link>
                     </motion.div>
-                  ))}
+                  )})}
                 </nav>
 
                 <div className="flex flex-col gap-8 mt-12 w-full">

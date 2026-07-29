@@ -21,6 +21,8 @@ interface HomeClientProps {
 export default function HomeClient({ projects, articles, testimonials }: HomeClientProps) {
   return (
     <>
+      {/* Navbar clearance spacer — scales with viewport height */}
+      <div className="h-[clamp(1rem,3vh,2.5rem)]" aria-hidden="true" />
       <HeroSection />
       <AboutSection />
       <FeaturedProjectsSection projects={projects} />

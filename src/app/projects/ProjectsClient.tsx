@@ -2,11 +2,10 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { CtaButton } from "@/components/ui/CtaButton";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import type { SanityProject } from "@/types";
 import { urlFor } from "@/lib/sanity/image";
@@ -250,11 +249,9 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               <p className="text-muted-foreground text-lg mb-12 max-w-xl mx-auto">
                 Ready to transform your vision into a crafted digital reality.
               </p>
-              <Link href="/contact" passHref>
-                <MagneticButton className="px-8 py-4 text-sm font-semibold tracking-widest uppercase flex items-center gap-2 mx-auto touch-active">
-                  Start the conversation <ArrowUpRight className="w-4 h-4" />
-                </MagneticButton>
-              </Link>
+              <CtaButton variant="primary" href="/contact" className="mx-auto">
+                Start the conversation
+              </CtaButton>
             </motion.div>
           </div>
         </Grid>

@@ -20,8 +20,6 @@ function Attribution({
   testimonial: SanityTestimonial;
 }) {
   const hasAvatar = testimonial.avatar?.asset;
-  const parts = [testimonial.authorName, testimonial.authorRole, testimonial.company]
-    .filter(Boolean);
 
   return (
     <div className="flex items-center gap-4">
@@ -213,8 +211,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
             transition={{ duration: 0.8, delay: 0.1, ease: EASING.cinematic }}
           >
             <SectionHeader
-              label="/ 06 — Testimonials"
-              title={<>Client{" "}<span className="text-primary italic font-editorial">Voices</span></>}
+              title={<>What Clients <span className="text-primary italic font-editorial">Say</span></>}
               className="mb-0"
               animated={false}
             />

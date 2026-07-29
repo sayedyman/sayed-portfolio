@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { fadeUp, staggerContainer, staggerItem } from "@/lib/design-system/motion";
+import { staggerContainer, staggerItem } from "@/lib/design-system/motion";
 import { ReactNode } from "react";
 
 interface SectionHeaderProps {

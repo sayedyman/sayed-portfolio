@@ -1,8 +1,6 @@
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { CtaButton } from "@/components/ui/CtaButton";
 
 export default function NotFound() {
   return (
@@ -26,11 +24,9 @@ export default function NotFound() {
               The page you&apos;re looking for doesn&apos;t exist or may have moved.
             </p>
             
-            <Link href="/" passHref>
-              <MagneticButton className="px-8 py-4 text-sm font-semibold tracking-widest uppercase flex items-center gap-3 mx-auto touch-active group">
-                <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Home
-              </MagneticButton>
-            </Link>
+            <CtaButton variant="primary" href="/" className="mx-auto">
+              Back to Home
+            </CtaButton>
           </div>
         </Grid>
       </Container>

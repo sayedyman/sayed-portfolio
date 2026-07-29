@@ -2,11 +2,9 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRef } from "react";
 
 export default function AboutPage() {
@@ -46,22 +44,13 @@ export default function AboutPage() {
               </motion.div>
               
               <motion.h1 
-                className="text-5xl md:text-7xl lg:text-[7vw] leading-[1.05] tracking-tight font-heading font-medium text-foreground max-w-5xl"
+                className="text-4xl md:text-6xl lg:text-[6vw] leading-[1.05] tracking-tight font-heading font-medium text-foreground max-w-5xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 Blending strategy, <span className="text-muted-foreground italic font-editorial">psychology</span>, and interface design into <span className="text-primary italic font-editorial">thoughtful</span> digital experiences.
               </motion.h1>
-
-              <motion.p
-                className="mt-12 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              >
-                I recently re-read &quot;The Design of Everyday Things&quot; by Don Norman. It&apos;s a classic, but looking at it through the lens of modern spatial computing (like visionOS) completely rewired how I think about affordances when the interface isn&apos;t confined to a screen.
-              </motion.p>
             </motion.div>
           </Grid>
         </Container>
@@ -110,20 +99,20 @@ export default function AboutPage() {
               
               <div className="text-muted-foreground text-lg leading-relaxed space-y-6">
                 <p>
-                  My journey didn&apos;t start in a traditional design studio. It began in the lecture halls of Damanhur University, studying Sociology. There, I developed a deep fascination with how people think, what motivates them, and how they navigate their environments.
+                  I started my journey studying Sociology at Damanhour University, where I became fascinated by understanding people, their motivations, and the way they make decisions.
                 </p>
                 <p>
-                  &quot;Good design is obvious. Great design is transparent.&quot; — That&apos;s the philosophy that drives every pixel he places and every user flow he maps out.
+                  That curiosity naturally led me into UX Design, where I realized that every interface is ultimately designed for human behavior.
                 </p>
                 <p>
-                  What&apos;s a recent book or podcast that changed your perspective?on of business strategy and interaction design. He&apos;s known for bringing order to complex systems and creating cohesive experiences that span entire product ecosystems.
+                  Today I focus on creating digital experiences that balance user needs with business goals while continuously expanding my skills beyond traditional UI/UX.
                 </p>
               </div>
 
               {/* 3. CURRENTLY STATEMENT */}
               <div className="mt-8 pt-8 border-t border-border/30">
                 <p className="text-foreground/90 font-medium italic font-editorial text-xl">
-                  Currently focused on building thoughtful digital experiences while transitioning deeper into product design.
+                  Currently transitioning into Design Engineering, combining design thinking with front-end development to build products that are both beautiful and functional.
                 </p>
               </div>
             </motion.div>
@@ -169,13 +158,13 @@ export default function AboutPage() {
 
         <Container>
           <Grid>
-            <div className="col-span-4 md:col-span-3 lg:col-span-4">
-              <h2 className="text-sm tracking-widest text-muted-foreground uppercase sticky top-32">
+            <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-16">
+              <h2 className="text-sm tracking-widest text-muted-foreground uppercase">
                 / Milestones
               </h2>
             </div>
             
-            <div className="col-span-4 md:col-span-5 lg:col-span-8 flex flex-col gap-24 mt-16 md:mt-0">
+            <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col gap-24">
               {[
                 {
                   year: "2025",
@@ -275,11 +264,9 @@ export default function AboutPage() {
             <h2 className="text-5xl md:text-7xl font-heading font-medium tracking-tighter uppercase mb-12">
               Let&apos;s Build Something <br/><span className="text-primary italic font-editorial">Exceptional</span>
             </h2>
-            <Link href="/contact" passHref>
-              <MagneticButton variant="primary" className="px-10 py-5 text-sm font-semibold tracking-widest uppercase animate-idle-glow">
-                Start a Conversation
-              </MagneticButton>
-            </Link>
+            <CtaButton variant="primary" size="lg" href="/contact" className="animate-idle-glow">
+              Start a Conversation
+            </CtaButton>
           </motion.div>
         </Container>
       </section>

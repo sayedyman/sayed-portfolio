@@ -3,9 +3,7 @@
 import { useEffect } from "react";
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-import Link from "next/link";
-import { RefreshCw, ArrowLeft } from "lucide-react";
+import { CtaButton } from "@/components/ui/CtaButton";
 
 export default function Error({
   error,
@@ -36,17 +34,13 @@ export default function Error({
             </p>
             
             <div className="flex flex-col sm:flex-row items-center gap-6">
-              <button onClick={() => reset()} className="w-full sm:w-auto">
-                <MagneticButton variant="primary" className="px-8 py-4 text-sm font-semibold tracking-widest uppercase flex items-center gap-3 touch-active group w-full justify-center">
-                  <RefreshCw className="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" /> Try Again
-                </MagneticButton>
-              </button>
+              <CtaButton variant="primary" onClick={() => reset()} className="w-full sm:w-auto">
+                Try Again
+              </CtaButton>
               
-              <Link href="/" passHref className="w-full sm:w-auto">
-                <MagneticButton variant="ghost" className="px-8 py-4 text-sm font-semibold tracking-widest uppercase flex items-center gap-3 touch-active group border border-border/50 w-full justify-center">
-                  <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to Home
-                </MagneticButton>
-              </Link>
+              <CtaButton variant="secondary" href="/" className="w-full sm:w-auto">
+                Back to Home
+              </CtaButton>
             </div>
           </div>
         </Grid>

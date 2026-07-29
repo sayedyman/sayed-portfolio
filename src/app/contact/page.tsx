@@ -2,10 +2,11 @@
 
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { siteConfig } from "@/config/site";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -42,7 +43,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 };
 
   return (
-    <div className="relative min-h-[100svh] pt-32 pb-24 overflow-hidden bg-background">
+    <div className="relative min-h-[100svh] pt-20 md:pt-24 lg:pt-28 pb-24 overflow-hidden bg-background">
       {/* Background gradients for cinematic transition */}
       <div className="absolute top-0 inset-x-0 h-[50vh] bg-gradient-to-b from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none" />
       
@@ -71,15 +72,13 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-4xl"
+              className="max-w-5xl"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-[8rem] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
-                Let&apos;s Build <br className="hidden md:block" />
-                <span className="text-primary italic font-editorial">Something</span> <br className="hidden md:block" />
-                Exceptional
+              <h1 className="text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-medium leading-[1] tracking-tighter uppercase mb-6">
+                Let&apos;s Build <span className="text-primary italic font-editorial">Something</span> Exceptional
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed mb-24">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-16">
                 Designing modern product experiences across dashboards, web platforms, and digital products. Focused on thoughtful UX and scalable design systems.
               </p>
             </motion.div>
@@ -133,14 +132,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
             </div>
             
             <div className="pt-8 border-t border-border/30 flex items-start">
-              <a href="https://drive.google.com/file/d/1TNIBfINEXBhwS9_lPxeRip0PMZ7LPidU/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                <MagneticButton 
-                  variant="ghost" 
-                  className="px-6 py-4 border border-border/50 text-xs font-semibold tracking-widest uppercase gap-2 group/btn"
-                >
-                  Download Resume <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-                </MagneticButton>
-              </a>
+              <CtaButton 
+                variant="secondary" 
+                href={siteConfig.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View Resume
+              </CtaButton>
             </div>
           </motion.div>
 
@@ -190,13 +189,23 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   <div className="grid md:grid-cols-2 gap-10 mb-10">
                     <div className="space-y-3">
                       <label htmlFor="type" className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Project Type</label>
-                      <input 
-                        type="text" 
-                        id="type"
-                        name="projectType"
-                        className="w-full bg-transparent border-b border-border/50 px-0 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-colors"
-                        placeholder="e.g. Web App Design"
-                      />
+                      <div className="relative flex items-center">
+                        <select 
+                          id="type"
+                          name="projectType"
+                          className="w-full bg-transparent border-b border-border/50 px-0 py-3 pr-8 text-foreground focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
+                          defaultValue=""
+                        >
+                          <option value="" disabled className="text-muted-foreground/30">Select project type</option>
+                          <option value="Web Design" className="bg-background text-foreground">Web Design</option>
+                          <option value="Mobile App Design" className="bg-background text-foreground">Mobile App Design</option>
+                          <option value="Dashboard Design" className="bg-background text-foreground">Dashboard Design</option>
+                          <option value="Landing Page Design" className="bg-background text-foreground">Landing Page Design</option>
+                          <option value="UX Audit" className="bg-background text-foreground">UX Audit</option>
+                          <option value="Other" className="bg-background text-foreground">Other</option>
+                        </select>
+                        <ChevronDown className="absolute right-3 w-5 h-5 text-muted-foreground pointer-events-none" />
+                      </div>
                     </div>
                     <div className="space-y-3">
                       <label htmlFor="budget" className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Budget Range</label>
@@ -205,7 +214,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         id="budget"
                         name="budget" 
                         className="w-full bg-transparent border-b border-border/50 px-0 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-colors"
-                        placeholder="$5k - $10k"
+                        placeholder="Type your budget here"
                       />
                     </div>
                   </div>
@@ -226,21 +235,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                     <p className="text-xs text-muted-foreground tracking-widest uppercase">
                       Typically replies within 24 hours.
                     </p>
-                    <button 
+                    <CtaButton
                       type="submit"
-                      disabled={isSubmitting}
-                      className="relative overflow-hidden bg-primary text-primary-foreground px-10 py-5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all hover:bg-primary/90 disabled:opacity-70"
+                      variant="primary"
+                      size="lg"
+                      loading={isSubmitting}
                     >
-                      <span className={isSubmitting ? "opacity-0" : "opacity-100"}>Start Conversation</span>
-                      {isSubmitting && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="flex items-center gap-3">
-                           <div className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                           <span>Sending...</span>
-                          </div>
-                        </div>
-                      )}
-                    </button>
+                      Start Conversation
+                    </CtaButton>
                   </div>
                 </motion.form>
               ) : (

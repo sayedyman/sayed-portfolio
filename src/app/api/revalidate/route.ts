@@ -13,7 +13,7 @@ function isValidSecret(secret: string | null) {
     const expected = Buffer.from(process.env.REVALIDATION_SECRET)
     if (provided.length !== expected.length) return false
     return crypto.timingSafeEqual(provided, expected)
-  } catch (e) {
+  } catch {
     return false
   }
 }

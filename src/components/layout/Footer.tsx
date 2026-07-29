@@ -2,9 +2,8 @@
 
 import { Container } from "./Container";
 import { Grid } from "./Grid";
-import { MagneticButton } from "@/components/ui/MagneticButton";
+import { CtaButton } from "@/components/ui/CtaButton";
 import { Section } from "./Section";
-import { ArrowUpRight } from "lucide-react";
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -38,7 +37,6 @@ const Behance = ({ className }: { className?: string }) => (
   </svg>
 );
 import Image from "next/image";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export function Footer() {
@@ -59,14 +57,9 @@ export function Footer() {
                 <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto mb-12">
                   Available for freelance opportunities and full-time product design roles at high-growth startups.
                 </p>
-                <Link href="/contact" passHref>
-                  <MagneticButton className="px-10 py-6 text-lg h-auto">
-                    <div className="flex flex-col items-start gap-3 md:gap-4 w-full">
-                      <span className="leading-none mt-1">Start a conversation</span>
-                      <ArrowUpRight className="w-[26px] h-[26px] stroke-[1.5]" />
-                    </div>
-                  </MagneticButton>
-                </Link>
+                <CtaButton variant="primary" size="lg" href="/contact">
+                  Start a conversation
+                </CtaButton>
               </div>
             </Grid>
           )}
