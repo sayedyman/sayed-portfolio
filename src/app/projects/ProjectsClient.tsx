@@ -56,8 +56,8 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                 Selected <br className="hidden md:block" />
                 <span className="text-white italic font-editorial">Projects</span>
               </h1>
-              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
-                A curated showcase of digital experiences. Focusing on UX thinking, product strategy, and user-centered problem solving.
+              <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+                A curated showcase of digital experiences. Focusing on UX thinking, product strategy, and user-centered problem solving
               </p>
             </motion.div>
           </div>
@@ -100,10 +100,11 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
           {filteredProjects.length === 0 ? (
             <div className="py-24 md:py-32 flex flex-col items-center justify-center text-center">
               <h2 className="text-3xl md:text-4xl font-heading font-medium tracking-tight mb-4 text-foreground uppercase">
-                More projects are on the way.
+                More projects are on the way
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                I&apos;m continuously working on new products and case studies.
+              <h3 className="text-2xl font-heading font-medium mb-3">More projects are on the way</h3>
+              <p className="text-muted-foreground">
+                I&apos;m continuously working on new products and case studies
               </p>
             </div>
           ) : (

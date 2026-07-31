@@ -9,6 +9,7 @@ import { useLenis } from "lenis/react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Container } from "./Container";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { ArrowUpRight } from "lucide-react";
 
 const menuVariants = {
   closed: {
@@ -203,9 +204,30 @@ export function Navbar() {
             {/* Desktop CTA Only */}
             <div className="hidden md:flex items-center">
               <Link href="/contact" passHref>
-                <MagneticButton variant="secondary" className="py-2.5 px-6 text-sm animate-idle-shimmer">
-                  Hire Me
-                </MagneticButton>
+                <motion.div
+                  initial="idle"
+                  whileHover="hover"
+                  variants={{
+                    idle: { scale: 1 },
+                    hover: { scale: 1.04 }
+                  }}
+                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                >
+                  <MagneticButton 
+                    variant="secondary" 
+                    className="relative py-2.5 px-6 text-sm animate-idle-shimmer group overflow-hidden border border-border/50 hover:border-transparent transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_0_20px_rgba(255,229,0,0.15)] [&>span]:static"
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
+                    <span className="relative flex flex-col items-start justify-start h-[20px] w-full">
+                      <span className="leading-none mt-[3px] group-hover:-translate-y-[8px] transition-transform duration-300 ease-out group-hover:text-black">
+                        Hire Me
+                      </span>
+                      <span className="opacity-0 group-hover:opacity-100 group-hover:-translate-y-[8px] transition-all duration-300 ease-out text-black mt-1">
+                        <ArrowUpRight className="w-4 h-4 stroke-[2]" />
+                      </span>
+                    </span>
+                  </MagneticButton>
+                </motion.div>
               </Link>
             </div>
 

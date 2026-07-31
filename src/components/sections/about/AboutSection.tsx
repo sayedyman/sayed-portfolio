@@ -78,7 +78,7 @@ export function AboutSection() {
               className="flex flex-col gap-6 md:gap-8 text-muted-foreground text-lg"
             >
               <p className="leading-relaxed">
-                I design digital products that solve real business problems. By combining strategic UX thinking with polished interface design and technical implementation, I craft scalable systems that balance human needs with business objectives.
+                I design digital products that solve real business problems. By combining strategic UX thinking with polished interface design and technical implementation, I craft scalable systems that balance human needs with business objectives
               </p>
 
               <div className="pt-4 border-t border-border/40">

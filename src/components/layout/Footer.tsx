@@ -57,7 +57,7 @@ export function Footer() {
                   <span className="text-primary italic font-editorial">Together</span>
                 </h2>
                 <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto mb-12">
-                  Available for freelance opportunities and full-time product design roles at high-growth startups.
+                  Available for freelance opportunities and full-time product design roles at high-growth startups
                 </p>
                 <CtaButton variant="primary" size="lg" href="/contact">
                   Start a conversation
@@ -71,7 +71,7 @@ export function Footer() {
               <div className="relative w-12 h-8">
                 <Image src="/logo-symbol.svg" alt="Sayed Elghanam Logo" fill className="object-contain" />
               </div>
-              <p>© {new Date().getFullYear()} Sayed Ayman Elghanam. All rights reserved.</p>
+              <p>© {new Date().getFullYear()} Sayed Ayman Elghanam. All rights reserved</p>
             </div>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
               {[

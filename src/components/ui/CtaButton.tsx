@@ -1,7 +1,7 @@
 "use client";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import React, { forwardRef, useRef, useState } from "react";
@@ -14,7 +14,7 @@ const ctaVariants = cva(
   {
     variants: {
       variant: {
-        primary: "bg-primary text-primary-foreground hover:bg-primary/90",
+        primary: "bg-primary text-primary-foreground hover:brightness-105",
         secondary: "bg-transparent text-foreground border border-border hover:bg-secondary/80",
         ghost: "bg-transparent text-foreground hover:bg-white/5",
       },
@@ -50,44 +50,87 @@ export const CtaButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CtaBu
     const localRef = useRef<HTMLElement | null>(null);
     const ref = forwardedRef || localRef;
 
-    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = useState(false);
+
+    // Independent motion values for physics composition
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+    
+    // Fast spring for magnetic tracking
+    const smoothX = useSpring(mouseX, { stiffness: 150, damping: 15, mass: 0.1 });
+    const smoothY = useSpring(mouseY, { stiffness: 150, damping: 15, mass: 0.1 });
+    
+    // Smooth, premium spring for hover scale and lift
+    const hoverScale = useSpring(1, { stiffness: 200, damping: 20, mass: 1 });
+    const hoverLift = useSpring(0, { stiffness: 200, damping: 20, mass: 1 });
+
+    // Combine magnetic Y and hover lift Y without them fighting
+    const combinedY = useTransform(() => smoothY.get() + hoverLift.get());
 
     const handleMouse = (e: React.MouseEvent<HTMLElement>) => {
+      if (variant !== "primary") return;
       const node = (ref as React.MutableRefObject<HTMLElement | null>).current;
       if (!node) return;
       const { clientX, clientY } = e;
       const { height, width, left, top } = node.getBoundingClientRect();
       const middleX = clientX - (left + width / 2);
       const middleY = clientY - (top + height / 2);
-      setPosition({ x: middleX * 0.2, y: middleY * 0.2 });
+      mouseX.set(middleX * 0.2);
+      mouseY.set(middleY * 0.2);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onMouseMove?.(e as any);
     };
 
-    const reset = (e: React.MouseEvent<HTMLElement>) => {
-      setPosition({ x: 0, y: 0 });
+    const handleMouseEnter = (e: React.MouseEvent<HTMLElement>) => {
+      if (disabled || loading) return;
+      setIsHovered(true);
+      if (variant === "primary") {
+        hoverScale.set(1.03);
+        hoverLift.set(-2);
+      }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      props.onMouseEnter?.(e as any);
+    };
+
+    const handleMouseLeave = (e: React.MouseEvent<HTMLElement>) => {
+      if (disabled || loading) return;
+      setIsHovered(false);
+      mouseX.set(0);
+      mouseY.set(0);
+      hoverScale.set(1);
+      hoverLift.set(0);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onMouseLeave?.(e as any);
     };
 
     const content = (
-      <span className="relative z-10 flex flex-col items-start">
-        <span className="leading-none mt-1">{children}</span>
-        
-        {loading ? (
-          <Loader2 className="w-[20px] h-[20px] animate-spin mt-2" />
-        ) : showArrow ? (
-          <ArrowUpRight 
-            className="w-[22px] h-[22px] stroke-[1.5] transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" 
+      <>
+        {variant === "primary" && (
+          <motion.div
+            initial={{ left: "-150%", skewX: -20 }}
+            animate={isHovered ? {
+              left: "250%",
+              transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+            } : {
+              left: "-150%",
+              transition: { duration: 0 }
+            }}
+            className="absolute top-0 bottom-0 w-full bg-gradient-to-r from-transparent via-white/20 to-transparent z-0 pointer-events-none"
           />
-        ) : null}
-      </span>
+        )}
+        <span className="relative z-10 flex flex-col items-start">
+          <span className="leading-none mt-1">{children}</span>
+          
+          {loading ? (
+            <Loader2 className="w-[20px] h-[20px] animate-spin mt-2" />
+          ) : showArrow ? (
+            <ArrowUpRight 
+              className="w-[22px] h-[22px] stroke-[1.5]" 
+            />
+          ) : null}
+        </span>
+      </>
     );
-
-    const animationProps = {
-      animate: { x: position.x, y: position.y },
-      transition: { type: "spring" as const, stiffness: 150, damping: 15, mass: 0.1 }
-    };
 
     const isEffectivelyDisabled = disabled || loading;
 
@@ -99,11 +142,12 @@ export const CtaButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CtaBu
         <MotionLink
           href={href}
           ref={ref as React.LegacyRef<HTMLAnchorElement>}
+          onMouseEnter={handleMouseEnter}
           onMouseMove={isEffectivelyDisabled ? undefined : handleMouse}
-          onMouseLeave={isEffectivelyDisabled ? undefined : reset}
+          onMouseLeave={handleMouseLeave}
           className={cn(ctaVariants({ variant, size, disabled: isEffectivelyDisabled }), className)}
           aria-disabled={isEffectivelyDisabled}
-          {...(isEffectivelyDisabled ? {} : animationProps)}
+          style={!isEffectivelyDisabled ? { x: smoothX, y: combinedY, scale: hoverScale } : undefined}
           {...anyProps}
         >
           {content}
@@ -116,10 +160,11 @@ export const CtaButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CtaBu
         ref={ref as React.LegacyRef<HTMLButtonElement>}
         disabled={isEffectivelyDisabled}
         onClick={onClick}
+        onMouseEnter={handleMouseEnter}
         onMouseMove={isEffectivelyDisabled ? undefined : handleMouse}
-        onMouseLeave={isEffectivelyDisabled ? undefined : reset}
+        onMouseLeave={handleMouseLeave}
         className={cn(ctaVariants({ variant, size, disabled: isEffectivelyDisabled }), className)}
-        {...(isEffectivelyDisabled ? {} : animationProps)}
+        style={!isEffectivelyDisabled ? { x: smoothX, y: combinedY, scale: hoverScale } : undefined}
         {...anyProps}
       >
         {content}

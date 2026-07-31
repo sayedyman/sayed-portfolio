@@ -26,8 +26,8 @@ export default function HomeClient({ projects, articles, testimonials }: HomeCli
       <HeroSection />
       <AboutSection />
       <FeaturedProjectsSection projects={projects} />
-      <ExpertiseSection />
       <ServicesSection />
+      <ExpertiseSection />
       <JournalSection articles={articles} />
       <TestimonialsSection testimonials={testimonials} />
     </>

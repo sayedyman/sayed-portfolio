@@ -22,8 +22,8 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
           <h1 className="text-[clamp(3rem,8vw,7rem)] font-heading font-medium tracking-tighter leading-[0.9] uppercase mb-6 text-foreground">
             Notes & <br className="hidden md:block"/> Essays
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-2xl">
-            Thoughts on design systems, product architecture, and the invisible details that make software feel human.
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl leading-relaxed">
+            Thoughts on design systems, product architecture, and the invisible details that make software feel human
           </p>
         </motion.div>
       </Container>
@@ -34,10 +34,10 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
           {articles.length === 0 ? (
             <div className="py-24 md:py-32 flex flex-col items-center justify-center text-center mt-10 md:mt-16">
               <h2 className="text-3xl md:text-4xl font-heading font-medium tracking-tight mb-4 text-foreground uppercase">
-                No insights published yet.
+                No insights published yet
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                New articles and thoughts on UX, product design, and digital experiences will appear here soon.
+                New articles and thoughts on UX, product design, and digital experiences will appear here soon
               </p>
             </div>
           ) : (

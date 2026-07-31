@@ -19,7 +19,7 @@ export function ExpertiseSection() {
               titleClassName="leading-tight"
             />
             <p className="text-muted-foreground text-lg md:text-xl max-w-2xl leading-relaxed">
-              Combining UX thinking, problem-solving, and modern visual execution to design digital experiences that are intuitive, scalable, and user-focused.
+              Combining UX thinking, problem-solving, and modern visual execution to design digital experiences that are intuitive, scalable, and user-focused
             </p>
           </div>
         </Grid>
@@ -48,14 +48,16 @@ export function ExpertiseSection() {
           <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:col-start-7 mt-16 md:mt-0">
             <div className="flex flex-col gap-12">
               {[
-                { role: "UI/UX Trainee", company: "Digital Egypt Pioneers Initiative (DEPI)", period: "2026 — Present", desc: "Participating in intensive UX/UI training focused on user research, wireframing, prototyping, usability, and product thinking while developing real-world UX case studies." },
-                { role: "Freelance UI/UX Designer", company: "Freelance & Personal Projects", period: "2025", desc: "Designing user-centered web and mobile experiences with a focus on usability, structure, and modern visual systems. Building complete UX case studies and scalable interfaces for digital products." },
-                { role: "UI/UX Competition Finalist", company: "Pixels Perfect Competition", period: "2025", desc: "Ranked among top participants in a competitive UI/UX challenge focused on landing page and product experience design. Created high-fidelity interfaces and interactive user flows." },
-                { role: "UX/UI Education & Certifications", company: "Google UX & Industry Courses", period: "2024", desc: "Studying UX research, accessibility, interaction design, wireframing, and user-centered methodologies through Google UX certifications and practical product design projects." }
+                { role: "UI/UX Trainee", company: "Digital Egypt Pioneers Initiative (DEPI)", period: "2026 — Present", desc: "Participating in intensive UX/UI training focused on user research, wireframing, prototyping, usability, and product thinking while developing real-world UX case studies" },
+                { role: "Freelance UI/UX Designer", company: "Freelance & Personal Projects", period: "2025", desc: "Designing user-centered web and mobile experiences with a focus on usability, structure, and modern visual systems. Building complete UX case studies and scalable interfaces for digital products" },
+                { role: "UI/UX Competition Finalist", company: "Pixels Perfect Competition", period: "2025", desc: "Ranked among top participants in a competitive UI/UX challenge focused on landing page and product experience design. Created high-fidelity interfaces and interactive user flows" },
+                { role: "UX/UI Education & Certifications", company: "Google UX & Industry Courses", period: "2024", desc: "Studying UX research, accessibility, interaction design, wireframing, and user-centered methodologies through Google UX certifications and practical product design projects" }
               ].map((job, i) => (
                 <div key={i} className="group relative">
-                  <div className="absolute -left-6 md:-left-12 top-2 bottom-0 w-px bg-border/50 group-hover:bg-primary/50 transition-colors" />
-                  <div className="absolute -left-[27px] md:-left-[51px] top-2 w-3 h-3 rounded-full border-2 border-background bg-border group-hover:bg-primary transition-colors" />
+                  <div className="absolute -left-6 md:-left-12 top-2 bottom-0 w-[2px] bg-border/50 overflow-hidden">
+                    <div className="absolute top-0 left-0 w-full h-full bg-primary origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out" />
+                  </div>
+                  <div className="absolute -left-[29px] md:-left-[53px] top-2 w-3 h-3 rounded-full border-2 border-background bg-border group-hover:bg-primary transition-colors duration-300" />
                   <span className="text-white text-sm font-medium mb-2 block">
                     {job.period.includes("Present") ? (
                       <>

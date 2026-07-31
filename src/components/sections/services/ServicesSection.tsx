@@ -13,25 +13,25 @@ const services = [
   { 
     num: "01", 
     title: "UX Audit & Product Review", 
-    desc: "Diagnosing friction points and identifying critical usability improvements to elevate the overall product experience and optimize user flows.",
+    desc: "Diagnosing friction points and identifying critical usability improvements to elevate the overall product experience and optimize user flows",
     tags: ["Usability Testing", "Heuristic Evaluation", "User Research", "UX Strategy"]
   },
   { 
     num: "02", 
     title: "Landing Page Design", 
-    desc: "Structuring premium, conversion-focused narratives driven by strong visual hierarchy and modern, cinematic responsiveness.",
+    desc: "Structuring premium, conversion-focused narratives driven by strong visual hierarchy and modern, cinematic responsiveness",
     tags: ["Figma", "Responsive Design", "Visual Storytelling", "Conversion UX"]
   },
   { 
     num: "03", 
     title: "Web & Mobile App Design", 
-    desc: "Crafting scalable product interfaces that balance clean interaction systems with highly functional, modern responsive UX/UI.",
+    desc: "Crafting scalable product interfaces that balance clean interaction systems with highly functional, modern responsive UX/UI",
     tags: ["Figma", "Design Systems", "Prototyping", "iOS & Android"]
   },
   { 
     num: "04", 
     title: "Dashboard UI/UX Design", 
-    desc: "Architecting clean information hierarchy and usability-focused workflows to make data-heavy interfaces feel structured and effortless.",
+    desc: "Architecting clean information hierarchy and usability-focused workflows to make data-heavy interfaces feel structured and effortless",
     tags: ["Data Visualization", "Information Architecture", "SaaS", "Enterprise UX"]
   }
 ];
@@ -43,12 +43,12 @@ export function ServicesSection() {
     <Section id="capabilities" padding="xl" className="bg-background relative border-t border-border/10 overflow-hidden">
       <Container>
         <Grid>
-          <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-16 md:mb-24">
+          <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-10 md:mb-14">
             <SectionHeader
               title="Services"
               subtitle="Strategic Digital Product Design"
               className="mb-4 md:mb-6"
-              titleClassName="uppercase tracking-tighter leading-[0.9]"
+              titleClassName="uppercase tracking-tighter leading-[0.9] !mb-3 md:!mb-4"
             />
           </div>
         </Grid>

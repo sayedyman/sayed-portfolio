@@ -48,7 +48,7 @@ export default function AboutPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                Blending strategy, <span className="text-muted-foreground italic font-editorial">psychology</span>, and interface design into <span className="text-primary italic font-editorial">thoughtful</span> digital experiences.
+                Blending strategy, <span className="text-muted-foreground italic font-editorial">psychology</span>, and interface design into <span className="text-primary italic font-editorial">thoughtful</span> digital experiences
               </motion.h1>
             </motion.div>
           </Grid>
@@ -93,25 +93,25 @@ export default function AboutPage() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="text-3xl md:text-4xl font-heading font-medium leading-tight text-foreground">
-                From human behavior <br/>to digital structure.
+                From human behavior <br/>to digital structure
               </h2>
               
               <div className="text-muted-foreground text-lg leading-relaxed space-y-6">
                 <p>
-                  I started my journey studying Sociology at Damanhour University, where I became fascinated by understanding people, their motivations, and the way they make decisions.
+                  I started my journey studying Sociology at Damanhour University, where I became fascinated by understanding people, their motivations, and the way they make decisions
                 </p>
                 <p>
-                  That curiosity naturally led me into UX Design, where I realized that every interface is ultimately designed for human behavior.
+                  That curiosity naturally led me into UX Design, where I realized that every interface is ultimately designed for human behavior
                 </p>
                 <p>
-                  Today I focus on creating digital experiences that balance user needs with business goals while continuously expanding my skills beyond traditional UI/UX.
+                  Today I focus on creating digital experiences that balance user needs with business goals while continuously expanding my skills beyond traditional UI/UX
                 </p>
               </div>
 
               {/* 3. CURRENTLY STATEMENT */}
               <div className="mt-8 pt-8 border-t border-border/30">
                 <p className="text-foreground/90 font-medium italic font-editorial text-xl">
-                  Currently transitioning into Design Engineering, combining design thinking with front-end development to build products that are both beautiful and functional.
+                  Currently transitioning into Design Engineering, combining design thinking with front-end development to build products that are both beautiful and functional
                 </p>
               </div>
             </motion.div>

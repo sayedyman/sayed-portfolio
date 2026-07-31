@@ -20,8 +20,8 @@ export default function NotFound() {
               Lost in the journey?
             </h1>
             
-            <p className="text-lg md:text-xl text-muted-foreground max-w-lg mx-auto mb-12 leading-relaxed">
-              The page you&apos;re looking for doesn&apos;t exist or may have moved.
+            <p className="text-muted-foreground text-lg mb-10 max-w-md mx-auto">
+              The page you&apos;re looking for doesn&apos;t exist or may have moved
             </p>
             
             <CtaButton variant="primary" href="/" className="mx-auto">

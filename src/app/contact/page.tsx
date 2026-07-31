@@ -5,12 +5,25 @@ import { Grid } from "@/components/layout/Grid";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { siteConfig } from "@/config/site";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [projectType, setProjectType] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -79,7 +92,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-16">
-                Designing modern product experiences across dashboards, web platforms, and digital products. Focused on thoughtful UX and scalable design systems.
+                Designing modern product experiences across dashboards, web platforms, and digital products. Focused on thoughtful UX and scalable design systems
               </p>
             </motion.div>
           </div>
@@ -189,22 +202,57 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   <div className="grid md:grid-cols-2 gap-10 mb-10">
                     <div className="space-y-3">
                       <label htmlFor="type" className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Project Type</label>
-                      <div className="relative flex items-center">
-                        <select 
-                          id="type"
-                          name="projectType"
-                          className="w-full bg-transparent border-b border-border/50 px-0 py-3 pr-8 text-foreground focus:outline-none focus:border-primary transition-colors appearance-none cursor-pointer"
-                          defaultValue=""
+                      <div className="relative flex items-center" ref={dropdownRef}>
+                        <input type="hidden" name="projectType" value={projectType} required />
+                        <div 
+                          className="w-full bg-transparent border-b border-border/50 px-0 py-3 pr-8 text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer relative"
+                          onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              e.preventDefault();
+                              setIsDropdownOpen(!isDropdownOpen);
+                            }
+                          }}
                         >
-                          <option value="" disabled className="text-muted-foreground/30">Select project type</option>
-                          <option value="Web Design" className="bg-background text-foreground">Web Design</option>
-                          <option value="Mobile App Design" className="bg-background text-foreground">Mobile App Design</option>
-                          <option value="Dashboard Design" className="bg-background text-foreground">Dashboard Design</option>
-                          <option value="Landing Page Design" className="bg-background text-foreground">Landing Page Design</option>
-                          <option value="UX Audit" className="bg-background text-foreground">UX Audit</option>
-                          <option value="Other" className="bg-background text-foreground">Other</option>
-                        </select>
-                        <ChevronDown className="absolute right-3 w-5 h-5 text-muted-foreground pointer-events-none" />
+                          <span className={projectType ? "text-foreground" : "text-muted-foreground/30"}>
+                            {projectType || "Select project type"}
+                          </span>
+                          <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                        </div>
+                        
+                        <AnimatePresence>
+                          {isDropdownOpen && (
+                            <motion.div 
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 10 }}
+                              transition={{ duration: 0.2 }}
+                              className="absolute left-0 right-0 top-full mt-2 bg-[#0a0a0a] border border-border/50 rounded-lg shadow-xl overflow-hidden z-50 flex flex-col"
+                            >
+                              {["Web Design", "Mobile App Design", "Dashboard Design", "Landing Page Design", "UX Audit", "Other"].map((type) => (
+                                <div
+                                  key={type}
+                                  className="px-4 py-3 text-sm text-foreground hover:bg-primary/15 transition-colors cursor-pointer"
+                                  onClick={() => {
+                                    setProjectType(type);
+                                    setIsDropdownOpen(false);
+                                  }}
+                                  tabIndex={0}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                      e.preventDefault();
+                                      setProjectType(type);
+                                      setIsDropdownOpen(false);
+                                    }
+                                  }}
+                                >
+                                  {type}
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     </div>
                     <div className="space-y-3">
@@ -232,14 +280,15 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-                    <p className="text-xs text-muted-foreground tracking-widest uppercase">
-                      Typically replies within 24 hours.
+                    <p className="text-[11px] text-muted-foreground tracking-widest uppercase whitespace-nowrap">
+                      Typically replies within 24 hours
                     </p>
                     <CtaButton
                       type="submit"
                       variant="primary"
-                      size="lg"
+                      size="md"
                       loading={isSubmitting}
+                      className="whitespace-nowrap w-max"
                     >
                       Start Conversation
                     </CtaButton>
@@ -256,9 +305,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-8">
                     <CheckCircle2 className="w-10 h-10 text-primary" />
                   </div>
-                  <h4 className="text-4xl font-heading font-medium mb-6">Your message has been received.</h4>
+                  <h4 className="text-4xl font-heading font-medium mb-6">Your message has been received</h4>
                   <p className="text-muted-foreground text-lg max-w-md mx-auto leading-relaxed">
-                    We&apos;re currently accepting new projects. Use the form below to share details about your vision, timeline, and goals.sible, typically within 24 hours.
+                    We&apos;re currently accepting new projects. Use the form below to share details about your vision, timeline, and goals
                   </p>
                 </motion.div>
               )}
