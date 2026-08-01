@@ -23,7 +23,7 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
               className="mb-0"
               titleClassName="lg:text-7xl uppercase tracking-tighter mb-0"
             />
-            <div className="flex">
+            <div className="hidden md:flex">
               <CtaButton variant="secondary" href="/projects">
                 All Projects
               </CtaButton>
@@ -33,6 +33,16 @@ export function FeaturedProjectsSection({ projects }: FeaturedProjectsSectionPro
 
         {/* Project Grid - Asymmetrical — pure presentational, no async */}
         <FeaturedProjectsGrid projects={projects} />
+
+        <Grid>
+          <div className="col-span-4 mt-12 md:hidden">
+            <div className="w-full flex">
+              <CtaButton variant="secondary" href="/projects" className="w-full">
+                All Projects
+              </CtaButton>
+            </div>
+          </div>
+        </Grid>
       </Container>
     </Section>
   );

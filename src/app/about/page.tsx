@@ -98,6 +98,12 @@ export default function AboutPage() {
               
               <div className="text-muted-foreground text-lg leading-relaxed space-y-6">
                 <p>
+                  Hi, I&apos;m Sayed Ayman Elghanam.
+                </p>
+                <p>
+                  I&apos;m a UI/UX Designer and aspiring Design Engineer who enjoys building products that balance user needs with business goals.
+                </p>
+                <p>
                   I started my journey studying Sociology at Damanhour University, where I became fascinated by understanding people, their motivations, and the way they make decisions
                 </p>
                 <p>

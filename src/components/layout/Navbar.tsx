@@ -306,14 +306,14 @@ export function Navbar() {
 
                 <div className="flex flex-col gap-8 mt-12 w-full">
                   <motion.div variants={linkVariants} className="flex flex-col gap-4 w-full">
-                    <Link href="/#work" passHref onClick={handleMobileLinkClick} className="w-full">
+                    <Link href="/contact" passHref onClick={handleMobileLinkClick} className="w-full">
                       <MagneticButton className="w-full justify-center px-8 py-4 text-xs font-semibold tracking-widest uppercase touch-active">
-                        View Projects
+                        Let&apos;s Work Together
                       </MagneticButton>
                     </Link>
-                    <Link href="/contact" passHref onClick={handleMobileLinkClick} className="w-full">
+                    <Link href="/#work" passHref onClick={handleMobileLinkClick} className="w-full">
                       <MagneticButton variant="ghost" className="w-full justify-center px-8 py-4 text-xs font-semibold tracking-widest uppercase border border-border/50 touch-active">
-                        Let&apos;s Work Together
+                        View Projects
                       </MagneticButton>
                     </Link>
                   </motion.div>
