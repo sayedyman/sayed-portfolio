@@ -44,19 +44,18 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
       <Container className="relative z-10">
 
         {/* HERO SECTION */}
-        <Grid className="mb-24 md:mb-32">
+        <Grid className="mb-12 md:mb-16">
           <div className="col-span-4 md:col-span-8 lg:col-span-12 mt-12 md:mt-24">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-5xl"
+              className="w-full"
             >
-              <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8">
-                Selected <br className="hidden md:block" />
-                <span className="text-white italic font-editorial">Projects</span>
+              <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8 whitespace-nowrap">
+                Selected <span className="text-white italic font-editorial">Projects</span>
               </h1>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+              <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
                 A curated showcase of digital experiences. Focusing on UX thinking, product strategy, and user-centered problem solving
               </p>
             </motion.div>
