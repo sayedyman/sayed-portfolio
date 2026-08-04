@@ -8,30 +8,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CtaButton } from "@/components/ui/CtaButton";
 import Image from "next/image";
 
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const GithubIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4" />
-  </svg>
-);
-
-const BehanceIcon = ({ className }: { className?: string }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M5.5 6v12h5.5c2 0 3.5-1 3.5-3.5 0-1.5-1-2.5-2-3v-.5c1-.5 1.5-1.5 1.5-2.5 0-2-1.5-2.5-3-2.5H5.5Z" />
-    <path d="M5.5 11.5H11c.8 0 1.5-.5 1.5-1.5s-.7-1.5-1.5-1.5H5.5v3Z" />
-    <path d="M5.5 18H11c1 0 2-.5 2-2s-1-2-2-2H5.5v4Z" />
-    <path d="M15 9h4" />
-    <path d="M15 14c0-2 1.5-3 3-3s3 1 3 3-1.5 3-3 3-3-1-3-3Z" />
-    <path d="M15 14h6" />
-  </svg>
-);
+import { IconBrandLinkedin, IconBrandGithub, IconBrandBehance } from '@tabler/icons-react';
 
 export function AboutSection() {
   return (
@@ -94,9 +71,9 @@ export function AboutSection() {
                 
                 <div className="flex items-center gap-6">
                   {[
-                    { name: "LinkedIn", href: "https://www.linkedin.com/in/sayed-ayman/", Icon: LinkedinIcon },
-                    { name: "Behance", href: "https://www.behance.net/sayedelghanam1", Icon: BehanceIcon },
-                    { name: "GitHub", href: "https://github.com/sayedyman", Icon: GithubIcon }
+                    { name: "LinkedIn", href: "https://www.linkedin.com/in/sayed-ayman/", Icon: IconBrandLinkedin },
+                    { name: "Behance", href: "https://www.behance.net/sayedelghanam1", Icon: IconBrandBehance },
+                    { name: "GitHub", href: "https://github.com/sayedyman", Icon: IconBrandGithub }
                   ].map((social) => (
                     <a 
                       key={social.name}
@@ -104,7 +81,7 @@ export function AboutSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="text-muted-foreground hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-1 hover:drop-shadow-[0_0_10px_rgba(255,229,0,0.25)]"
+                      className="text-muted-foreground hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
                     >
                       <social.Icon className="w-5 h-5 stroke-[1.5]" />
                     </a>
