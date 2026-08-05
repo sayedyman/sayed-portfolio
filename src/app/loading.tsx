@@ -17,7 +17,7 @@ export default function Loading() {
           Preparing the experience...
         </p>
         <p className="text-muted-foreground text-sm max-w-sm mx-auto">
-          Loading content and getting everything ready.
+          Loading content and getting everything ready
         </p>
       </div>
     </div>

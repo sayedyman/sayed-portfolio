@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     default: "Sayed Elghanam | UI/UX Designer",
     template: "%s | Sayed Elghanam",
   },
-  description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products.",
+  description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products",
   keywords: [
     "UI/UX Designer",
     "Product Designer",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://sayed-portfolio-seven.vercel.app/",
     title: "Sayed Elghanam | UI/UX Designer",
-    description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products.",
+    description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products",
     siteName: "Sayed Elghanam Portfolio",
     images: [
       {
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Sayed Elghanam | UI/UX Designer",
-    description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products.",
+    description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products",
     images: ["/og-image.png"],
   },
   robots: {

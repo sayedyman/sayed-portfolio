@@ -98,10 +98,10 @@ export default function AboutPage() {
               
               <div className="text-muted-foreground text-lg leading-relaxed space-y-6">
                 <p>
-                  Hi, I&apos;m Sayed Ayman Elghanam.
+                  Hi, I&apos;m Sayed Ayman Elghanam
                 </p>
                 <p>
-                  I&apos;m a UI/UX Designer and aspiring Design Engineer who enjoys building products that balance user needs with business goals.
+                  I&apos;m a UI/UX Designer and aspiring Design Engineer who enjoys building products that balance user needs with business goals
                 </p>
                 <p>
                   I started my journey studying Sociology at Damanhour University, where I became fascinated by understanding people, their motivations, and the way they make decisions
@@ -134,9 +134,9 @@ export default function AboutPage() {
             </div>
             
             {[
-              { title: "Clarity over decoration.", desc: "Design should remove friction, not add it. Every visual element must serve a distinct communicative purpose." },
-              { title: "Systems over randomness.", desc: "Scalable products require foundational logic. I build cohesive design systems that ensure consistency and engineering velocity." },
-              { title: "Usability before trends.", desc: "Aesthetics attract, but usability retains. I prioritize intuitive navigation and clear hierarchy above fleeting visual trends." }
+              { title: "Clarity over decoration", desc: "Design should remove friction, not add it. Every visual element must serve a distinct communicative purpose" },
+              { title: "Systems over randomness", desc: "Scalable products require foundational logic. I build cohesive design systems that ensure consistency and engineering velocity" },
+              { title: "Usability before trends", desc: "Aesthetics attract, but usability retains. I prioritize intuitive navigation and clear hierarchy above fleeting visual trends" }
             ].map((principle, index) => (
               <motion.div 
                 key={index}
@@ -175,19 +175,19 @@ export default function AboutPage() {
                   year: "2025",
                   title: "Product Design Evolution",
                   context: "Digital Egypt Pioneers Initiative (DEPI)",
-                  desc: "When he&apos;s not wireframing or conducting user interviews, you&apos;ll likely find him exploring typographic grids, reading about architectural design, or mentoring junior designers breaking into the field."
+                  desc: "When he&apos;s not wireframing or conducting user interviews, you&apos;ll likely find him exploring typographic grids, reading about architectural design, or mentoring junior designers breaking into the field"
                 },
                 {
                   year: "2024",
-                  title: "Foundational Methodologies",
-                  context: "Google UX & Industry Growth",
-                  desc: "Solidified my approach to user-centered design. Shifted focus from pure interface aesthetics to wireframing, accessibility, and research-backed prototyping."
+                  title: "UX Shift & Interface Specialization",
+                  context: "Information Technology Institute (ITI)",
+                  desc: "Solidified my approach to user-centered design. Shifted focus from pure interface aesthetics to wireframing, accessibility, and research-backed prototyping"
                 },
                 {
                   year: "2022",
-                  title: "Understanding Human Behavior",
-                  context: "Damanhur University",
-                  desc: "The root of my UX philosophy. Studying sociology provided the analytical framework I use today to understand user motivations and societal interaction patterns."
+                  title: "The Human Element",
+                  context: "BA in Sociology, Damanhour University",
+                  desc: "The root of my UX philosophy. Studying sociology provided the analytical framework I use today to understand user motivations and societal interaction patterns"
                 }
               ].map((milestone, index) => (
                 <motion.div 
@@ -229,8 +229,8 @@ export default function AboutPage() {
             
             <div className="col-span-4 md:col-span-8 lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16">
               {[
-                { title: "Pixel Perfect Competition", highlight: "3rd Place", desc: "Recognized among top participants for designing a high-conversion, structured landing page and product experience." },
-                { title: "Zag Eng Team Workshop", highlight: "1st Place", desc: "Awarded top honors for exceptional problem-solving and UI execution during an intensive design workshop." }
+                { title: "Pixel Perfect Competition", highlight: "3rd Place", desc: "Recognized among top participants for designing a high-conversion, structured landing page and product experience" },
+                { title: "Zag Eng Team Workshop", highlight: "1st Place", desc: "Awarded top honors for exceptional problem-solving and UI execution during an intensive design workshop" }
               ].map((award, index) => (
                 <motion.div 
                   key={index}

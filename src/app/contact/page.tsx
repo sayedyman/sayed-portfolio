@@ -46,10 +46,10 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
       setIsSubmitted(true);
       form.reset();
     } else {
-      alert("Something went wrong. Please try again.");
+      alert("Something went wrong. Please try again");
     }
   } catch {
-    alert("Something went wrong. Please try again.");
+    alert("Something went wrong. Please try again");
   } finally {
     setIsSubmitting(false);
   }
