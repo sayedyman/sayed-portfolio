@@ -126,10 +126,10 @@ export default function AboutPage() {
       </section>
 
       {/* 6. MINDSET PRINCIPLES */}
-      <section className="relative py-32 bg-black/5 dark:bg-secondary/10 border-y border-black/5 dark:border-white/5">
+      <section className="relative py-16 md:py-24 lg:py-32 bg-black/5 dark:bg-secondary/10 border-y border-black/5 dark:border-white/5">
         <Container>
-          <Grid>
-            <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-16">
+          <Grid className="gap-y-10 md:gap-y-12 lg:gap-y-0">
+            <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-0 lg:mb-16">
               <h2 className="text-sm tracking-widest text-muted-foreground uppercase">/ Philosophy</h2>
             </div>
             
@@ -146,7 +146,7 @@ export default function AboutPage() {
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="h-full pr-8">
+                <div className="h-full pr-0 md:pr-4 lg:pr-8">
                   <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-4">{principle.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{principle.desc}</p>
                 </div>
