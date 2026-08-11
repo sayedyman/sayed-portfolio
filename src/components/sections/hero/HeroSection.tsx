@@ -42,7 +42,7 @@ export function HeroSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Visit my ${social.name} profile`}
-                className="opacity-70 hover:opacity-100 hover:text-primary transition-all duration-300 ease-out hover:-translate-x-0.5 hover:drop-shadow-[0_0_8px_rgba(255,229,0,0.25)] [writing-mode:vertical-lr] rotate-180"
+                className="opacity-70 hover:opacity-100 hover:text-foreground dark:hover:text-primary transition-all duration-300 ease-out hover:-translate-x-0.5 dark:hover:drop-shadow-[0_0_8px_rgba(255,229,0,0.25)] [writing-mode:vertical-lr] rotate-180"
               >
                 {social.name}
               </a>
@@ -105,11 +105,20 @@ export function HeroSection() {
                 fetchPriority="high"
               />
               <div className="absolute inset-0 bg-grain opacity-10 mix-blend-overlay pointer-events-none hidden lg:block" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_20%,transparent_25%,rgba(5,5,5,0.7)_60%,rgba(5,5,5,0.95)_100%)] pointer-events-none" />
-              <div className="absolute bottom-0 left-0 right-0 h-3/5 bg-gradient-to-t from-background via-background/70 to-transparent pointer-events-none" />
-              <div className="absolute top-0 left-0 right-0 h-[30%] bg-gradient-to-b from-background via-background/50 to-transparent pointer-events-none" />
-              <div className="absolute top-0 bottom-0 left-0 w-2/5 bg-gradient-to-r from-background via-background/50 to-transparent pointer-events-none" />
-              <div className="absolute top-0 bottom-0 right-0 w-2/5 bg-gradient-to-l from-background via-background/50 to-transparent pointer-events-none" />
+              
+              {/* Dark Mode Overlay Treatment (Exactly as original) */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_20%,transparent_25%,rgba(5,5,5,0.7)_60%,rgba(5,5,5,0.95)_100%)] hidden dark:block pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-3/5 bg-gradient-to-t from-background via-background/70 to-transparent hidden dark:block pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-[30%] bg-gradient-to-b from-background via-background/50 to-transparent hidden dark:block pointer-events-none" />
+              <div className="absolute top-0 bottom-0 left-0 w-2/5 bg-gradient-to-r from-background via-background/50 to-transparent hidden dark:block pointer-events-none" />
+              <div className="absolute top-0 bottom-0 right-0 w-2/5 bg-gradient-to-l from-background via-background/50 to-transparent hidden dark:block pointer-events-none" />
+
+              {/* Light Mode Overlay Treatment (Edge-only fade, clear center) */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center_30%,transparent_45%,rgba(248,248,246,0.4)_75%,rgba(248,248,246,1)_100%)] dark:hidden pointer-events-none" />
+              <div className="absolute bottom-0 left-0 right-0 h-[25%] bg-gradient-to-t from-background via-background/80 to-transparent dark:hidden pointer-events-none" />
+              <div className="absolute top-0 left-0 right-0 h-[10%] bg-gradient-to-b from-background to-transparent dark:hidden pointer-events-none" />
+              <div className="absolute top-0 bottom-0 left-0 w-[10%] bg-gradient-to-r from-background to-transparent dark:hidden pointer-events-none" />
+              <div className="absolute top-0 bottom-0 right-0 w-[10%] bg-gradient-to-l from-background to-transparent dark:hidden pointer-events-none" />
             </div>
           </motion.div>
 

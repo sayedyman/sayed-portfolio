@@ -39,14 +39,14 @@ export function FeaturedProjectCard({
           </div>
         )}
         {isComingSoon && (
-          <div className="absolute inset-0 bg-black/20 z-10 flex items-center justify-center pointer-events-none">
-            <div className="bg-black/50 backdrop-blur-sm text-white/90 border border-white/10 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+          <div className="absolute inset-0 bg-background/20 dark:bg-black/20 z-10 flex items-center justify-center pointer-events-none">
+            <div className="bg-background/60 dark:bg-black/50 backdrop-blur-sm text-foreground/90 dark:text-white/90 border border-border/50 dark:border-white/10 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
               Coming Soon
             </div>
           </div>
         )}
         
-        <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-white/80 border border-white/10 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full pointer-events-none">
+        <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-foreground/80 dark:text-white/80 border border-border/50 dark:border-white/10 bg-background/60 dark:bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full pointer-events-none">
           {project.projectType ?? (project.tags && project.tags[0]) ?? project.category ?? 'PROJECT'}
         </div>
 

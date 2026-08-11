@@ -88,9 +88,9 @@ function EditorialRailCard({
         <blockquote
           className={`font-editorial italic text-foreground/95 ${typographyClass} tracking-tight relative z-10 line-clamp-4 md:line-clamp-5`}
         >
-          <span className="text-primary/40 font-serif leading-none mr-2 select-none">&quot;</span>
+          <span className="text-accent-text/40 font-serif leading-none mr-2 select-none">&quot;</span>
           {testimonial.displayQuote}
-          <span className="text-primary/40 font-serif leading-none ml-2 select-none" aria-hidden="true">&quot;</span>
+          <span className="text-accent-text/40 font-serif leading-none ml-2 select-none" aria-hidden="true">&quot;</span>
         </blockquote>
 
         <div className="relative z-10 mt-auto pt-8">
@@ -155,7 +155,7 @@ export function TestimonialsSection({ testimonials }: TestimonialsProps) {
             variants={fadeUpVariant}
           >
             <SectionHeader
-              title={<>What Clients <span className="text-white italic font-editorial">Say</span></>}
+              title={<>What Clients <span className="text-foreground dark:text-white italic font-editorial">Say</span></>}
               className="mb-0"
               titleClassName="uppercase tracking-tighter leading-[0.9]"
               animated={false}

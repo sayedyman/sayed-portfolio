@@ -53,7 +53,7 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               className="w-full"
             >
               <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-heading font-medium leading-[0.9] tracking-tighter uppercase mb-8 whitespace-nowrap">
-                Selected <span className="text-white italic font-editorial">Projects</span>
+                Selected <span className="text-foreground dark:text-white italic font-editorial">Projects</span>
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl leading-relaxed">
                 A curated showcase of digital experiences. Focusing on UX thinking, product strategy, and user-centered problem solving
@@ -149,13 +149,13 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                           )}
                           {isComingSoon && (
                             <div className="absolute inset-0 bg-black/20 z-10 flex items-center justify-center pointer-events-none">
-                              <div className="bg-black/50 backdrop-blur-sm text-white/90 border border-white/10 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
+                              <div className="bg-background/60 dark:bg-black/50 backdrop-blur-sm text-foreground/90 dark:text-white/90 border border-border/50 dark:border-white/10 px-6 py-3 rounded-full text-xs font-semibold tracking-widest uppercase">
                                 Coming Soon
                               </div>
                             </div>
                           )}
 
-                          <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-white/80 border border-white/10 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full pointer-events-none">
+                          <div className="absolute top-4 right-4 z-20 text-[9px] tracking-[0.25em] uppercase font-medium text-foreground/80 dark:text-white/80 border border-border/50 dark:border-white/10 bg-background/60 dark:bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full pointer-events-none">
                             {project.projectType ?? (project.tags && project.tags[0]) ?? project.category ?? 'PROJECT'}
                           </div>
 
@@ -195,12 +195,12 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
                         <div className="flex flex-col md:flex-row md:items-start justify-between gap-8 md:gap-12 pl-1 md:pl-4">
                           <div className="flex-1 min-w-0 max-w-2xl">
                             <div className="flex items-center gap-3 mb-4">
-                              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-primary">
+                              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-accent-text">
                                 {project.category ?? 'CASE STUDY'}
                               </span>
                             </div>
 
-                            <h2 className={`text-[clamp(1.5rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] ${isComingSoon ? 'text-muted-foreground' : 'group-hover:text-primary'}`}>
+                            <h2 className={`text-[clamp(1.5rem,5vw,3rem)] font-heading font-medium mb-4 md:mb-6 transition-colors duration-500 break-words [overflow-wrap:anywhere] ${isComingSoon ? 'text-muted-foreground' : 'group-hover:text-accent-text'}`}>
                               {project.title}
                             </h2>
 
@@ -213,9 +213,9 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
 
                           {!isComingSoon && (
                             <div className="flex-shrink-0 pt-2">
-                              <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-primary transition-colors duration-500">
+                              <div className="flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-accent-text transition-colors duration-500">
                                 View on Behance
-                                <div className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
+                                <div className="w-10 h-10 rounded-full border border-border/50 flex items-center justify-center group-hover:border-accent-text group-hover:bg-accent-text/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
                                   <ArrowUpRight className="w-4 h-4" />
                                 </div>
                               </div>

@@ -4,6 +4,7 @@ import { InteractiveElements } from "@/components/layout/InteractiveElements";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "./globals.css";
 
@@ -83,11 +84,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${inter.variable} antialiased`}
+      className={`${inter.variable} antialiased`}
+      suppressHydrationWarning
     >
       <head>
       </head>
       <body className="min-h-dvh flex flex-col relative selection:bg-primary selection:text-primary-foreground">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <JsonLd
           data={{
             "@context": "https://schema.org",
@@ -124,6 +127,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

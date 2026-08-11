@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
 import { CtaButton } from "@/components/ui/CtaButton";
+import { AlertCircle } from "lucide-react";
 
 export default function Error({
   error,
@@ -25,6 +26,9 @@ export default function Error({
       <Container className="relative z-10 text-center flex flex-col items-center">
         <Grid>
           <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col items-center justify-center">
+            <div className="mb-6 flex justify-center">
+              <AlertCircle className="w-16 h-16 text-destructive opacity-80" />
+            </div>
             <h2 className="text-3xl md:text-4xl font-heading font-medium mb-4">
               Something interrupted the experience
             </h2>

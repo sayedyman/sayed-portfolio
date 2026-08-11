@@ -38,7 +38,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="mb-8 flex items-center gap-4 text-xs font-medium uppercase tracking-widest text-muted-foreground"
               >
-                <span className="w-8 h-[1px] bg-primary"></span>
+                <span className="w-8 h-[1px] bg-accent-text"></span>
                 About Sayed
               </motion.div>
               
@@ -126,7 +126,7 @@ export default function AboutPage() {
       </section>
 
       {/* 6. MINDSET PRINCIPLES */}
-      <section className="relative py-32 bg-secondary/10 border-y border-border/5">
+      <section className="relative py-32 bg-black/5 dark:bg-secondary/10 border-y border-black/5 dark:border-white/5">
         <Container>
           <Grid>
             <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-16">
@@ -147,7 +147,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
               >
                 <div className="h-full pr-8">
-                  <h3 className="text-2xl font-heading font-bold text-white mb-4">{principle.title}</h3>
+                  <h3 className="text-2xl font-heading font-bold text-foreground dark:text-white mb-4">{principle.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{principle.desc}</p>
                 </div>
               </motion.div>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-12">
-                    <div className="text-white/40 font-heading text-4xl md:text-5xl group-hover:text-white transition-colors duration-500 shrink-0">
+                    <div className="text-black/20 dark:text-white/40 font-heading text-4xl md:text-5xl group-hover:text-foreground dark:group-hover:text-white transition-colors duration-500 shrink-0">
                       {milestone.year}
                     </div>
                     <div>
@@ -218,12 +218,12 @@ export default function AboutPage() {
       </section>
 
       {/* 7. PREMIUM HIGHLIGHTS */}
-      <section className="relative py-24 bg-secondary/5 border-t border-border/5">
+      <section className="relative py-24 bg-black/[0.02] dark:bg-secondary/5 border-t border-black/5 dark:border-white/5">
         <Container>
           <Grid className="items-center">
             <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-12 flex flex-col md:flex-row gap-8 justify-between items-start md:items-end">
               <h2 className="text-3xl md:text-5xl font-heading font-medium tracking-tight">
-                Selected <span className="text-white italic font-editorial">Highlights</span>
+                Selected <span className="text-foreground dark:text-white italic font-editorial">Highlights</span>
               </h2>
             </div>
             
@@ -234,7 +234,7 @@ export default function AboutPage() {
               ].map((award, index) => (
                 <motion.div 
                   key={index}
-                  className="p-8 border border-border/30 bg-background/50 backdrop-blur-sm rounded-sm hover:border-primary/30 transition-colors"
+                  className="p-8 border border-black/5 dark:border-white/10 bg-black/5 dark:bg-background/50 backdrop-blur-sm rounded-sm hover:border-black/15 dark:hover:border-primary/30 transition-colors"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -242,7 +242,7 @@ export default function AboutPage() {
                 >
                   <div className="flex justify-between items-start mb-6">
                     <span className="text-xs uppercase tracking-widest text-muted-foreground">{award.title}</span>
-                    <span className="text-primary font-medium">{award.highlight}</span>
+                    <span className="text-accent-text font-medium">{award.highlight}</span>
                   </div>
                   <p className="text-muted-foreground/90">{award.desc}</p>
                 </motion.div>

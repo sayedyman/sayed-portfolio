@@ -53,7 +53,7 @@ function Attribution({
 function QuoteGlyph({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`select-none pointer-events-none font-editorial text-primary/[0.07] leading-none block ${className}`}
+      className={`select-none pointer-events-none font-editorial text-accent-text/[0.07] leading-none block ${className}`}
       aria-hidden="true"
     >
       &ldquo;
@@ -211,7 +211,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
             transition={{ duration: 0.8, delay: 0.1, ease: EASING.cinematic }}
           >
             <SectionHeader
-              title={<>What Clients <span className="text-white italic font-editorial">Say</span></>}
+              title={<>What Clients <span className="text-foreground dark:text-white italic font-editorial">Say</span></>}
               className="mb-0"
               animated={false}
             />

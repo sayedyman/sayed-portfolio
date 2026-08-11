@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Container } from "./Container";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { Logo } from "@/components/ui/Logo";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { ArrowUpRight } from "lucide-react";
 
@@ -165,16 +166,13 @@ export function Navbar() {
               : "mt-0 max-w-full pt-[max(env(safe-area-inset-top),1.5rem)] md:pt-[max(env(safe-area-inset-top),2rem)] pb-4 md:pb-6 lg:pb-8 px-0 bg-transparent border-transparent"
           }`}>
             <Link href="/" onClick={handleScroll} className="z-50 relative h-[36px] md:h-[48px] w-[140px] md:w-[180px] ml-2 md:ml-4 flex items-center justify-start group">
-              <Image 
-                src="/logo-symbol.svg" 
-                alt="Sayed Elghanam Logo" 
-                fill 
-                className="object-contain object-left group-hover:scale-[1.03] group-hover:opacity-90 touch-active transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-md" 
-                priority
+              <Logo 
+                className="h-full w-auto max-w-full text-foreground group-hover:scale-[1.03] group-hover:opacity-90 touch-active transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] drop-shadow-md"
+                preserveAspectRatio="xMinYMid meet"
               />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-6 mix-blend-difference absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+            <nav className="hidden md:flex items-center gap-6 dark:mix-blend-difference absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
               {[
                 { name: "About", href: "/#about", id: "about" },
                 { name: "Work", href: "/#work", id: "work" },
@@ -202,7 +200,8 @@ export function Navbar() {
             </nav>
 
             {/* Desktop CTA Only */}
-            <div className="hidden md:flex items-center">
+            <div className="hidden md:flex items-center gap-4">
+              <ThemeToggle />
               <Link href="/contact" passHref>
                 <motion.div
                   initial="idle"
@@ -295,7 +294,7 @@ export function Navbar() {
                         }}
                         className="group flex items-baseline gap-4 py-3 border-b border-border/5 touch-active"
                       >
-                        <span className={`font-heading text-sm font-semibold tracking-widest transition-colors duration-300 ${active ? 'text-primary' : 'text-primary/50'}`}>0{idx + 1}</span>
+                        <span className={`font-heading text-sm font-semibold tracking-widest transition-colors duration-300 ${active ? 'text-accent-text' : 'text-accent-text/50'}`}>0{idx + 1}</span>
                         <span className={`text-3xl font-heading tracking-tight uppercase group-hover:text-primary transition-all duration-300 ${active ? 'text-primary font-bold' : 'font-medium'}`}>
                           {link.name}
                         </span>
@@ -305,6 +304,10 @@ export function Navbar() {
                 </nav>
 
                 <div className="flex flex-col gap-8 mt-12 w-full">
+                  <motion.div variants={linkVariants} className="flex items-center justify-between w-full">
+                    <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">Theme</span>
+                    <ThemeToggle />
+                  </motion.div>
                   <motion.div variants={linkVariants} className="flex flex-col gap-4 w-full">
                     <Link href="/contact" passHref onClick={handleMobileLinkClick} className="w-full">
                       <MagneticButton className="w-full justify-center px-8 py-4 text-xs font-semibold tracking-widest uppercase touch-active">
@@ -332,7 +335,7 @@ export function Navbar() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="opacity-70 hover:opacity-100 hover:text-primary transition-colors"
+                        className="opacity-70 hover:opacity-100 hover:text-foreground dark:hover:text-primary transition-colors"
                       >
                         {social.name}
                       </a>

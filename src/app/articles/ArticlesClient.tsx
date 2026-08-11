@@ -53,7 +53,7 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
                 : new Intl.DateTimeFormat('en-US', { month: 'short', year: 'numeric' }).format(dateObj)
 
               return (
-                <Link key={article._id} href={`/articles/${slug}`} className="group block border-t border-border/20 pt-10 md:pt-16">
+                <Link key={article._id} href={`/articles/${slug}`} className="group block border-t border-black/5 dark:border-white/10 pt-10 md:pt-16">
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -67,11 +67,11 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
                         <div className="flex flex-row md:flex-col flex-wrap gap-4 md:gap-3 text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground">
                           {formattedDate && <span>{formattedDate}</span>}
                           {article.category && (
-                            <span className="text-primary">{article.category}</span>
+                            <span className="text-accent-text">{article.category}</span>
                           )}
                           <span className="opacity-50">{readingTime} MIN READ</span>
                           {article.isEssay && (
-                            <span className="opacity-50 border border-border/50 px-2 py-0.5 rounded-sm inline-flex w-max mt-2">ESSAY</span>
+                            <span className="opacity-50 border border-black/10 dark:border-white/20 px-2 py-0.5 rounded-sm inline-flex w-max mt-2">ESSAY</span>
                           )}
                         </div>
                       </div>
@@ -82,7 +82,7 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
                           
                           {/* Text Content */}
                           <div className="flex-1 min-w-0 order-2 lg:order-1 max-w-3xl">
-                            <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-heading font-medium leading-[1.1] mb-6 text-foreground group-hover:text-primary transition-colors duration-500 break-words [overflow-wrap:anywhere]">
+                            <h2 className="text-[clamp(1.5rem,4vw,2.5rem)] font-heading font-medium leading-[1.1] mb-6 text-foreground group-hover:text-accent-text transition-colors duration-500 break-words [overflow-wrap:anywhere]">
                               {article.title}
                             </h2>
                             {article.excerpt && (
@@ -91,9 +91,9 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
                               </p>
                             )}
                             
-                            <div className="flex items-center gap-3 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-primary transition-colors duration-500">
+                            <div className="flex items-center gap-3 text-xs font-semibold tracking-widest uppercase text-foreground/80 group-hover:text-accent-text transition-colors duration-500">
                               Read Article
-                              <div className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
+                              <div className="w-8 h-8 rounded-full border border-border/50 flex items-center justify-center group-hover:border-accent-text group-hover:bg-accent-text/5 transition-all duration-500 group-hover:-translate-y-1 group-hover:translate-x-1">
                                 <ArrowUpRight className="w-3 h-3" />
                               </div>
                             </div>

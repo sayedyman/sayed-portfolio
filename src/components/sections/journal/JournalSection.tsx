@@ -22,7 +22,7 @@ export function JournalSection({ articles }: JournalSectionProps) {
         <Grid>
           <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
             <SectionHeader
-              title={<>Insights & <br/> <span className="text-white italic font-editorial">Observations</span></>}
+              title={<>Insights & <br/> <span className="text-foreground dark:text-white italic font-editorial">Observations</span></>}
               className="mb-0"
               titleClassName="uppercase tracking-tighter leading-[0.9]"
             />

@@ -8,8 +8,7 @@ import { CtaButton } from "@/components/ui/CtaButton";
 import { Section } from "./Section";
 
 import { IconBrandLinkedin, IconBrandYoutube, IconBrandGithub, IconBrandBehance } from '@tabler/icons-react';
-
-import Image from "next/image";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const pathname = usePathname();
@@ -38,8 +37,8 @@ export function Footer() {
           
           <div className={`flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-0 text-sm text-muted-foreground text-center md:text-left ${!isContactPage ? 'pt-8 border-t border-border/50' : ''}`}>
             <div className="flex flex-col md:flex-row items-center gap-4">
-              <div className="relative w-12 h-8">
-                <Image src="/logo-symbol.svg" alt="Sayed Elghanam Logo" fill className="object-contain" />
+              <div className="relative w-12 h-8 flex items-center">
+                <Logo className="w-full h-full text-foreground" preserveAspectRatio="xMinYMid meet" />
               </div>
               <p>© {new Date().getFullYear()} Sayed Ayman Elghanam. All rights reserved</p>
             </div>
@@ -56,7 +55,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="text-muted-foreground hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
+                  className="text-muted-foreground hover:text-foreground dark:hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
                 >
                   <social.Icon className="w-5 h-5 stroke-[1.5]" />
                 </a>

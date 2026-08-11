@@ -40,8 +40,8 @@ export function AboutSection() {
           {/* Right Column - Text */}
           <div className="col-span-4 md:col-span-4 lg:col-span-6 lg:col-start-6 flex flex-col justify-center">
             <SectionHeader
-              title={<>ABOUT <span className="text-white italic font-editorial">ME</span></>}
-              subtitle={<span className="text-primary font-medium tracking-wide uppercase text-xs md:text-sm">UI/UX Designer & Design Engineer</span>}
+              title={<>ABOUT <span className="text-foreground dark:text-white italic font-editorial">ME</span></>}
+              subtitle={<span className="text-accent-text font-medium tracking-wide uppercase text-xs md:text-sm">UI/UX Designer & Design Engineer</span>}
               className="mb-6 md:mb-8"
               titleClassName="uppercase tracking-tighter leading-[0.9] text-5xl lg:text-7xl mb-2 md:mb-3"
               subtitleClassName="mb-0"
@@ -81,7 +81,7 @@ export function AboutSection() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.name}
-                      className="text-muted-foreground hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
+                      className="text-muted-foreground hover:text-foreground dark:hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
                     >
                       <social.Icon className="w-5 h-5 stroke-[1.5]" />
                     </a>

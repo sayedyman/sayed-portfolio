@@ -14,7 +14,7 @@ export function ExpertiseSection() {
         <Grid className="mb-10 md:mb-12">
           <div className="col-span-4 md:col-span-8 lg:col-span-12 flex flex-col">
             <SectionHeader
-              title={<>Capabilities & <span className="text-white italic font-editorial">Experience</span></>}
+              title={<>Capabilities & <span className="text-foreground dark:text-white italic font-editorial">Experience</span></>}
               className="mb-4"
               titleClassName="leading-tight"
             />
@@ -58,10 +58,10 @@ export function ExpertiseSection() {
                     <div className="absolute top-0 left-0 w-full h-full bg-primary origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-500 ease-out" />
                   </div>
                   <div className="absolute -left-[29px] md:-left-[53px] top-2 w-3 h-3 rounded-full border-2 border-background bg-border group-hover:bg-primary transition-colors duration-300" />
-                  <span className="text-white text-sm font-medium mb-2 block">
+                  <span className="text-foreground dark:text-white text-sm font-medium mb-2 block">
                     {job.period.includes("Present") ? (
                       <>
-                        {job.period.replace(" — Present", "")} <span className="text-muted-foreground">—</span> <span className="text-primary">Present</span>
+                        {job.period.replace(" — Present", "")} <span className="text-muted-foreground">—</span> <span className="text-accent-text">Present</span>
                       </>
                     ) : (
                       job.period

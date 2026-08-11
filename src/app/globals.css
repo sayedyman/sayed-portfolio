@@ -29,7 +29,10 @@
   --color-input: var(--input);
   --color-border: var(--border);
   --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-text: var(--accent-text);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
@@ -51,25 +54,28 @@
 }
 
 :root {
-  /* Forced Dark Mode by default */
-  --background: #050505;
-  --foreground: #ffffff;
-  --card: #0a0a0a;
-  --card-foreground: #ffffff;
-  --popover: #0a0a0a;
-  --popover-foreground: #ffffff;
-  --primary: #FFE500;
-  --primary-foreground: #050505;
-  --secondary: #111111;
-  --secondary-foreground: #ffffff;
-  --muted: #111111;
-  --muted-foreground: #A0A0A0;
-  --accent: #FFE500;
-  --accent-foreground: #050505;
-  --destructive: #ff3333;
-  --border: #222222;
-  --input: #222222;
-  --ring: #FFE500;
+  /* Light Mode */
+  --background: #f8f8f6;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #F4CC00;
+  --primary-foreground: #111111;
+  --secondary: #ebebe8;
+  --secondary-foreground: #111111;
+  --muted: #ebebe8;
+  --muted-foreground: #666666;
+  --accent: #F4CC00;
+  --accent-text: #996600;
+  --accent-foreground: #111111;
+  --destructive: #D32F2F;
+  --success: #2E7D32;
+  --success-foreground: #ffffff;
+  --border: #e2e2df;
+  --input: #e2e2df;
+  --ring: #F4CC00;
   --radius: 0.5rem;
 }
 
@@ -87,8 +93,11 @@
   --muted: #111111;
   --muted-foreground: #A0A0A0;
   --accent: #FFE500;
+  --accent-text: #FFE500;
   --accent-foreground: #050505;
-  --destructive: #ff3333;
+  --destructive: #EF5350;
+  --success: #4CAF50;
+  --success-foreground: #ffffff;
   --border: #222222;
   --input: #222222;
   --ring: #FFE500;
@@ -98,6 +107,12 @@
   * {
     @apply border-border outline-ring/50;
     -webkit-tap-highlight-color: transparent;
+  }
+  
+  body, header, nav, footer, section, div, span, h1, h2, h3, h4, h5, h6, p, a, button {
+    transition-property: background-color, color, border-color, fill, stroke;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
   body {
     @apply bg-background text-foreground antialiased selection:bg-primary selection:text-primary-foreground;
@@ -191,14 +206,25 @@ html.lenis, html.lenis body {
   background: linear-gradient(
     to right,
     transparent,
-    rgba(255, 229, 0, 0.01) 20%,
-    rgba(255, 229, 0, 0.08) 50%,
-    rgba(255, 229, 0, 0.01) 80%,
+    rgba(255, 229, 0, 0.05) 20%,
+    rgba(255, 229, 0, 0.35) 50%,
+    rgba(255, 229, 0, 0.05) 80%,
     transparent
   );
   transform: translateX(-100%) skewX(-15deg);
   animation: shimmer-sweep 7s cubic-bezier(0.25, 1, 0.5, 1) infinite;
   pointer-events: none;
+}
+
+.dark .animate-idle-shimmer::before {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 229, 0, 0.01) 20%,
+    rgba(255, 229, 0, 0.08) 50%,
+    rgba(255, 229, 0, 0.01) 80%,
+    transparent
+  );
 }
 
 @keyframes shimmer-sweep {

@@ -6,8 +6,8 @@ export default function NotFound() {
   return (
     <div className="relative min-h-[100dvh] pt-32 pb-24 flex items-center justify-center overflow-hidden bg-background">
       {/* Cinematic Gradient Background */}
-      <div className="absolute top-0 inset-x-0 h-[50vh] bg-gradient-to-b from-primary/5 via-transparent to-transparent opacity-50 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-primary/5 blur-[120px] rounded-full pointer-events-none opacity-50" />
+      <div className="absolute top-0 inset-x-0 h-[50vh] bg-gradient-to-b from-foreground/5 via-transparent to-transparent opacity-50 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-foreground/5 blur-[120px] rounded-full pointer-events-none opacity-50" />
       
       <Container className="relative z-10 text-center flex flex-col items-center">
         <Grid>

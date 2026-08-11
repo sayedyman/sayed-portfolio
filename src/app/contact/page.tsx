@@ -4,13 +4,14 @@ import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, ChevronDown } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ChevronDown, AlertCircle } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { siteConfig } from "@/config/site";
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [projectType, setProjectType] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -44,12 +45,13 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 
     if (response.ok) {
       setIsSubmitted(true);
+      setSubmitError("");
       form.reset();
     } else {
-      alert("Something went wrong. Please try again");
+      setSubmitError("Something went wrong. Please try again.");
     }
   } catch {
-    alert("Something went wrong. Please try again");
+    setSubmitError("Something went wrong. Please check your connection and try again.");
   } finally {
     setIsSubmitting(false);
   }
@@ -72,8 +74,8 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               className="flex items-center gap-3 mb-12 mt-8 md:mt-12"
             >
               <div className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-success"></span>
               </div>
               <span className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
                 Available for freelance projects
@@ -88,7 +90,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               className="max-w-5xl"
             >
               <h1 className="text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-medium leading-[1] tracking-tighter uppercase mb-6">
-                Let&apos;s Build <span className="text-white italic font-editorial">Something</span> Exceptional
+                Let&apos;s Build <span className="text-foreground dark:text-white italic font-editorial">Something</span> Exceptional
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-16">
@@ -118,7 +120,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   </div>
                   <div className="pt-1">
                     <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1">Email</div>
-                    <div className="text-lg font-medium group-hover:text-primary transition-colors">sayedelghanam123@gmail.com</div>
+                    <div className="text-lg font-medium group-hover:text-accent-text transition-colors">sayedelghanam123@gmail.com</div>
                   </div>
                 </a>
                 
@@ -128,7 +130,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   </div>
                   <div className="pt-1">
                     <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1">WhatsApp</div>
-                    <div className="text-lg font-medium group-hover:text-primary transition-colors">+20 109 920 4491</div>
+                    <div className="text-lg font-medium group-hover:text-accent-text transition-colors">+20 109 920 4491</div>
                   </div>
                 </a>
 
@@ -138,7 +140,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   </div>
                   <div className="pt-1">
                     <div className="text-xs text-muted-foreground uppercase tracking-widest mb-1">LinkedIn</div>
-                    <div className="text-lg font-medium group-hover:text-primary transition-colors">Sayed Elghanam</div>
+                    <div className="text-lg font-medium group-hover:text-accent-text transition-colors">Sayed Elghanam</div>
                   </div>
                 </a>
               </div>
@@ -172,7 +174,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   exit={{ opacity: 0, filter: "blur(8px)", scale: 0.98 }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   onSubmit={handleSubmit}
-                  className="bg-secondary/10 border border-border/30 rounded-2xl p-8 md:p-12 shadow-2xl backdrop-blur-[2px]"
+                  className="bg-white/60 dark:bg-secondary/10 border border-black/5 dark:border-border/30 rounded-2xl p-8 md:p-12 backdrop-blur-[2px]"
                 >
                   <div className="grid md:grid-cols-2 gap-10 mb-10">
                     <div className="space-y-3">
@@ -182,7 +184,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         id="name"
                           name="name" 
                         required
-                        className="w-full bg-transparent border-b border-border/50 px-0 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-colors"
+                        className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors"
                         placeholder="John Doe"
                       />
                     </div>
@@ -193,7 +195,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         id="email"
                         name="email"
                         required
-                        className="w-full bg-transparent border-b border-border/50 px-0 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-colors"
+                        className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors"
                         placeholder="john@example.com"
                       />
                     </div>
@@ -205,7 +207,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       <div className="relative flex items-center" ref={dropdownRef}>
                         <input type="hidden" name="projectType" value={projectType} required />
                         <div 
-                          className="w-full bg-transparent border-b border-border/50 px-0 py-3 pr-8 text-foreground focus:outline-none focus:border-primary transition-colors cursor-pointer relative"
+                          className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 pr-8 text-foreground focus:outline-none focus:border-accent-text transition-colors cursor-pointer relative"
                           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                           tabIndex={0}
                           onKeyDown={(e) => {
@@ -215,7 +217,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                             }
                           }}
                         >
-                          <span className={projectType ? "text-foreground" : "text-muted-foreground/30"}>
+                          <span className={projectType ? "text-foreground" : "text-black/40 dark:text-muted-foreground/30"}>
                             {projectType || "Select project type"}
                           </span>
                           <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
@@ -228,12 +230,12 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 10 }}
                               transition={{ duration: 0.2 }}
-                              className="absolute left-0 right-0 top-full mt-2 bg-[#0a0a0a] border border-border/50 rounded-lg shadow-xl overflow-hidden z-50 flex flex-col"
+                              className="absolute left-0 right-0 top-full mt-2 bg-white dark:bg-[#0a0a0a] border border-black/10 dark:border-border/50 rounded-lg shadow-xl overflow-hidden z-50 flex flex-col"
                             >
                               {["Web Design", "Mobile App Design", "Dashboard Design", "Landing Page Design", "UX Audit", "Other"].map((type) => (
                                 <div
                                   key={type}
-                                  className="px-4 py-3 text-sm text-foreground hover:bg-primary/15 transition-colors cursor-pointer"
+                                  className="px-4 py-3 text-sm text-foreground hover:bg-black/5 dark:hover:bg-primary/15 transition-colors cursor-pointer"
                                   onClick={() => {
                                     setProjectType(type);
                                     setIsDropdownOpen(false);
@@ -261,7 +263,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         type="text" 
                         id="budget"
                         name="budget" 
-                        className="w-full bg-transparent border-b border-border/50 px-0 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-colors"
+                        className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors"
                         placeholder="Type your budget here"
                       />
                     </div>
@@ -274,10 +276,23 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       name="message" 
                       required
                       rows={4}
-                      className="w-full bg-transparent border-b border-border/50 px-0 py-3 text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:border-primary transition-colors resize-none"
+                      className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors resize-none"
                       placeholder="Tell me about your vision..."
                     />
                   </div>
+
+                  {submitError && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: -10 }} 
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mb-8 p-4 bg-destructive/5 border border-destructive/20 rounded-lg flex items-start gap-3 text-destructive"
+                      role="alert"
+                      aria-live="polite"
+                    >
+                      <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                      <p className="text-sm font-medium">{submitError}</p>
+                    </motion.div>
+                  )}
 
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <p className="text-[11px] text-muted-foreground tracking-widest uppercase whitespace-nowrap">
@@ -300,14 +315,14 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   initial={{ opacity: 0, scale: 0.95, filter: "blur(8px)" }}
                   animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                   transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute inset-0 flex flex-col items-center justify-center text-center bg-secondary/5 border border-border/20 rounded-2xl p-10"
+                  className="absolute inset-0 flex flex-col items-center justify-center text-center bg-white/60 dark:bg-secondary/5 border border-black/5 dark:border-border/20 rounded-2xl p-10"
                 >
-                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-8">
-                    <CheckCircle2 className="w-10 h-10 text-primary" />
+                  <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center mb-8">
+                    <CheckCircle2 className="w-10 h-10 text-success" />
                   </div>
                   <h4 className="text-4xl font-heading font-medium mb-6">Your message has been received</h4>
                   <p className="text-muted-foreground text-lg max-w-md mx-auto leading-relaxed">
-                    We&apos;re currently accepting new projects. Use the form below to share details about your vision, timeline, and goals
+                    Thanks for reaching out. I’ve got your message and will review the details. I’ll get back to you as soon as possible.
                   </p>
                 </motion.div>
               )}
