@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { InteractiveElements } from "@/components/layout/InteractiveElements";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "./globals.css";
@@ -87,46 +83,10 @@ export default function RootLayout({
       className={`${inter.variable} antialiased`}
       suppressHydrationWarning
     >
-      <head>
-      </head>
-      <body className="min-h-dvh flex flex-col relative selection:bg-primary selection:text-primary-foreground">
+      <head />
+      <body className="min-h-dvh selection:bg-primary selection:text-primary-foreground">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <JsonLd
-          data={{
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Person",
-                "@id": "https://sayed-portfolio-seven.vercel.app/#person",
-                "name": "Sayed Ayman Elghanam",
-                "url": "https://sayed-portfolio-seven.vercel.app",
-                "image": "https://sayed-portfolio-seven.vercel.app/sayed-portrait.jpg",
-                "jobTitle": "UI/UX & Product Designer",
-                "sameAs": [
-                  "https://www.linkedin.com/in/sayed-ayman/",
-                  "https://www.behance.net/sayedelghanam1",
-                  "https://github.com/sayedyman"
-                ]
-              },
-              {
-                "@type": "WebSite",
-                "@id": "https://sayed-portfolio-seven.vercel.app/#website",
-                "url": "https://sayed-portfolio-seven.vercel.app",
-                "name": "Sayed Elghanam Portfolio",
-                "publisher": {
-                  "@id": "https://sayed-portfolio-seven.vercel.app/#person"
-                }
-              }
-            ]
-          }}
-        />
-        <InteractiveElements />
-        <div className="bg-grain" />
-        <Navbar />
-        <main className="flex-1">
           {children}
-        </main>
-        <Footer />
         </ThemeProvider>
       </body>
     </html>

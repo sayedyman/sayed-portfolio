@@ -1,19 +1,20 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useSyncExternalStore } from "react";
 import { Sun, Moon } from "lucide-react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 
+const emptySubscribe = () => () => {};
+
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, () => true, () => false);
   const shouldReduceMotion = useReducedMotion();
   const [showTooltip, setShowTooltip] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    setMounted(true);
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
     };

@@ -1,6 +1,5 @@
 import { NotFoundUI } from "@/components/ui/NotFoundContent";
 
-export default function RootNotFound() {
+export default function NotFound() {
   return <NotFoundUI />;
 }
-
