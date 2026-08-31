@@ -27,6 +27,7 @@ const featuredProjectsQuery = groq`
     title,
     "projectType": coalesce(projectTypeRef->title, projectType),
     tags,
+    homepageCover,
     coverImage,
     behanceUrl,
     featured,

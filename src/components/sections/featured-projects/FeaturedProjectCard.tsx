@@ -12,7 +12,8 @@ export function FeaturedProjectCard({
   colClass: string
   aspectClass: string
 }) {
-  const hasImage = !!project.coverImage?.asset
+  const coverSource = project.homepageCover ?? project.coverImage
+  const hasImage = !!coverSource?.asset
   const isComingSoon = !!project.comingSoon
 
   const CardWrapper = isComingSoon ? 'div' : 'a'
@@ -52,10 +53,10 @@ export function FeaturedProjectCard({
 
         {hasImage ? (
           <Image
-            src={urlFor(project.coverImage!).width(900).height(675).url()}
+            src={urlFor(coverSource!).width(900).url()}
             alt={project.title}
             fill
-            className={`object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            className={`object-contain transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isComingSoon 
                 ? 'blur-[3px] brightness-[0.75] scale-[1.01] group-hover:scale-[1.02]' 
                 : 'group-hover:blur-[2px] group-hover:scale-[1.01]'

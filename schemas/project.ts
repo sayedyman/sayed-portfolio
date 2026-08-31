@@ -152,10 +152,30 @@ export const projectType = defineType({
 
     // ─── MEDIA ───────────────────────────────────────────────────────
     defineField({
-      name: 'coverImage',
-      title: 'Cover Image',
+      name: 'homepageCover',
+      title: 'Homepage Cover',
       type: 'image',
       group: 'media',
+      description: 'Cover image used when this project is pinned to the homepage. Design this image for the homepage featured project frame.',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          title: 'Alt Text',
+          type: 'string',
+          description: 'Describe the image for screen readers and SEO',
+        }),
+      ],
+    }),
+
+    defineField({
+      name: 'coverImage',
+      title: 'Projects Page Cover',
+      type: 'image',
+      group: 'media',
+      description: 'Cover image used in the All Projects listing. Design this image for the All Projects project frame.',
       options: {
         hotspot: true,
       },
@@ -171,7 +191,7 @@ export const projectType = defineType({
       validation: (Rule) => Rule.custom((value: any, context) => {
         const doc = context.document as { status?: string }
         if (doc?.status === 'published' && !value?.asset) {
-          return 'Cover image is required before publishing'
+          return 'Projects Page Cover is required before publishing'
         }
         return true
       }),
@@ -212,10 +232,10 @@ export const projectType = defineType({
     // ─── ORDERING & VISIBILITY ────────────────────────────────────────
     defineField({
       name: 'featured',
-      title: 'Featured on Homepage',
+      title: 'Pin to Homepage',
       type: 'boolean',
       group: 'ordering',
-      description: 'When enabled, this project appears in the "Selected Work" section on the homepage',
+      description: 'When enabled, this project appears in the Featured Projects section on the homepage using the Homepage Cover image.',
       initialValue: false,
     }),
 

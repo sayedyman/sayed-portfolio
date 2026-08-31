@@ -161,10 +161,10 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
 
                           {hasImage ? (
                             <Image
-                              src={urlFor(project.coverImage!).width(1200).height(675).url()}
+                              src={urlFor(project.coverImage!).width(1200).url()}
                               alt={project.title}
                               fill
-                              className={`object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                              className={`object-contain transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                                 isComingSoon 
                                   ? 'blur-[3px] brightness-[0.75] scale-[1.01] group-hover:scale-[1.02]' 
                                   : 'group-hover:blur-[2px] group-hover:scale-[1.01]'

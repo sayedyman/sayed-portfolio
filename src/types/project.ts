@@ -13,6 +13,11 @@ export type SanityProject = {
   teaserCopy?: string
   summary?: string
   behanceUrl?: string
+  homepageCover?: {
+    asset: { _ref: string }
+    alt?: string
+    hotspot?: { x: number; y: number }
+  }
   coverImage?: {
     asset: { _ref: string }
     alt?: string
