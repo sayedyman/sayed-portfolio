@@ -10,6 +10,8 @@ import { Section } from "./Section";
 import { IconBrandLinkedin, IconBrandYoutube, IconBrandGithub, IconBrandBehance } from '@tabler/icons-react';
 import { Logo } from "@/components/ui/Logo";
 
+import { SocialIconButton } from "@/components/ui/SocialIconButton";
+
 export function Footer() {
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
@@ -42,23 +44,19 @@ export function Footer() {
               </div>
               <p>© {new Date().getFullYear()} Sayed Ayman Elghanam. All rights reserved</p>
             </div>
-            <div className="flex items-center gap-6 mt-4 md:mt-0">
+            <div className="flex items-center gap-3 sm:gap-4 mt-4 md:mt-0">
               {[
                 { name: "LinkedIn", href: "https://www.linkedin.com/in/sayed-ayman/", Icon: IconBrandLinkedin },
                 { name: "Behance", href: "https://www.behance.net/sayedelghanam1", Icon: IconBrandBehance },
                 { name: "GitHub", href: "https://github.com/sayedyman", Icon: IconBrandGithub },
                 { name: "YouTube", href: "https://www.youtube.com/@SayedUi-Ux", Icon: IconBrandYoutube }
               ].map((social) => (
-                <a 
+                <SocialIconButton
                   key={social.name}
                   href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="text-muted-foreground hover:text-foreground dark:hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
-                >
-                  <social.Icon className="w-5 h-5 stroke-[1.5]" />
-                </a>
+                  icon={social.Icon}
+                  label={social.name}
+                />
               ))}
             </div>
           </div>

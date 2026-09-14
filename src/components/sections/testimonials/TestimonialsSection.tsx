@@ -133,14 +133,14 @@ export function TestimonialsSection({ testimonials }: TestimonialsProps) {
           100% { transform: translateX(-50%); }
         }
         .animate-cinematic-marquee {
-          animation: cinematic-marquee 60s linear infinite;
+          animation: cinematic-marquee 42s linear infinite;
         }
         .marquee-container:hover .animate-cinematic-marquee {
           animation-play-state: paused !important;
         }
         @media (max-width: 768px) {
           .animate-cinematic-marquee {
-            animation-duration: 40s;
+            animation-duration: 28s;
           }
         }
       `}} />

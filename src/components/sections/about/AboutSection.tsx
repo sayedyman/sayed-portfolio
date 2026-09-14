@@ -9,6 +9,7 @@ import { CtaButton } from "@/components/ui/CtaButton";
 import Image from "next/image";
 
 import { IconBrandLinkedin, IconBrandGithub, IconBrandBehance } from '@tabler/icons-react';
+import { SocialIconButton } from "@/components/ui/SocialIconButton";
 
 export function AboutSection() {
   return (
@@ -69,22 +70,18 @@ export function AboutSection() {
                   See My Story
                 </CtaButton>
                 
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-3 sm:gap-4">
                   {[
                     { name: "LinkedIn", href: "https://www.linkedin.com/in/sayed-ayman/", Icon: IconBrandLinkedin },
                     { name: "Behance", href: "https://www.behance.net/sayedelghanam1", Icon: IconBrandBehance },
                     { name: "GitHub", href: "https://github.com/sayedyman", Icon: IconBrandGithub }
                   ].map((social) => (
-                    <a 
+                    <SocialIconButton
                       key={social.name}
                       href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.name}
-                      className="text-muted-foreground hover:text-foreground dark:hover:text-primary touch-active transition-all duration-300 ease-out hover:-translate-y-0.5"
-                    >
-                      <social.Icon className="w-5 h-5 stroke-[1.5]" />
-                    </a>
+                      icon={social.Icon}
+                      label={social.name}
+                    />
                   ))}
                 </div>
               </div>
