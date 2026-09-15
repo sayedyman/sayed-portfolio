@@ -9,7 +9,7 @@ import { getArticle, getAllArticleSlugs } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { JsonLd } from '@/components/seo/JsonLd'
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
 
 // ─── Static params ────────────────────────────────────────────────────────────
 
@@ -93,11 +93,23 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           "headline": article.title,
           "description": article.excerpt,
           "image": article.coverImage?.asset ? urlFor(article.coverImage).width(1200).url() : undefined,
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://sayed-portfolio-seven.vercel.app/articles/${slug}`
+          },
+          "url": `https://sayed-portfolio-seven.vercel.app/articles/${slug}`,
           "author": {
             "@type": "Person",
+            "@id": "https://sayed-portfolio-seven.vercel.app/#person",
             "name": "Sayed Ayman Elghanam"
           },
-          "datePublished": article.publishedAt
+          "publisher": {
+            "@type": "Person",
+            "@id": "https://sayed-portfolio-seven.vercel.app/#person",
+            "name": "Sayed Ayman Elghanam"
+          },
+          "datePublished": article.publishedAt,
+          "dateModified": article._updatedAt || article.publishedAt
         }}
       />
       <Container>

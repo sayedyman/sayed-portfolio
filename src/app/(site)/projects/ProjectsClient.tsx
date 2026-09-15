@@ -101,7 +101,6 @@ export function ProjectsClient({ projects }: ProjectsClientProps) {
               <h2 className="text-3xl md:text-4xl font-heading font-medium tracking-tight mb-4 text-foreground uppercase">
                 More projects are on the way
               </h2>
-              <h3 className="text-2xl font-heading font-medium mb-3">More projects are on the way</h3>
               <p className="text-muted-foreground">
                 I&apos;m continuously working on new products and case studies
               </p>

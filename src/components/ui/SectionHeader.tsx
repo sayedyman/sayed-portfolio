@@ -60,9 +60,9 @@ export function SectionHeader({
       )}
       
       <ItemWrapper {...itemProps}>
-        <h3 className={cn("text-heading mb-8 md:mb-12", titleClassName)}>
+        <h2 className={cn("text-heading mb-8 md:mb-12", titleClassName)}>
           {title}
-        </h3>
+        </h2>
       </ItemWrapper>
 
       {subtitle && (

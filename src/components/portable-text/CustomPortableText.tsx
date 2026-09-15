@@ -9,9 +9,9 @@ import type { PortableTextBlock } from '@portabletext/types'
 const customComponents: PortableTextComponents = {
   block: {
     h1: ({ children }) => (
-      <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-heading font-medium tracking-tighter mt-16 mb-8 text-foreground leading-[1.05]">
+      <h2 className="text-[clamp(2.5rem,6vw,4rem)] font-heading font-medium tracking-tighter mt-16 mb-8 text-foreground leading-[1.05]">
         {children}
-      </h1>
+      </h2>
     ),
     h2: ({ children }) => (
       <h2 className="text-[clamp(2rem,4vw,2.75rem)] font-heading font-medium tracking-tight mt-16 md:mt-20 mb-6 text-foreground leading-[1.1]">

@@ -24,7 +24,20 @@ export default function SiteLayout({
               "sameAs": [
                 "https://www.linkedin.com/in/sayed-ayman/",
                 "https://www.behance.net/sayedelghanam1",
-                "https://github.com/sayedyman"
+                "https://github.com/sayedyman",
+                "https://www.youtube.com/@SayedUi-Ux"
+              ],
+              "knowsAbout": [
+                "UI/UX Design",
+                "Product Design",
+                "Design Systems",
+                "User Research",
+                "Wireframing & Prototyping",
+                "Information Architecture",
+                "Usability Testing",
+                "SaaS Design",
+                "Design Engineering",
+                "Figma"
               ]
             },
             {
