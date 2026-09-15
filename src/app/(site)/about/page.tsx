@@ -4,6 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 
 export default function AboutPage() {
@@ -110,7 +111,7 @@ export default function AboutPage() {
                   That curiosity naturally led me into UX Design, where I realized that every interface is ultimately designed for human behavior
                 </p>
                 <p>
-                  Today I focus on creating digital experiences that balance user needs with business goals while continuously expanding my skills beyond traditional UI/UX
+                  Today I focus on creating digital experiences across my <Link href="/projects" className="text-foreground hover:text-primary underline underline-offset-4 transition-colors">projects</Link> that balance user needs with business goals, while sharing insights in my <Link href="/articles" className="text-foreground hover:text-primary underline underline-offset-4 transition-colors">articles</Link> and continuously expanding my skills beyond traditional UI/UX
                 </p>
               </div>
 

@@ -158,7 +158,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="relative w-full aspect-[4/3] md:aspect-[21/9] max-w-[100vw] md:max-w-5xl mx-auto mb-16 md:mb-24 overflow-hidden rounded-none md:rounded-sm bg-secondary">
             <Image
               src={urlFor(article.coverImage).width(1600).height(900).url()}
-              alt={article.title}
+              alt={article.coverImage?.alt || article.title}
               fill
               className="object-cover"
               priority

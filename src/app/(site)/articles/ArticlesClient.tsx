@@ -106,7 +106,7 @@ export function ArticlesClient({ articles }: { articles: SanityArticle[] }) {
                                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10 pointer-events-none mix-blend-overlay" />
                                 <Image
                                   src={urlFor(article.coverImage!).width(800).height(600).url()}
-                                  alt={article.title}
+                                  alt={article.coverImage?.alt || article.title}
                                   fill
                                   className="object-cover transition-transform duration-1000 group-hover:scale-[1.03]"
                                   sizes="(max-width: 1024px) 100vw, 45vw"

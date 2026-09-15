@@ -43,7 +43,7 @@ export function JournalSection({ articles }: JournalSectionProps) {
                   {article.coverImage ? (
                   <Image
                     src={urlFor(article.coverImage).url()}
-                  alt={article.title}
+                  alt={article.coverImage?.alt || article.title}
                   fill
                   className="object-cover"
                 />

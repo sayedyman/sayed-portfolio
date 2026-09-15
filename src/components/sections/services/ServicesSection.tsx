@@ -4,7 +4,7 @@ import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
 import { Section } from "@/components/layout/Section";
 import { SectionHeader } from "@/components/ui/SectionHeader";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { ArrowRight } from "lucide-react";
@@ -86,58 +86,41 @@ export function ServicesSection() {
                   </motion.div>
                 </motion.div>
 
-                {/* Expanded Content Area */}
-                <AnimatePresence initial={false}>
-                  {isActive && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pb-6 md:pb-8 pt-2 flex flex-col">
-                        
-                        {/* Details & CTA */}
-                        <div className="w-full lg:w-2/3 flex flex-col">
-                          <motion.p 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.1 }}
-                            className="text-lg md:text-xl text-muted-foreground/90 leading-relaxed mb-6"
-                          >
-                            {service.desc}
-                          </motion.p>
-                          
-                          <motion.div 
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.15 }}
-                            className="flex flex-wrap gap-2 mb-8"
-                          >
-                            {service.tags.map((tag) => (
-                              <span key={tag} className="px-4 py-1.5 rounded-full border border-border/30 bg-secondary/30 text-sm text-muted-foreground">
-                                {tag}
-                              </span>
-                            ))}
-                          </motion.div>
-                          
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.4, delay: 0.2 }}
-                            className="items-start flex"
-                          >
-                            <CtaButton variant="secondary" href="/contact">
-                              Start Your Project
-                            </CtaButton>
-                          </motion.div>
-                        </div>
-                        
+                {/* Expanded Content Area — crawlable in DOM across all services */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isActive ? "auto" : 0,
+                    opacity: isActive ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="pb-6 md:pb-8 pt-2 flex flex-col">
+                    
+                    {/* Details & CTA */}
+                    <div className="w-full lg:w-2/3 flex flex-col">
+                      <p className="text-lg md:text-xl text-muted-foreground/90 leading-relaxed mb-6">
+                        {service.desc}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-8">
+                        {service.tags.map((tag) => (
+                          <span key={tag} className="px-4 py-1.5 rounded-full border border-border/30 bg-secondary/30 text-sm text-muted-foreground">
+                            {tag}
+                          </span>
+                        ))}
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      
+                      <div className="items-start flex">
+                        <CtaButton variant="secondary" href="/contact">
+                          Start Your Project
+                        </CtaButton>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </motion.div>
               </motion.div>
             );
           })}

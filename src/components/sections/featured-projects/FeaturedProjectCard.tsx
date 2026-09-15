@@ -54,7 +54,7 @@ export function FeaturedProjectCard({
         {hasImage ? (
           <Image
             src={urlFor(coverSource!).width(900).url()}
-            alt={project.title}
+            alt={project.homepageCover?.alt || project.coverImage?.alt || project.title}
             fill
             className={`object-contain transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
               isComingSoon 

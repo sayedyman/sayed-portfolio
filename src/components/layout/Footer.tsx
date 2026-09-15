@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 import { Container } from "./Container";
 import { Grid } from "./Grid";
@@ -37,14 +38,22 @@ export function Footer() {
             </Grid>
           )}
           
-          <div className={`flex flex-col md:flex-row items-center md:items-end justify-between gap-6 md:gap-0 text-sm text-muted-foreground text-center md:text-left ${!isContactPage ? 'pt-8 border-t border-border/50' : ''}`}>
+          <div className={`flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 text-sm text-muted-foreground text-center md:text-left ${!isContactPage ? 'pt-8 border-t border-border/50' : ''}`}>
             <div className="flex flex-col md:flex-row items-center gap-4">
               <div className="relative w-12 h-8 flex items-center">
                 <Logo className="w-full h-full text-foreground" preserveAspectRatio="xMinYMid meet" />
               </div>
               <p>© {new Date().getFullYear()} Sayed Ayman Elghanam. All rights reserved</p>
             </div>
-            <div className="flex items-center gap-3 sm:gap-4 mt-4 md:mt-0">
+
+            <nav className="flex flex-wrap justify-center items-center gap-6 text-xs uppercase tracking-widest font-medium" aria-label="Footer Navigation">
+              <Link href="/about" className="hover:text-foreground transition-colors">About</Link>
+              <Link href="/projects" className="hover:text-foreground transition-colors">Projects</Link>
+              <Link href="/articles" className="hover:text-foreground transition-colors">Articles</Link>
+              <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
+            </nav>
+
+            <div className="flex items-center gap-3 sm:gap-4">
               {[
                 { name: "LinkedIn", href: "https://www.linkedin.com/in/sayed-ayman/", Icon: IconBrandLinkedin },
                 { name: "Behance", href: "https://www.behance.net/sayedelghanam1", Icon: IconBrandBehance },
