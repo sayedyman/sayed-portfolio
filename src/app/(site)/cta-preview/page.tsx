@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import { Container } from "@/components/layout/Container";
 import { Grid } from "@/components/layout/Grid";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CtaButton } from "@/components/ui/CtaButton";
+
+export const metadata: Metadata = {
+  title: "CTA Preview",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function CtaPreviewPage() {
   return (

@@ -4,9 +4,9 @@ import { ProjectsClient } from './ProjectsClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Projects & Case Studies | Sayed Elghanam',
+  title: 'Projects & Case Studies',
   description: 'Explore UI/UX design case studies and digital product projects designed by Sayed Elghanam',
-  alternates: { canonical: 'https://sayed-portfolio-seven.vercel.app/projects' },
+  alternates: { canonical: '/projects' },
   openGraph: {
     title: 'Projects & Case Studies | Sayed Elghanam',
     description: 'Explore UI/UX design case studies and digital product projects designed by Sayed Elghanam',

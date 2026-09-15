@@ -4,9 +4,9 @@ import { ArticlesClient } from './ArticlesClient'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Journal & UX Articles | Sayed Elghanam',
+  title: 'Journal & UX Articles',
   description: 'Read articles and insights on UI/UX design, product strategy, design systems, and human-computer interaction by Sayed Elghanam',
-  alternates: { canonical: 'https://sayed-portfolio-seven.vercel.app/articles' },
+  alternates: { canonical: '/articles' },
   openGraph: {
     title: 'Journal & UX Articles | Sayed Elghanam',
     description: 'Read articles and insights on UI/UX design, product strategy, design systems, and human-computer interaction by Sayed Elghanam',

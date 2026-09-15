@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'About | Sayed Elghanam',
+  title: 'About',
   description: 'Learn about Sayed Ayman Elghanam, a UI/UX & Product Designer blending sociology, human behavior, and strategy to craft intuitive digital experiences',
   alternates: {
-    canonical: 'https://sayed-portfolio-seven.vercel.app/about',
+    canonical: '/about',
   },
   openGraph: {
     title: 'About | Sayed Elghanam',

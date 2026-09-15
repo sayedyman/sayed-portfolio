@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Contact | Sayed Elghanam',
+  title: 'Contact',
   description: 'Get in touch with Sayed Elghanam for freelance UI/UX design, product design, and web app design projects',
   alternates: {
-    canonical: 'https://sayed-portfolio-seven.vercel.app/contact',
+    canonical: '/contact',
   },
   openGraph: {
     title: 'Contact | Sayed Elghanam',

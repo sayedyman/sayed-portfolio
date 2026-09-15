@@ -11,6 +11,9 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sayed-portfolio-seven.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   title: {
     default: "Sayed Elghanam | UI/UX Designer",
     template: "%s | Sayed Elghanam",

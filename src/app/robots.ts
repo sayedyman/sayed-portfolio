@@ -7,7 +7,13 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/sayed-admin/', '/api/'],
+      disallow: [
+        '/sayed-admin',
+        '/sayed-admin/*',
+        '/api',
+        '/api/*',
+        '/cta-preview',
+      ],
     },
     sitemap: `${baseUrl}/sitemap.xml`,
   };

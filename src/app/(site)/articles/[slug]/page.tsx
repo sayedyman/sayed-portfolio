@@ -36,10 +36,10 @@ export async function generateMetadata({
     : undefined;
 
   return {
-    title: article.seoTitle ?? `${article.title} | Sayed Elghanam`,
+    title: article.seoTitle ?? article.title,
     description: article.seoDescription ?? article.excerpt ?? undefined,
     alternates: {
-      canonical: `https://sayed-portfolio-seven.vercel.app/articles/${slug}`,
+      canonical: `/articles/${slug}`,
     },
     openGraph: {
       type: 'article',
