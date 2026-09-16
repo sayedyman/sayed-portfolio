@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 
 import { Container } from "./Container";
 import { Grid } from "./Grid";
@@ -45,13 +44,6 @@ export function Footer() {
               </div>
               <p>© {new Date().getFullYear()} Sayed Ayman Elghanam. All rights reserved</p>
             </div>
-
-            <nav className="flex flex-wrap justify-center items-center gap-6 text-xs uppercase tracking-widest font-medium" aria-label="Footer Navigation">
-              <Link href="/about" className="hover:text-foreground transition-colors">About</Link>
-              <Link href="/projects" className="hover:text-foreground transition-colors">Projects</Link>
-              <Link href="/articles" className="hover:text-foreground transition-colors">Articles</Link>
-              <Link href="/contact" className="hover:text-foreground transition-colors">Contact</Link>
-            </nav>
 
             <div className="flex items-center gap-3 sm:gap-4">
               {[
