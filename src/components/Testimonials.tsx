@@ -146,7 +146,7 @@ function TestimonialRail({ testimonials }: { testimonials: SanityTestimonial[] }
             className="shrink-0 w-[85vw] md:w-[520px] lg:w-[560px]"
             style={{ scrollSnapAlign: "start" }}
           >
-            <div className="relative h-full flex flex-col justify-between border-l border-border/20 pl-6 md:pl-8 py-2">
+            <div className="relative h-full flex flex-col justify-between border-s border-border/20 ps-6 md:ps-8 py-2">
               <div>
                 <QuoteGlyph className="text-[60px] md:text-[80px] -mb-4 md:-mb-6" />
 
