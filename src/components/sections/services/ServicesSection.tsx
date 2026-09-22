@@ -12,27 +12,31 @@ import { ArrowRight } from "lucide-react";
 const services = [
   { 
     num: "01", 
-    title: "UX Audit & Product Review", 
-    desc: "Diagnosing friction points and identifying critical usability improvements to elevate the overall product experience and optimize user flows",
-    tags: ["Usability Testing", "Heuristic Evaluation", "User Research", "UX Strategy"]
+    title: "Website Design", 
+    slug: "website-design",
+    desc: "I design strategic websites that clearly communicate what your business does, build trust with visitors, and guide them toward taking action",
+    tags: ["SaaS Websites", "Agency Websites", "Business Websites"]
   },
   { 
     num: "02", 
     title: "Landing Page Design", 
-    desc: "Structuring premium, conversion-focused narratives driven by strong visual hierarchy and modern, cinematic responsiveness",
-    tags: ["Figma", "Responsive Design", "Visual Storytelling", "Conversion UX"]
+    slug: "landing-page-design",
+    desc: "I design focused landing pages that make your offer easy to understand, highlight its value, and guide visitors toward one clear action",
+    tags: ["Product Landing Pages", "Campaign Pages", "Conversion-focused UI"]
   },
   { 
     num: "03", 
-    title: "Web & Mobile App Design", 
-    desc: "Crafting scalable product interfaces that balance clean interaction systems with highly functional, modern responsive UX/UI",
-    tags: ["Figma", "Design Systems", "Prototyping", "iOS & Android"]
+    title: "App Design", 
+    slug: "app-design",
+    desc: "I design clear and intuitive app experiences, from user flows and wireframes to polished interfaces and prototypes that balance user needs with business goals",
+    tags: ["Mobile Apps", "Web Apps", "Product UI"]
   },
   { 
     num: "04", 
-    title: "Dashboard UI/UX Design", 
-    desc: "Architecting clean information hierarchy and usability-focused workflows to make data-heavy interfaces feel structured and effortless",
-    tags: ["Data Visualization", "Information Architecture", "SaaS", "Enterprise UX"]
+    title: "UX Audit & Optimization", 
+    slug: "ux-audit",
+    desc: "I review your existing website or product to uncover usability issues, friction points, and opportunities to create a clearer and more effective experience",
+    tags: ["UX Audit", "Usability Review", "UX Optimization"]
   }
 ];
 
@@ -113,7 +117,7 @@ export function ServicesSection() {
                       </div>
                       
                       <div className="items-start flex">
-                        <CtaButton variant="secondary" href="/contact">
+                        <CtaButton variant="secondary" href={`/contact?service=${service.slug}`}>
                           Start Your Project
                         </CtaButton>
                       </div>

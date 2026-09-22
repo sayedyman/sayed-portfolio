@@ -4,10 +4,11 @@ import dynamic from "next/dynamic";
 import type { SanityFeaturedProject, SanityTestimonial, SanityArticle } from "@/types";
 
 import { HeroSection } from "@/sections/hero";
-import { AboutSection } from "@/sections/about";
+import { WhoIWorkWithSection } from "@/sections/who-i-work-with";
 import { FeaturedProjectsSection } from "@/sections/featured-projects";
-import { ExpertiseSection } from "@/sections/expertise";
 import { ServicesSection } from "@/sections/services";
+import { AboutSection } from "@/sections/about";
+import { ExpertiseSection } from "@/sections/expertise";
 import { JournalSection } from "@/sections/journal";
 
 const TestimonialsSection = dynamic(() => import("@/sections/testimonials").then(m => m.TestimonialsSection), { ssr: true });
@@ -24,9 +25,10 @@ export default function HomeClient({ projects, articles, testimonials }: HomeCli
       {/* Navbar clearance spacer — scales with viewport height */}
       <div className="h-[clamp(1rem,3vh,2.5rem)]" aria-hidden="true" />
       <HeroSection />
-      <AboutSection />
+      <WhoIWorkWithSection />
       <FeaturedProjectsSection projects={projects} />
       <ServicesSection />
+      <AboutSection />
       <ExpertiseSection />
       <JournalSection articles={articles} />
       <TestimonialsSection testimonials={testimonials} />

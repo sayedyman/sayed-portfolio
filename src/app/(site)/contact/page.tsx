@@ -5,14 +5,94 @@ import { Grid } from "@/components/layout/Grid";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, CheckCircle2, ChevronDown, AlertCircle } from "lucide-react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { siteConfig } from "@/config/site";
 
-export default function ContactPage() {
+interface ServiceConfig {
+  heading: React.ReactNode;
+  subtitle: string;
+  defaultProjectType: string;
+}
+
+const SERVICE_CONFIGS: Record<string, ServiceConfig> = {
+  "website-design": {
+    heading: (
+      <>
+        Let&apos;s Build <span className="text-foreground dark:text-white italic font-editorial">Your</span> Website
+      </>
+    ),
+    subtitle:
+      "Have a business, product, or agency that needs a website? Let’s create a digital experience that clearly communicates your value and turns visitors into action",
+    defaultProjectType: "Web Design",
+  },
+  "landing-page-design": {
+    heading: (
+      <>
+        Let&apos;s Turn <span className="text-foreground dark:text-white italic font-editorial">Your Offer</span> Into Action
+      </>
+    ),
+    subtitle:
+      "Have a product, offer, or campaign to launch? Let’s create a focused landing page that makes your value clear and guides visitors toward taking action",
+    defaultProjectType: "Landing Page Design",
+  },
+  "app-design": {
+    heading: (
+      <>
+        Let&apos;s Design <span className="text-foreground dark:text-white italic font-editorial">Your</span> App
+      </>
+    ),
+    subtitle:
+      "Have an app idea worth building? Let’s turn it into a clear, intuitive experience that works for your users and your business",
+    defaultProjectType: "Mobile App Design",
+  },
+  "ux-audit": {
+    heading: (
+      <>
+        Let&apos;s Improve <span className="text-foreground dark:text-white italic font-editorial">Your</span> Experience
+      </>
+    ),
+    subtitle:
+      "Already have a website or product? Let’s uncover what’s creating friction and find opportunities to make the experience clearer and more effective",
+    defaultProjectType: "UX Audit",
+  },
+};
+
+const DEFAULT_CONFIG: ServiceConfig = {
+  heading: (
+    <>
+      Let&apos;s Build <span className="text-foreground dark:text-white italic font-editorial">Something</span> Exceptional
+    </>
+  ),
+  subtitle:
+    "Whether you’re launching a new product, building your website, or improving an existing experience, let’s create something that works for your business",
+  defaultProjectType: "",
+};
+
+const PLACEHOLDERS: Record<string, string> = {
+  "Web Design":
+    "I’m looking to build a website for my business and would like to discuss the goals, structure, and direction for the project",
+  "Mobile App Design":
+    "I’m looking to design a mobile app and would like to discuss the product, user experience, key features, and overall direction",
+  "Dashboard Design":
+    "I’m looking to design a dashboard and would like to discuss the users, key workflows, information structure, and overall product goals",
+  "Landing Page Design":
+    "I’m looking to create a landing page for a specific product, offer, or campaign and would like to discuss the goal and direction for the page",
+  "UX Audit":
+    "I’d like to improve an existing website or digital product and would like to discuss the current experience, usability issues, and opportunities for improvement",
+  "Other":
+    "Tell me about your project, what you’re looking to build, and how I can help",
+};
+
+const DEFAULT_PLACEHOLDER = "Tell me about your vision...";
+
+function ContactContent({ serviceParam }: { serviceParam: string }) {
+  const serviceConfig = SERVICE_CONFIGS[serviceParam] || DEFAULT_CONFIG;
+
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [projectType, setProjectType] = useState("");
+  const [projectType, setProjectType] = useState<string>(serviceConfig.defaultProjectType);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -26,36 +106,38 @@ export default function ContactPage() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-  setIsSubmitting(true);
+    setIsSubmitting(true);
 
-  const form = e.currentTarget;
-  const formData = new FormData(form);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-  try {
-    const response = await fetch("https://formspree.io/f/xwvyabyj", {
-      method: "POST",
-      body: formData,
-      headers: {
-        Accept: "application/json",
-      },
-    });
+    try {
+      const response = await fetch("https://formspree.io/f/xwvyabyj", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
-    if (response.ok) {
-      setIsSubmitted(true);
-      setSubmitError("");
-      form.reset();
-    } else {
-      setSubmitError("Something went wrong. Please try again.");
+      if (response.ok) {
+        setIsSubmitted(true);
+        setSubmitError("");
+        form.reset();
+      } else {
+        setSubmitError("Something went wrong. Please try again.");
+      }
+    } catch {
+      setSubmitError("Something went wrong. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-  } catch {
-    setSubmitError("Something went wrong. Please check your connection and try again.");
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
+
+  const placeholder = (projectType && PLACEHOLDERS[projectType]) || DEFAULT_PLACEHOLDER;
 
   return (
     <div className="relative min-h-[100svh] pt-20 md:pt-24 lg:pt-28 pb-24 overflow-hidden bg-background">
@@ -90,11 +172,11 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               className="max-w-5xl"
             >
               <h1 className="text-4xl md:text-5xl lg:text-[5.5rem] font-heading font-medium leading-[1] tracking-tighter uppercase mb-6">
-                Let&apos;s Build <span className="text-foreground dark:text-white italic font-editorial">Something</span> Exceptional
+                {serviceConfig.heading}
               </h1>
               
               <p className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed mb-16">
-                Designing modern product experiences across dashboards, web platforms, and digital products. Focused on thoughtful UX and scalable design systems
+                {serviceConfig.subtitle}
               </p>
             </motion.div>
           </div>
@@ -150,7 +232,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
               <CtaButton 
                 variant="secondary" 
                 href={siteConfig.resumeUrl}
-                target="_blank"
+                target="_blank" 
                 rel="noopener noreferrer"
               >
                 View Resume
@@ -182,7 +264,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       <input 
                         type="text" 
                         id="name"
-                          name="name" 
+                        name="name" 
                         required
                         className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors"
                         placeholder="John Doe"
@@ -193,7 +275,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       <input 
                         type="email" 
                         id="email"
-                        name="email"
+                        name="email" 
                         required
                         className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors"
                         placeholder="john@example.com"
@@ -202,6 +284,16 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-10 mb-10">
+                    <div className="space-y-3">
+                      <label htmlFor="whatsapp" className="text-xs font-medium text-muted-foreground uppercase tracking-widest">WhatsApp</label>
+                      <input 
+                        type="tel" 
+                        id="whatsapp"
+                        name="whatsapp" 
+                        className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors"
+                        placeholder="Enter your WhatsApp number"
+                      />
+                    </div>
                     <div className="space-y-3">
                       <label htmlFor="type" className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Project Type</label>
                       <div className="relative flex items-center" ref={dropdownRef}>
@@ -257,6 +349,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                         </AnimatePresence>
                       </div>
                     </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-10 mb-10">
                     <div className="space-y-3">
                       <label htmlFor="budget" className="text-xs font-medium text-muted-foreground uppercase tracking-widest">Budget Range</label>
                       <input 
@@ -277,7 +372,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                       required
                       rows={4}
                       className="w-full bg-transparent border-b border-black/10 dark:border-border/50 px-0 py-3 text-foreground placeholder:text-black/40 dark:placeholder:text-muted-foreground/30 focus:outline-none focus:border-accent-text transition-colors resize-none"
-                      placeholder="Tell me about your vision..."
+                      placeholder={placeholder}
                     />
                   </div>
 
@@ -298,9 +393,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
                     <p className="text-[11px] text-muted-foreground tracking-widest uppercase whitespace-nowrap">
                       Typically replies within 24 hours
                     </p>
-                    <CtaButton
-                      type="submit"
-                      variant="primary"
+                    <CtaButton 
+                      type="submit" 
+                      variant="primary" 
                       size="md"
                       loading={isSubmitting}
                       className="whitespace-nowrap w-max"
@@ -332,5 +427,19 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         </Grid>
       </Container>
     </div>
+  );
+}
+
+function ContactPageWrapper() {
+  const searchParams = useSearchParams();
+  const serviceParam = searchParams.get("service") || "";
+  return <ContactContent key={serviceParam} serviceParam={serviceParam} />;
+}
+
+export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-[100svh] bg-background" />}>
+      <ContactPageWrapper />
+    </Suspense>
   );
 }

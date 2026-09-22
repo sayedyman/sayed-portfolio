@@ -59,10 +59,10 @@ export function HeroSection() {
             >
               <div className="flex items-center gap-4 text-[10px] md:text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
                 <span className="w-8 md:w-12 h-[1px] bg-primary"></span>
-                <span>UI/UX Designer & Design Engineer</span>
+                <span>UI/UX DESIGNER & DESIGN ENGINEER</span>
               </div>
               <div className="text-sm md:text-base text-muted-foreground max-w-[85vw] md:max-w-xl lg:max-w-2xl leading-relaxed font-editorial pl-12 md:pl-16 text-balance">
-                UI/UX Designer & Design Engineer | Helping SaaS founders build products that reduce UX friction and drive business growth
+                I design websites for SaaS, startups, and agencies that turn their value into clear digital experiences
               </div>
             </motion.div>
             
