@@ -1,11 +1,13 @@
+import type { SanityImage } from './index'
+
 export type SanityProject = {
   _id: string
   _updatedAt?: string
   _createdAt?: string
   title: string
-  slug: { current: string }
+  slug: { current: string; _type?: string }
   status?: 'draft' | 'published' | 'archived' | 'coming-soon'
-  comingSoon?: boolean
+  comingSoon?: boolean | null
   projectType?: string
   category?: string
   tags?: string[]
@@ -13,21 +15,16 @@ export type SanityProject = {
   teaserCopy?: string
   summary?: string
   behanceUrl?: string
-  homepageCover?: {
-    asset: { _ref: string }
-    alt?: string
-    hotspot?: { x: number; y: number }
-  }
-  coverImage?: {
-    asset: { _ref: string }
-    alt?: string
-    hotspot?: { x: number; y: number }
-  }
+  homepageCover?: SanityImage | null
+  coverImage?: SanityImage | null
+  featured?: boolean
   imageGradient?: string
   displayOrder?: number
   publishedAt?: string
   launchDate?: string
   updatedAt?: string
+  seoTitle?: string
+  seoDescription?: string
 }
 
 export type SanityFeaturedProject = SanityProject & {

@@ -1,6 +1,12 @@
 import { groq } from 'next-sanity'
-import { client } from '../client'
 import { CACHE_TAGS } from '../cache-tags'
+import { safeSanityFetch } from '../fetch'
+import {
+  mockAllArticles,
+  mockFeaturedArticles,
+  mockArticleDetails,
+  mockArticleSlugs,
+} from '../mocks'
 import type { SanityArticle, SanityArticleDetail, SanitySlug } from '@/types'
 
 const allArticlesQuery = groq`
@@ -69,17 +75,37 @@ const allArticleSlugsQuery = groq`
 `
 
 export async function getAllArticles(): Promise<SanityArticle[]> {
-  return client.fetch(allArticlesQuery, {}, { next: { tags: [CACHE_TAGS.ARTICLE] } })
+  return safeSanityFetch<SanityArticle[]>(
+    allArticlesQuery,
+    {},
+    { next: { tags: [CACHE_TAGS.ARTICLE] } },
+    mockAllArticles
+  )
 }
 
 export async function getFeaturedArticles(): Promise<SanityArticle[]> {
-  return client.fetch(featuredArticlesQuery, {}, { next: { tags: [CACHE_TAGS.ARTICLE] } })
+  return safeSanityFetch<SanityArticle[]>(
+    featuredArticlesQuery,
+    {},
+    { next: { tags: [CACHE_TAGS.ARTICLE] } },
+    mockFeaturedArticles
+  )
 }
 
 export async function getArticle(slug: string): Promise<SanityArticleDetail | null> {
-  return client.fetch(articleBySlugQuery, { slug }, { next: { tags: [CACHE_TAGS.ARTICLE] } })
+  return safeSanityFetch<SanityArticleDetail | null>(
+    articleBySlugQuery,
+    { slug },
+    { next: { tags: [CACHE_TAGS.ARTICLE] } },
+    () => mockArticleDetails.find((a) => a.slug?.current === slug) ?? null
+  )
 }
 
 export async function getAllArticleSlugs(): Promise<SanitySlug[]> {
-  return client.fetch(allArticleSlugsQuery, {}, { next: { tags: [CACHE_TAGS.ARTICLE] } })
+  return safeSanityFetch<SanitySlug[]>(
+    allArticleSlugsQuery,
+    {},
+    { next: { tags: [CACHE_TAGS.ARTICLE] } },
+    mockArticleSlugs
+  )
 }

@@ -1,6 +1,7 @@
 import { groq } from 'next-sanity'
-import { client } from '../client'
 import { CACHE_TAGS } from '../cache-tags'
+import { safeSanityFetch } from '../fetch'
+import { mockAllProjects, mockFeaturedProjects } from '../mocks'
 import type { SanityProject, SanityFeaturedProject } from '@/types'
 
 const allProjectsQuery = groq`
@@ -38,22 +39,13 @@ const featuredProjectsQuery = groq`
   }
 `
 
-const allProjectsRawQuery = groq`
-  *[_type == "project"]
-  | order(displayOrder asc) {
-    _id,
-    title,
-    status,
-    featured,
-    comingSoon,
-    featuredOrder,
-    displayOrder,
-    slug
-  }
-`
-
 export async function getAllProjects(): Promise<SanityProject[]> {
-  const result = await client.fetch<SanityProject[]>(allProjectsQuery, {}, { next: { tags: [CACHE_TAGS.PROJECT] } })
+  const result = await safeSanityFetch<SanityProject[]>(
+    allProjectsQuery,
+    {},
+    { next: { tags: [CACHE_TAGS.PROJECT] } },
+    mockAllProjects
+  )
   if (process.env.NODE_ENV !== 'production') {
     console.log(`[Sanity] getAllProjects → ${result.length} project(s)`)
   }
@@ -61,13 +53,14 @@ export async function getAllProjects(): Promise<SanityProject[]> {
 }
 
 export async function getFeaturedProjects(): Promise<SanityFeaturedProject[]> {
-  const result = await client.fetch<SanityFeaturedProject[]>(featuredProjectsQuery, {}, { next: { tags: [CACHE_TAGS.PROJECT] } })
+  const result = await safeSanityFetch<SanityFeaturedProject[]>(
+    featuredProjectsQuery,
+    {},
+    { next: { tags: [CACHE_TAGS.PROJECT] } },
+    mockFeaturedProjects
+  )
   if (process.env.NODE_ENV !== 'production') {
     console.log(`[Sanity] getFeaturedProjects → ${result.length} featured project(s)`)
-    if (result.length === 0) {
-      const raw = await client.fetch(allProjectsRawQuery)
-      console.log('[Sanity] RAW projects (no filter):', JSON.stringify(raw, null, 2))
-    }
   }
   return result
 }

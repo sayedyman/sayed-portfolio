@@ -1,6 +1,7 @@
 import { groq } from 'next-sanity'
-import { client } from '../client'
 import { CACHE_TAGS } from '../cache-tags'
+import { safeSanityFetch } from '../fetch'
+import { mockAllCertificates } from '../mocks'
 import type { SanityCertificate } from '@/types'
 
 const allCertificatesQuery = groq`
@@ -20,10 +21,11 @@ const allCertificatesQuery = groq`
 `
 
 export async function getAllCertificates(): Promise<SanityCertificate[]> {
-  const result = await client.fetch<SanityCertificate[]>(
+  const result = await safeSanityFetch<SanityCertificate[]>(
     allCertificatesQuery,
     {},
-    { next: { tags: [CACHE_TAGS.CERTIFICATE] } }
+    { next: { tags: [CACHE_TAGS.CERTIFICATE] } },
+    mockAllCertificates
   )
   if (process.env.NODE_ENV !== 'production') {
     console.log(`[Sanity] getAllCertificates → ${result.length} certificate(s)`)

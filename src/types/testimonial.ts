@@ -1,3 +1,5 @@
+import type { SanityImage } from './index'
+
 export type SanityTestimonial = {
   _id: string
   _updatedAt?: string
@@ -7,10 +9,7 @@ export type SanityTestimonial = {
   authorName: string
   authorRole?: string
   company?: string
-  avatar?: {
-    asset: { _ref: string }
-    hotspot?: { x: number; y: number }
-  }
+  avatar?: SanityImage | null
   featured?: boolean
   displayOrder?: number
 }

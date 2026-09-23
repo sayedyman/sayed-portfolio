@@ -1,17 +1,15 @@
+import type { SanityImage } from './index'
+
 export type SanityArticle = {
   _id: string
   _updatedAt?: string
   _createdAt?: string
   title: string
-  slug: { current: string }
+  slug: { current: string; _type?: string }
   status?: 'draft' | 'published' | 'archived'
   publishedAt?: string
   excerpt?: string
-  coverImage?: {
-    asset: { _ref: string }
-    alt?: string
-    hotspot?: { x: number; y: number }
-  }
+  coverImage?: SanityImage | null
   category?: string
   tags?: string[]
   featured?: boolean

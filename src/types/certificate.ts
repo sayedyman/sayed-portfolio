@@ -1,3 +1,5 @@
+import type { SanityImage } from './index'
+
 export type SanityCertificate = {
   _id: string
   _createdAt?: string
@@ -5,10 +7,7 @@ export type SanityCertificate = {
   title: string
   issuer: string
   date?: string
-  image?: {
-    asset: { _ref: string }
-    hotspot?: { x: number; y: number }
-  }
+  image?: SanityImage | null
   certificateUrl?: string
   description?: string
   displayOrder?: number
