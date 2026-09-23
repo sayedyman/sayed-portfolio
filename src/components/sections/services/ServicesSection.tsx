@@ -44,7 +44,7 @@ export function ServicesSection() {
   const [activeService, setActiveService] = useState<number>(0);
 
   return (
-    <Section id="capabilities" padding="xl" className="bg-background relative border-t border-border/10 overflow-hidden">
+    <Section id="services" padding="xl" className="bg-background relative border-t border-border/10 overflow-hidden">
       <Container>
         <Grid>
           <div className="col-span-4 md:col-span-8 lg:col-span-12 mb-10 md:mb-14">

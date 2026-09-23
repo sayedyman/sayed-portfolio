@@ -54,6 +54,13 @@ const linkVariants = {
 };
 
 
+const navLinks = [
+  { name: "Work", href: "/#work", id: "work" },
+  { name: "Services", href: "/#services", id: "services" },
+  { name: "About", href: "/#about", id: "about" },
+  { name: "Certificates", href: "/certificates", id: "certificates" },
+];
+
 export function Navbar() {
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -62,11 +69,23 @@ export function Navbar() {
   const lenis = useLenis();
   const { activeId, setManualActiveId } = useActiveSection([
     "home",
-    "about",
     "work",
-    "experience",
-    "journal"
+    "services",
+    "about",
   ]);
+
+  const isLinkActive = (link: (typeof navLinks)[number]) => {
+    if (link.href === "/certificates") {
+      return pathname === "/certificates" || pathname.startsWith("/certificates/");
+    }
+    if (link.href === "/contact") {
+      return pathname === "/contact";
+    }
+    if (link.href.startsWith("/#")) {
+      return pathname === "/" && activeId === link.id;
+    }
+    return false;
+  };
 
   useEffect(() => {
     // mounted state removed as it is no longer needed
@@ -173,13 +192,8 @@ export function Navbar() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-6 dark:mix-blend-difference absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              {[
-                { name: "About", href: "/#about", id: "about" },
-                { name: "Work", href: "/#work", id: "work" },
-                { name: "Experience", href: "/#experience", id: "experience" },
-                { name: "Journal", href: "/#journal", id: "journal" }
-              ].map((link) => {
-                const active = link.href === "/contact" ? pathname === "/contact" : (pathname === "/" && activeId === link.id);
+              {navLinks.map((link) => {
+                const active = isLinkActive(link);
                 return (
                   <Link 
                     key={link.name}
@@ -202,7 +216,7 @@ export function Navbar() {
             {/* Desktop CTA Only */}
             <div className="hidden md:flex items-center gap-4">
               <ThemeToggle />
-              <Link href="/contact" passHref>
+              <Link href="/contact" passHref className="cursor-pointer">
                 <motion.div
                   initial="idle"
                   whileHover="hover"
@@ -211,10 +225,11 @@ export function Navbar() {
                     hover: { scale: 1.04 }
                   }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  className="cursor-pointer"
                 >
                   <MagneticButton 
                     variant="secondary" 
-                    className="relative py-2.5 px-6 text-sm animate-idle-shimmer group overflow-hidden border border-border/50 hover:border-transparent transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_0_20px_rgba(255,229,0,0.15)] [&>span]:static"
+                    className="cursor-pointer relative py-2.5 px-6 text-sm animate-idle-shimmer group overflow-hidden border border-border/50 hover:border-transparent transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:shadow-[0_0_20px_rgba(255,229,0,0.15)] [&>span]:static"
                   >
                     <span className="absolute inset-0 w-full h-full bg-primary origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]" />
                     <span className="relative flex flex-col items-start justify-start h-[20px] w-full">
@@ -276,13 +291,8 @@ export function Navbar() {
               />
               <div className="relative z-10 flex-1 flex flex-col justify-between pt-[calc(max(env(safe-area-inset-top),1.5rem)+5.5rem)] px-6 pb-[calc(max(env(safe-area-inset-bottom),2rem)+1.5rem)] overflow-y-auto w-full">
                 <nav className="flex flex-col gap-8 mt-4">
-                  {[
-                    { name: "About", href: "/#about", id: "about" },
-                    { name: "Work", href: "/#work", id: "work" },
-                    { name: "Experience", href: "/#experience", id: "experience" },
-                    { name: "Journal", href: "/#journal", id: "journal" }
-                  ].map((link, idx) => {
-                    const active = link.href === "/contact" ? pathname === "/contact" : (pathname === "/" && activeId === link.id);
+                  {navLinks.map((link, idx) => {
+                    const active = isLinkActive(link);
                     return (
                     <motion.div key={link.name} variants={linkVariants}>
                       <Link 

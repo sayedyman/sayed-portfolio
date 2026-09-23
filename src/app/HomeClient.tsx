@@ -11,6 +11,9 @@ import { AboutSection } from "@/sections/about";
 import { ExpertiseSection } from "@/sections/expertise";
 import { JournalSection } from "@/sections/journal";
 
+import { useEffect } from "react";
+import { useLenis } from "lenis/react";
+
 const TestimonialsSection = dynamic(() => import("@/sections/testimonials").then(m => m.TestimonialsSection), { ssr: true });
 
 interface HomeClientProps {
@@ -20,6 +23,27 @@ interface HomeClientProps {
 }
 
 export default function HomeClient({ projects, articles, testimonials }: HomeClientProps) {
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const hash = window.location.hash;
+    if (!hash) return;
+
+    const timer = setTimeout(() => {
+      const target = document.querySelector(hash);
+      if (target) {
+        if (lenis) {
+          lenis.scrollTo(hash, { offset: -80, duration: 1.2 });
+        } else {
+          const top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: "smooth" });
+        }
+      }
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [lenis]);
   return (
     <>
       {/* Navbar clearance spacer — scales with viewport height */}

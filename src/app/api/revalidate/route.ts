@@ -58,6 +58,11 @@ export async function POST(request: NextRequest) {
       revalidatePath('/')
 
       console.log(`[Webhook] Revalidating testimonial tags for homepage`)
+    } else if (type === 'certificate') {
+      revalidateTag(CACHE_TAGS.CERTIFICATE, { expire: 0 })
+      revalidatePath('/certificates')
+
+      console.log(`[Webhook] Revalidating certificate tags and paths`)
     } else {
       console.log(`[Webhook] Unrecognized type: ${type}`)
       return Response.json({ message: 'Unrecognized type' }, { status: 400 })
@@ -68,7 +73,7 @@ export async function POST(request: NextRequest) {
 
     return Response.json({
       revalidated: true,
-      tag: type === 'article' ? CACHE_TAGS.ARTICLE : CACHE_TAGS.PROJECT,
+      tag: type === 'article' ? CACHE_TAGS.ARTICLE : type === 'certificate' ? CACHE_TAGS.CERTIFICATE : CACHE_TAGS.PROJECT,
       now: new Date().toISOString(),
     })
   } catch (err: unknown) {
@@ -90,6 +95,8 @@ export async function GET(request: NextRequest) {
 
   revalidateTag(CACHE_TAGS.PROJECT, { expire: 0 })
   revalidateTag(CACHE_TAGS.ARTICLE, { expire: 0 })
+  revalidateTag(CACHE_TAGS.CERTIFICATE, { expire: 0 })
+  revalidatePath('/certificates')
 
   return Response.json({
     revalidated: true,

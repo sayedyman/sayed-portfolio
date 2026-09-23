@@ -42,7 +42,7 @@ export function MagneticButton({ children, className, onClick, variant = "primar
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
       className={cn(
-        "relative flex items-center justify-center px-8 py-4 rounded-full font-medium transition-colors duration-300 overflow-hidden group",
+        "relative flex items-center justify-center px-8 py-4 rounded-full font-medium transition-colors duration-300 overflow-hidden group cursor-pointer",
         variants[variant],
         className
       )}

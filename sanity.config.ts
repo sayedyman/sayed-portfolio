@@ -32,9 +32,17 @@ export default defineConfig({
                   .filter('_type == "testimonial"')
                   .defaultOrdering([{ field: 'displayOrder', direction: 'asc' }])
               ),
+            S.listItem()
+              .title('Certificates')
+              .child(
+                S.documentList()
+                  .title('All Certificates')
+                  .filter('_type == "certificate"')
+                  .defaultOrdering([{ field: 'displayOrder', direction: 'asc' }])
+              ),
             // Scalable rendering for all other document types (e.g., Articles, Categories)
             ...S.documentTypeListItems().filter(
-              (listItem) => !['project', 'testimonial'].includes(listItem.getId() as string)
+              (listItem) => !['project', 'testimonial', 'certificate'].includes(listItem.getId() as string)
             ),
           ]),
     }),
