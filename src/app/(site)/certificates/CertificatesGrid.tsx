@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Award, X } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { urlFor } from "@/lib/sanity/image";
 import type { SanityCertificate } from "@/types";
 
@@ -15,15 +17,23 @@ interface CertificatesGridProps {
 // Threshold in characters to determine if description exceeds the clamped preview
 const DESCRIPTION_TRUNCATE_LENGTH = 120;
 
+const emptySubscribe = () => () => {};
+
 export function CertificatesGrid({ certificates }: CertificatesGridProps) {
   const [selectedCert, setSelectedCert] = useState<SanityCertificate | null>(null);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+  const lenis = useLenis();
 
   // Close modal handler
   const closeModal = useCallback(() => {
     setSelectedCert(null);
   }, []);
 
-  // Keyboard Escape listener
+  // Keyboard Escape listener & Scroll locking (Lenis + Body)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeModal();
@@ -31,14 +41,17 @@ export function CertificatesGrid({ certificates }: CertificatesGridProps) {
 
     if (selectedCert) {
       window.addEventListener("keydown", handleKeyDown);
+      lenis?.stop();
+      const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-    }
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "unset";
-    };
-  }, [selectedCert, closeModal]);
+      return () => {
+        window.removeEventListener("keydown", handleKeyDown);
+        lenis?.start();
+        document.body.style.overflow = originalOverflow || "unset";
+      };
+    }
+  }, [selectedCert, closeModal, lenis]);
 
   if (certificates.length === 0) {
     return (
@@ -153,120 +166,130 @@ export function CertificatesGrid({ certificates }: CertificatesGridProps) {
         })}
       </div>
 
-      {/* CERTIFICATE DETAILS MODAL */}
-      <AnimatePresence>
-        {selectedCert && (
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-cert-title"
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10"
-          >
-            {/* BACKDROP */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              onClick={closeModal}
-              className="fixed inset-0 bg-black/85 backdrop-blur-md"
-            />
-
-            {/* MODAL DIALOG */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 10 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative z-10 w-full max-w-4xl max-h-[90vh] bg-background/95 border border-border/50 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row backdrop-blur-xl"
-            >
-              {/* CLOSE BUTTON */}
-              <button
-                type="button"
-                onClick={closeModal}
-                aria-label="Close certificate details"
-                className="cursor-pointer absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-secondary/80 hover:bg-secondary border border-border/40 flex items-center justify-center text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+      {/* CERTIFICATE DETAILS MODAL (PORTALED TO DOCUMENT.BODY) */}
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {selectedCert && (
+              <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-cert-title"
+                data-lenis-prevent
+                className="fixed inset-0 z-[99999] flex items-center justify-center p-4 sm:p-6 md:p-8 overscroll-contain"
               >
-                <X className="w-5 h-5" />
-              </button>
+                {/* BACKDROP */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={closeModal}
+                  className="fixed inset-0 bg-black/85 backdrop-blur-md"
+                />
 
-              {/* LEFT COLUMN: CERTIFICATE IMAGE PREVIEW */}
-              <div className="w-full md:w-1/2 p-6 md:p-8 bg-black/40 flex items-center justify-center relative min-h-[240px] md:min-h-[380px] border-b md:border-b-0 md:border-r border-border/20">
-                {selectedCert.image ? (
-                  <div className="relative w-full h-[220px] md:h-[340px]">
-                    <Image
-                      src={urlFor(selectedCert.image).width(1400).quality(95).url()}
-                      alt={`${selectedCert.title} certificate`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-contain"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center justify-center text-muted-foreground/60 gap-3">
-                    <Award className="w-12 h-12 stroke-[1.5]" />
-                    <span className="text-xs font-mono uppercase tracking-wider">
-                      {selectedCert.issuer}
-                    </span>
-                  </div>
-                )}
-              </div>
+                {/* MODAL DIALOG */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.96, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96, y: 10 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  onClick={(e) => e.stopPropagation()}
+                  data-lenis-prevent
+                  className="relative z-10 w-full max-w-[calc(100vw-32px)] md:w-[1100px] md:max-w-[calc(100vw-64px)] max-h-[calc(100dvh-32px)] md:h-[780px] md:max-h-[calc(100vh-80px)] bg-background/95 border border-border/50 rounded-2xl shadow-2xl overflow-y-auto md:overflow-hidden flex flex-col md:flex-row backdrop-blur-xl modal-scrollbar overscroll-contain"
+                >
+                  {/* CLOSE BUTTON */}
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    aria-label="Close certificate details"
+                    className="cursor-pointer absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-secondary/80 hover:bg-secondary border border-border/40 flex items-center justify-center text-foreground hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
 
-              {/* RIGHT COLUMN: FULL DETAILS & DESCRIPTION */}
-              <div className="w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between overflow-y-auto max-h-[50vh] md:max-h-[80vh]">
-                <div>
-                  {/* ISSUER & DATE */}
-                  <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                    <span className="text-accent-text">{selectedCert.issuer}</span>
-                    {selectedCert.date && (
-                      <>
-                        <span className="text-border">•</span>
-                        <span className="text-foreground/80">{selectedCert.date}</span>
-                      </>
+                  {/* LEFT COLUMN: CERTIFICATE IMAGE PREVIEW (FIXED & FULL VISIBILITY) */}
+                  <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 bg-black/40 flex items-center justify-center relative min-h-[220px] sm:min-h-[280px] md:min-h-0 md:h-full shrink-0 border-b md:border-b-0 md:border-r border-border/20">
+                    {selectedCert.image ? (
+                      <div className="relative w-full h-[200px] sm:h-[260px] md:h-full flex items-center justify-center">
+                        <Image
+                          src={urlFor(selectedCert.image).width(1400).quality(95).url()}
+                          alt={`${selectedCert.title} certificate`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 550px"
+                          className="object-contain"
+                          priority
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center text-muted-foreground/60 gap-3">
+                        <Award className="w-12 h-12 stroke-[1.5]" />
+                        <span className="text-xs font-mono uppercase tracking-wider">
+                          {selectedCert.issuer}
+                        </span>
+                      </div>
                     )}
                   </div>
 
-                  {/* TITLE */}
-                  <h2
-                    id="modal-cert-title"
-                    className="text-2xl md:text-3xl font-heading font-medium text-foreground tracking-tight leading-snug mb-5"
+                  {/* RIGHT COLUMN: FULL DETAILS & INDEPENDENTLY SCROLLABLE CONTENT */}
+                  <div
+                    data-lenis-prevent
+                    className="w-full md:w-1/2 p-6 md:p-8 lg:p-10 flex flex-col justify-between md:overflow-y-auto md:h-full modal-scrollbar min-h-0 overscroll-contain"
                   >
-                    {selectedCert.title}
-                  </h2>
+                    <div className="pr-2 md:pr-4">
+                      {/* ISSUER & DATE */}
+                      <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3 pr-10">
+                        <span className="text-accent-text">{selectedCert.issuer}</span>
+                        {selectedCert.date && (
+                          <>
+                            <span className="text-border">•</span>
+                            <span className="text-foreground/80">{selectedCert.date}</span>
+                          </>
+                        )}
+                      </div>
 
-                  {/* FULL DESCRIPTION */}
-                  {selectedCert.description && (
-                    <div className="text-sm md:text-base text-muted-foreground/90 leading-relaxed mb-6 whitespace-pre-line">
-                      {selectedCert.description}
+                      {/* TITLE */}
+                      <h2
+                        id="modal-cert-title"
+                        className="text-2xl md:text-3xl font-heading font-medium text-foreground tracking-tight leading-snug mb-5 pr-10"
+                      >
+                        {selectedCert.title}
+                      </h2>
+
+                      {/* FULL DESCRIPTION */}
+                      {selectedCert.description && (
+                        <div className="text-sm md:text-base text-muted-foreground/90 leading-relaxed mb-6 whitespace-pre-line">
+                          {selectedCert.description}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
 
-                {/* MODAL FOOTER */}
-                <div className="pt-6 mt-6 border-t border-border/30 flex items-center justify-between">
-                  {selectedCert.certificateUrl ? (
-                    <a
-                      href={selectedCert.certificateUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`View ${selectedCert.title} certificate (opens in a new tab)`}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-widest hover:opacity-90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                    >
-                      <span>View Certificate</span>
-                      <ArrowUpRight className="w-4 h-4" />
-                    </a>
-                  ) : (
-                    <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground/60">
-                      Verified Credential
-                    </span>
-                  )}
-                </div>
+                    {/* MODAL FOOTER */}
+                    <div className="pt-6 mt-6 border-t border-border/30 flex items-center justify-between shrink-0">
+                      {selectedCert.certificateUrl ? (
+                        <a
+                          href={selectedCert.certificateUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`View ${selectedCert.title} certificate (opens in a new tab)`}
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-widest hover:opacity-90 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                        >
+                          <span>View Certificate</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground/60">
+                          Verified Credential
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
               </div>
-            </motion.div>
-          </div>
+            )}
+          </AnimatePresence>,
+          document.body
         )}
-      </AnimatePresence>
     </>
   );
 }

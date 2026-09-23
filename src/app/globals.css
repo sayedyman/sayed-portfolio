@@ -253,6 +253,25 @@ html.lenis, html.lenis body {
   display: none;
 }
 
+/* Modal Subtle Thin Scrollbar */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.modal-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 9999px;
+}
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted-foreground);
+}
+
 /* ─── Light Mode Testimonial Cinematic Depth ────────────────────────────────
    In Dark Mode the global grain overlay and card-level yellow shadows are
    naturally visible against the near-black background.  In Light Mode, the
