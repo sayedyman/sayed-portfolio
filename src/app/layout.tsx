@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { SITE_URL } from "@/config/site";
 
 import "./globals.css";
 
@@ -10,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://sayed-portfolio-seven.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
   },
@@ -31,12 +32,13 @@ export const metadata: Metadata = {
     "Sayed Elghanam",
     "Sayed Ayman Elghanam"
   ],
-  authors: [{ name: "Sayed Ayman Elghanam", url: "https://sayed-portfolio-seven.vercel.app" }],
+  authors: [{ name: "Sayed Ayman Elghanam", url: SITE_URL }],
   creator: "Sayed Ayman Elghanam",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://sayed-portfolio-seven.vercel.app/",
+    url: `${SITE_URL}/`,
+
     title: "Sayed Elghanam | UI/UX Designer",
     description: "UI/UX Designer crafting modern digital experiences and premium user-centered digital products",
     siteName: "Sayed Elghanam Portfolio",

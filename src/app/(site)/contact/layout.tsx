@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { SITE_URL } from '@/config/site';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contact | Sayed Elghanam',
     description: 'Get in touch with Sayed Elghanam for freelance UI/UX design, product design, and web app design projects',
-    url: 'https://sayed-portfolio-seven.vercel.app/contact',
+    url: `${SITE_URL}/contact`,
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {

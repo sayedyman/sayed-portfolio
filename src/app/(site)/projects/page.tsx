@@ -1,7 +1,7 @@
 import { getAllProjects } from '@/lib/sanity/queries'
 import { ProjectsClient } from './ProjectsClient'
-
 import { Metadata } from 'next'
+import { SITE_URL } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Projects & Case Studies',
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Projects & Case Studies | Sayed Elghanam',
     description: 'Explore UI/UX design case studies and digital product projects designed by Sayed Elghanam',
-    url: 'https://sayed-portfolio-seven.vercel.app/projects',
+    url: `${SITE_URL}/projects`,
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {

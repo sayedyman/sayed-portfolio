@@ -8,6 +8,7 @@ import { Container } from '@/components/layout/Container'
 import { getArticle, getAllArticleSlugs } from '@/lib/sanity/queries'
 import { urlFor } from '@/lib/sanity/image'
 import { JsonLd } from '@/components/seo/JsonLd'
+import { SITE_URL } from '@/config/site'
 
 export const revalidate = 60
 
@@ -45,7 +46,7 @@ export async function generateMetadata({
       type: 'article',
       title: article.seoTitle ?? article.title,
       description: article.seoDescription ?? article.excerpt ?? undefined,
-      url: `https://sayed-portfolio-seven.vercel.app/articles/${slug}`,
+      url: `${SITE_URL}/articles/${slug}`,
       images: ogImageUrl ? [{ url: ogImageUrl }] : undefined,
     },
     twitter: {
@@ -95,17 +96,17 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           "image": article.coverImage?.asset ? urlFor(article.coverImage).width(1200).url() : undefined,
           "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://sayed-portfolio-seven.vercel.app/articles/${slug}`
+            "@id": `${SITE_URL}/articles/${slug}`
           },
-          "url": `https://sayed-portfolio-seven.vercel.app/articles/${slug}`,
+          "url": `${SITE_URL}/articles/${slug}`,
           "author": {
             "@type": "Person",
-            "@id": "https://sayed-portfolio-seven.vercel.app/#person",
+            "@id": `${SITE_URL}/#person`,
             "name": "Sayed Ayman Elghanam"
           },
           "publisher": {
             "@type": "Person",
-            "@id": "https://sayed-portfolio-seven.vercel.app/#person",
+            "@id": `${SITE_URL}/#person`,
             "name": "Sayed Ayman Elghanam"
           },
           "datePublished": article.publishedAt,

@@ -3,9 +3,10 @@ import { groq } from 'next-sanity';
 import { CACHE_TAGS } from '@/lib/sanity/cache-tags';
 import { safeSanityFetch } from '@/lib/sanity/fetch';
 import { mockAllArticles } from '@/lib/sanity/mocks';
+import { SITE_URL } from '@/config/site';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://sayed-portfolio-seven.vercel.app';
+  const baseUrl = SITE_URL;
 
   const articlesQuery = groq`*[_type == "article" && !(_id in path("drafts.**")) && status != "archived" && defined(slug.current)] { "slug": slug.current, _updatedAt }`;
 

@@ -2,6 +2,7 @@ import { InteractiveElements } from "@/components/layout/InteractiveElements";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/config/site";
 
 export default function SiteLayout({
   children,
@@ -16,10 +17,10 @@ export default function SiteLayout({
           "@graph": [
             {
               "@type": "Person",
-              "@id": "https://sayed-portfolio-seven.vercel.app/#person",
+              "@id": `${SITE_URL}/#person`,
               "name": "Sayed Ayman Elghanam",
-              "url": "https://sayed-portfolio-seven.vercel.app",
-              "image": "https://sayed-portfolio-seven.vercel.app/sayed-portrait.jpg",
+              "url": SITE_URL,
+              "image": `${SITE_URL}/sayed-portrait.jpg`,
               "jobTitle": "UI/UX & Product Designer",
               "sameAs": [
                 "https://www.linkedin.com/in/sayed-ayman/",
@@ -42,11 +43,11 @@ export default function SiteLayout({
             },
             {
               "@type": "WebSite",
-              "@id": "https://sayed-portfolio-seven.vercel.app/#website",
-              "url": "https://sayed-portfolio-seven.vercel.app",
+              "@id": `${SITE_URL}/#website`,
+              "url": SITE_URL,
               "name": "Sayed Elghanam Portfolio",
               "publisher": {
-                "@id": "https://sayed-portfolio-seven.vercel.app/#person"
+                "@id": `${SITE_URL}/#person`
               }
             }
           ]

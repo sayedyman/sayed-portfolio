@@ -1,7 +1,7 @@
 import { getAllArticles } from '@/lib/sanity/queries'
 import { ArticlesClient } from './ArticlesClient'
-
 import { Metadata } from 'next'
+import { SITE_URL } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Journal & UX Articles',
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Journal & UX Articles | Sayed Elghanam',
     description: 'Read articles and insights on UI/UX design, product strategy, design systems, and human-computer interaction by Sayed Elghanam',
-    url: 'https://sayed-portfolio-seven.vercel.app/articles',
+    url: `${SITE_URL}/articles`,
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {

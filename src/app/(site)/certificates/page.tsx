@@ -3,6 +3,7 @@ import { Container } from '@/components/layout/Container'
 import { Grid } from '@/components/layout/Grid'
 import { CertificatesGrid } from './CertificatesGrid'
 import { Metadata } from 'next'
+import { SITE_URL } from '@/config/site'
 
 export const metadata: Metadata = {
   title: 'Certificates & Credentials',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Certificates & Credentials | Sayed Elghanam',
     description: 'A collection of certifications and learning milestones from the design journey of Sayed Ayman Elghanam.',
-    url: 'https://sayed-portfolio-seven.vercel.app/certificates',
+    url: `${SITE_URL}/certificates`,
     images: [{ url: '/og-image.png', width: 1200, height: 630 }],
   },
   twitter: {
