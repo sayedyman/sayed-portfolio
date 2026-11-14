@@ -8,6 +8,7 @@ import { ArrowUpRight, CheckCircle2, ChevronDown, AlertCircle } from "lucide-rea
 import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { siteConfig } from "@/config/site";
+import { createClient } from "@/lib/supabase/client";
 
 interface ServiceConfig {
   heading: React.ReactNode;
@@ -115,23 +116,25 @@ function ContactContent({ serviceParam }: { serviceParam: string }) {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/xwvyabyj", {
-        method: "POST",
-        body: formData,
-        headers: {
-          Accept: "application/json",
-        },
+      const supabase = createClient();
+      const { error } = await supabase.from("contact_inquiries").insert({
+        name: String(formData.get("name") || "").trim(),
+        email: String(formData.get("email") || "").trim(),
+        whatsapp: String(formData.get("whatsapp") || "").trim() || null,
+        project_type: String(formData.get("projectType") || "").trim(),
+        budget: String(formData.get("budget") || "").trim() || null,
+        message: String(formData.get("message") || "").trim(),
       });
 
-      if (response.ok) {
-        setIsSubmitted(true);
-        setSubmitError("");
-        form.reset();
-      } else {
-        setSubmitError("Something went wrong. Please try again.");
+      if (error) {
+        throw error;
       }
+
+      setIsSubmitted(true);
+      setSubmitError("");
+      form.reset();
     } catch {
-      setSubmitError("Something went wrong. Please check your connection and try again.");
+      setSubmitError("Your message could not be sent. Please try again in a moment.");
     } finally {
       setIsSubmitting(false);
     }

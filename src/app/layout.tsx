@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { MicrosoftClarity } from "@/components/MicrosoftClarity";
+import { AuthRecoveryRedirect } from "@/components/auth/AuthRecoveryRedirect";
 import { SITE_URL } from "@/config/site";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -93,6 +94,7 @@ export default function RootLayout({
     >
       <head />
       <body className="min-h-dvh selection:bg-primary selection:text-primary-foreground">
+        <AuthRecoveryRedirect />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
