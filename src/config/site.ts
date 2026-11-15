@@ -2,5 +2,5 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://sayedportfo
 
 export const siteConfig = {
   url: SITE_URL,
-  resumeUrl: "https://drive.google.com/file/d/1P4eu0F_y5cvYZc38jtaJ-KnB2pe7geVv/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1r_7PVEStCYpbCl5tC4ShRkJd4l7KSb5F/view?usp=sharing",
 };
